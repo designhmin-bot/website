@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neulbom Garden | K Food Solution</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&display=swap');
+        
+        :root {
+            --primary: #1a1a1a;
+            --accent: #E11D48;
+        }
+
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; background-color: #ffffff; color: var(--primary); }
+        h1, h2, h3, .font-serif { font-family: 'Playfair Display', serif; }
+
+        .sticky-nav {
+            backdrop-filter: blur(10px);
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <nav class="fixed w-full z-50 transition-all duration-300 py-4 px-6 md:px-12 flex justify-between items-center sticky-nav border-b border-gray-100">
+        <a href="index.html" class="text-2xl font-bold tracking-tighter uppercase font-serif">
+            K FOOD <span class="text-[#E11D48]">SOLUTION</span>
+        </a>
+        <div class="hidden md:flex space-x-8 items-center font-medium text-sm tracking-widest uppercase">
+            <a href="index.html#philosophy" class="hover:text-[#E11D48] transition-colors">Our Philosophy</a>
+            <a href="index.html#brands" class="hover:text-[#E11D48] transition-colors">Our Brands</a>
+            <a href="mailto:info@kfoodsolution.com" class="bg-black text-white px-6 py-2 rounded-full hover:bg-[#E11D48] transition-colors">Enquire Now</a>
+        </div>
+    </nav>
+
+    <header class="relative h-[60vh] flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1623341214825-9f4f963727da?auto=format&fit=crop&q=80&w=2000" 
+                 alt="Neulbom Garden" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-black opacity-50"></div>
+        </div>
+        <div class="relative z-10 text-center text-white px-4 mt-20">
+            <div class="bg-[#E11D48] text-[10px] font-bold uppercase tracking-[0.3em] px-4 py-2 inline-block mb-6 rounded">Traditional Dining Concept</div>
+            <h1 class="text-5xl md:text-7xl font-serif italic mb-4">Neulbom Garden</h1>
+            <p class="text-lg font-light tracking-widest uppercase">The Timeless Spirit of Korean Hospitality</p>
+        </div>
+    </header>
+
+    <section class="py-24 px-6 md:px-12">
+        <div class="max-w-5xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
+                <div>
+                    <h2 class="text-3xl font-serif mb-6">A Sanctuary of <span class="text-[#E11D48]">Heritage Flavors</span></h2>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        Neulbom Garden, meaning "Eternal Spring," brings the traditional Korean "Garden" dining style to a modern, pork-free environment. We focus on slow-cooked stews, hand-crafted dumplings, and an extensive array of seasonal vegetable preparations that honor centuries of culinary history.
+                    </p>
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-[#E11D48]">
+                                <i class="fas fa-leaf"></i>
+                            </div>
+                            <span class="font-medium">Farm-to-Table Seasonal Banchan</span>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-[#E11D48]">
+                                <i class="fas fa-soup"></i>
+                            </div>
+                            <span class="font-medium">Signature Beef-Based Broths & Stews</span>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-[#E11D48]">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <span class="font-medium">Family-Style Shared Dining Format</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-50 p-8 rounded-2xl border border-gray-100">
+                    <h3 class="text-xl font-serif mb-6 italic">Franchise Specs</h3>
+                    <ul class="space-y-6 text-sm uppercase tracking-wider">
+                        <li class="flex justify-between border-b pb-2"><span>Format</span> <span class="font-bold">Full-Service Restaurant</span></li>
+                        <li class="flex justify-between border-b pb-2"><span>Space Required</span> <span class="font-bold">2,000 - 3,500 sqft</span></li>
+                        <li class="flex justify-between border-b pb-2"><span>Ideal Location</span> <span class="font-bold">Stand-alone / Cultural Hubs</span></li>
+                        <li class="flex justify-between"><span>Investment Tier</span> <span class="font-bold">Tier A+</span></li>
+                    </ul>
+                    <a href="mailto:info@kfoodsolution.com?subject=Inquiry: Neulbom Garden" class="block w-full text-center bg-black text-white mt-8 py-4 rounded-lg hover:bg-[#E11D48] transition-all uppercase text-xs font-bold tracking-widest">Request Pitch Deck</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-16 px-6 md:px-12 border-t border-gray-100 bg-white">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 text-sm">
+            <div>
+                <div class="text-xl font-bold tracking-tighter uppercase font-serif mb-6">K FOOD <span class="text-[#E11D48]">SOLUTION</span></div>
+                <p class="text-gray-400">Authentic. Inclusive. Pork-Free.</p>
+            </div>
+            <div>
+                <h4 class="font-bold uppercase tracking-widest mb-6 text-xs">Explore</h4>
+                <ul class="text-gray-500 space-y-4">
+                    <li><a href="index.html#philosophy">Our Philosophy</a></li>
+                    <li><a href="index.html#brands">Brands</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto mt-12 pt-8 border-t border-gray-50 text-gray-400 text-xs text-center">
+            &copy; 2026 K Food Solution Group. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('py-2', 'shadow-md');
+                nav.classList.remove('py-4');
+            } else {
+                nav.classList.remove('py-2', 'shadow-md');
+                nav.classList.add('py-4');
+            }
+        });
+    </script>
+
+</body>
+</html>
