@@ -23,29 +23,28 @@
             background-color: rgba(255, 255, 255, 0.9);
         }
 
-        /* --- Updated Sliding Gallery (2 Images Visible) --- */
+        /* --- Refined Sliding Gallery --- */
         @keyframes scroll {
             0% { transform: translateX(0); }
-            100% { transform: translateX(-200%); } /* Scrolls through the first set of 4 images */
+            100% { transform: translateX(-50%); } /* Shift by half the track width */
         }
 
-        .slider {
-            background: white;
-            margin: auto;
+        /* The container that keeps the images from getting too big */
+        .gallery-container {
+            max-width: 1000px; /* Limits the "huge" feel */
+            margin: 0 auto;
             overflow: hidden;
             position: relative;
-            width: 100%;
-            padding: 20px 0;
         }
 
         .slide-track {
-            animation: scroll 30s linear infinite;
             display: flex;
-            width: 400%; /* 8 slides total, each 50% wide = 400% total width */
+            width: 400%; /* Enough room for 8 images */
+            animation: scroll 25s linear infinite;
         }
 
         .slide {
-            width: 50%; /* Shows exactly 2 images per screen width */
+            width: 12.5%; /* This math ensures 2 images fit in the 1000px container */
             padding: 10px;
             flex-shrink: 0;
         }
@@ -53,28 +52,19 @@
         .slide img {
             width: 100%;
             height: auto;
-            aspect-ratio: 3 / 2; /* Maintains 3:2 Ratio */
+            aspect-ratio: 3 / 2;
             object-fit: cover;
             border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-            transition: transform 0.3s ease;
-        }
-        
-        .slide img:hover {
-            transform: scale(1.02);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
 
-        .slider:hover .slide-track {
+        .gallery-container:hover .slide-track {
             animation-play-state: paused;
         }
 
-        /* Mobile adjustment: Show 1.2 images to hint at scrolling */
+        /* Mobile adjustment: Back to single-focused view */
         @media (max-width: 768px) {
-            .slide { width: 85%; }
-            @keyframes scroll {
-                0% { transform: translateX(0); }
-                100% { transform: translateX(-340%); } 
-            }
+            .slide { width: 25%; } /* Adjusts for mobile container logic */
         }
     </style>
 </head>
@@ -91,105 +81,62 @@
         </div>
     </nav>
 
-    <header class="relative h-[60vh] flex items-center justify-center overflow-hidden bg-zinc-900">
+    <header class="relative h-[50vh] flex items-center justify-center overflow-hidden bg-zinc-900">
         <div class="absolute inset-0 z-0">
-            <img src="https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?auto=format&fit=crop&q=80&w=2000" 
-                 alt="Oiso Premium BBQ" 
-                 class="w-full h-full object-cover opacity-70">
+            <img src="https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?auto=format&fit=crop&q=80&w=2000" alt="Oiso Hero" class="w-full h-full object-cover opacity-70">
             <div class="absolute inset-0 bg-black/40"></div>
         </div>
-        <div class="relative z-10 text-center text-white px-4 mt-20">
-            <div class="bg-[#E11D48] text-[10px] font-bold uppercase tracking-[0.3em] px-4 py-2 inline-block mb-6 rounded">Premium BBQ Concept</div>
-            <h1 class="text-6xl md:text-8xl font-serif italic mb-4">Oiso</h1>
-            <p class="text-lg font-light tracking-widest uppercase opacity-90">The Pinnacle of Pork-Free Grilling</p>
+        <div class="relative z-10 text-center text-white mt-16">
+            <h1 class="text-6xl font-serif italic mb-2">Oiso</h1>
+            <p class="uppercase tracking-widest text-sm opacity-80">Premium Pork-Free BBQ</p>
         </div>
     </header>
 
-    <section class="py-24 px-6 md:px-12">
-        <div class="max-w-6xl mx-auto">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-start">
-                <div>
-                    <h2 class="text-4xl font-serif mb-8 italic">Excellence in <span class="text-[#E11D48]">Every Cut</span></h2>
-                    <p class="text-gray-600 mb-8 text-lg leading-relaxed">
-                        Oiso is the group’s flagship BBQ destination, where the art of the Korean grill meets world-class beef selection. We have meticulously crafted a menu that celebrates the rich, smoky flavors of authentic BBQ without the use of pork.
-                    </p>
-                    
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-10">
-                        <div class="p-6 bg-gray-50 rounded-xl">
-                            <i class="fas fa-fire-burner text-[#E11D48] text-2xl mb-4"></i>
-                            <h4 class="font-bold mb-2 uppercase text-xs tracking-widest">Service</h4>
-                            <p class="text-sm text-gray-500">Table-side Professional Grilling</p>
-                        </div>
-                        <div class="p-6 bg-gray-50 rounded-xl">
-                            <i class="fas fa-award text-[#E11D48] text-2xl mb-4"></i>
-                            <h4 class="font-bold mb-2 uppercase text-xs tracking-widest">Sourcing</h4>
-                            <p class="text-sm text-gray-500">Halal-Sourced Premium Beef</p>
-                        </div>
-                    </div>
+    <section class="py-20 px-6 md:px-12">
+        <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16">
+            <div>
+                <h2 class="text-4xl font-serif mb-6 italic text-[#E11D48]">Every Cut, Perfected.</h2>
+                <p class="text-gray-600 leading-relaxed mb-6">Oiso is our premier destination for Korean BBQ, focusing on premium Wagyu and Black Angus beef. We've mastered the art of traditional grilling in a completely pork-free environment.</p>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="p-4 bg-gray-50 rounded-lg"><h4 class="font-bold text-xs uppercase mb-1">Service</h4><p class="text-xs text-gray-500">Expert Table-side Grilling</p></div>
+                    <div class="p-4 bg-gray-50 rounded-lg"><h4 class="font-bold text-xs uppercase mb-1">Cuisine</h4><p class="text-xs text-gray-500">Authentic K-BBQ</p></div>
                 </div>
-                
-                <div class="bg-white p-10 rounded-3xl border border-gray-100 shadow-2xl shadow-gray-200/50">
-                    <h3 class="text-2xl font-serif mb-8 italic">Franchise Specs</h3>
-                    <ul class="space-y-6 text-sm uppercase tracking-wider">
-                        <li class="flex justify-between border-b border-gray-50 pb-4">
-                            <span class="text-gray-400">Format</span> 
-                            <span class="font-bold">Premium Dining</span>
-                        </li>
-                        <li class="flex justify-between border-b border-gray-50 pb-4">
-                            <span class="text-gray-400">Space Required</span> 
-                            <span class="font-bold">1,800 - 3,000 sqft</span>
-                        </li>
-                        <li class="flex justify-between pb-4">
-                            <span class="text-gray-400">Investment Tier</span> 
-                            <span class="font-bold">Tier A</span>
-                        </li>
-                    </ul>
-                    <a href="mailto:info@kfoodsolution.com?subject=Inquiry: Oiso" class="block w-full text-center bg-black text-white mt-10 py-5 rounded-full hover:bg-[#E11D48] transition-all uppercase text-xs font-bold tracking-widest">Request Pitch Deck</a>
+            </div>
+            <div class="bg-white p-8 rounded-2xl border border-gray-100 shadow-xl">
+                <h3 class="text-xl font-serif mb-6 italic border-b pb-4">Franchise Overview</h3>
+                <div class="space-y-4 text-sm">
+                    <div class="flex justify-between"><span class="text-gray-400">Format</span><b>Premium Dining</b></div>
+                    <div class="flex justify-between"><span class="text-gray-400">Size</span><b>1,800 - 3,000 SQFT</b></div>
+                    <div class="flex justify-between"><span class="text-gray-400">Location</span><b>Luxury Malls / Flagships</b></div>
                 </div>
+                <a href="mailto:info@kfoodsolution.com" class="block w-full text-center bg-black text-white mt-8 py-4 rounded-full text-xs font-bold uppercase tracking-widest">Inquire for Oiso</a>
             </div>
         </div>
     </section>
 
-    <section class="py-20 bg-white overflow-hidden">
-        <div class="max-w-7xl mx-auto px-6 mb-12 flex justify-between items-end">
-            <div>
-                <h2 class="text-4xl font-serif italic mb-2">Signature Gallery</h2>
-                <p class="text-gray-500 tracking-widest uppercase text-xs">A Taste of the Oiso Experience</p>
-            </div>
-            <a href="https://www.instagram.com/oisowelcome" target="_blank" class="text-xs font-bold uppercase tracking-widest hover:text-[#E11D48]">Follow @oisowelcome <i class="fab fa-instagram ml-1"></i></a>
+    <section class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-6 mb-10 text-center">
+            <h2 class="text-3xl font-serif italic mb-2">The Oiso Table</h2>
+            <p class="text-gray-400 uppercase text-[10px] tracking-widest">A visual journey through our signature dishes</p>
         </div>
 
-        <div class="slider">
+        <div class="gallery-container">
             <div class="slide-track">
-                <div class="slide"><img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&q=80&w=800" alt="Oiso 1"></div>
-                <div class="slide"><img src="https://images.unsplash.com/photo-1632233033100-3486339bc077?auto=format&fit=crop&q=80&w=800" alt="Oiso 2"></div>
-                <div class="slide"><img src="https://images.unsplash.com/photo-1563379091339-03b21ef4a4f8?auto=format&fit=crop&q=80&w=800" alt="Oiso 3"></div>
-                <div class="slide"><img src="https://images.unsplash.com/photo-1514326640560-7d063ef2aed5?auto=format&fit=crop&q=80&w=800" alt="Oiso 4"></div>
-                <div class="slide"><img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&q=80&w=800" alt="Oiso 1"></div>
-                <div class="slide"><img src="https://images.unsplash.com/photo-1632233033100-3486339bc077?auto=format&fit=crop&q=80&w=800" alt="Oiso 2"></div>
-                <div class="slide"><img src="https://images.unsplash.com/photo-1563379091339-03b21ef4a4f8?auto=format&fit=crop&q=80&w=800" alt="Oiso 3"></div>
-                <div class="slide"><img src="https://images.unsplash.com/photo-1514326640560-7d063ef2aed5?auto=format&fit=crop&q=80&w=800" alt="Oiso 4"></div>
+                <div class="slide"><img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&q=80&w=800" alt="Slide 1"></div>
+                <div class="slide"><img src="https://images.unsplash.com/photo-1632233033100-3486339bc077?auto=format&fit=crop&q=80&w=800" alt="Slide 2"></div>
+                <div class="slide"><img src="https://images.unsplash.com/photo-1563379091339-03b21ef4a4f8?auto=format&fit=crop&q=80&w=800" alt="Slide 3"></div>
+                <div class="slide"><img src="https://images.unsplash.com/photo-1514326640560-7d063ef2aed5?auto=format&fit=crop&q=80&w=800" alt="Slide 4"></div>
+                <div class="slide"><img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&q=80&w=800" alt="Slide 1"></div>
+                <div class="slide"><img src="https://images.unsplash.com/photo-1632233033100-3486339bc077?auto=format&fit=crop&q=80&w=800" alt="Slide 2"></div>
+                <div class="slide"><img src="https://images.unsplash.com/photo-1563379091339-03b21ef4a4f8?auto=format&fit=crop&q=80&w=800" alt="Slide 3"></div>
+                <div class="slide"><img src="https://images.unsplash.com/photo-1514326640560-7d063ef2aed5?auto=format&fit=crop&q=80&w=800" alt="Slide 4"></div>
             </div>
         </div>
     </section>
 
-    <footer class="py-20 px-6 md:px-12 border-t border-gray-100 bg-white">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 text-sm">
-            <div>
-                <div class="text-xl font-bold tracking-tighter uppercase font-serif mb-6">K FOOD <span class="text-[#E11D48]">SOLUTION</span></div>
-                <p class="text-gray-400">Authentic. Inclusive. Pork-Free.</p>
-            </div>
-            <div>
-                <h4 class="font-bold uppercase tracking-widest mb-6 text-xs">Explore</h4>
-                <ul class="text-gray-500 space-y-4">
-                    <li><a href="index.html#philosophy" class="hover:text-[#E11D48]">Our Philosophy</a></li>
-                    <li><a href="index.html#brands" class="hover:text-[#E11D48]">Our Brands</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="max-w-7xl mx-auto mt-16 pt-8 border-t border-gray-50 text-gray-400 text-xs text-center">
-            &copy; 2026 K Food Solution Group. All rights reserved.
-        </div>
+    <footer class="py-12 px-6 border-t border-gray-100 text-center">
+        <div class="text-lg font-serif mb-4 uppercase">K FOOD <span class="text-[#E11D48]">SOLUTION</span></div>
+        <div class="text-[10px] text-gray-400 tracking-widest uppercase">&copy; 2026 K Food Solution Group</div>
     </footer>
 
 </body>
