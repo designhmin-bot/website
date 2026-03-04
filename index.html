@@ -15,38 +15,25 @@
         }
 
         html { scroll-behavior: smooth; }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #ffffff;
-            color: var(--primary);
-        }
-
-        h1, h2, h3, .font-serif {
-            font-family: 'Playfair Display', serif;
-        }
-
-        .nav-link { position: relative; }
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -4px;
-            left: 0;
-            background-color: var(--accent);
-            transition: width 0.3s ease;
-        }
-        .nav-link:hover::after { width: 100%; }
+        body { font-family: 'Inter', sans-serif; background-color: #ffffff; color: var(--primary); }
+        h1, h2, h3, .font-serif { font-family: 'Playfair Display', serif; }
 
         .sticky-nav {
             backdrop-filter: blur(10px);
             background-color: rgba(255, 255, 255, 0.9);
         }
 
-        .brand-card:hover img {
-            transform: scale(1.05);
+        /* --- Animation for the Mission Image Rotation --- */
+        @keyframes crossfade {
+            0%, 20% { opacity: 1; transform: scale(1.02); }
+            25%, 100% { opacity: 0; transform: scale(1); }
         }
+
+        .animate-fade-1 { animation: crossfade 20s infinite 0s; }
+        .animate-fade-2 { animation: crossfade 20s infinite 4s; }
+        .animate-fade-3 { animation: crossfade 20s infinite 8s; }
+        .animate-fade-4 { animation: crossfade 20s infinite 12s; }
+        .animate-fade-5 { animation: crossfade 20s infinite 16s; }
     </style>
 </head>
 <body class="antialiased">
@@ -55,90 +42,70 @@
         <div class="text-2xl font-bold tracking-tighter uppercase font-serif">
             K FOOD <span class="text-[#E11D48]">SOLUTION</span>
         </div>
-        
         <div class="hidden md:flex space-x-8 items-center font-medium text-sm tracking-widest uppercase">
-            <a href="#philosophy" class="nav-link">Our Philosophy</a>
-            <a href="#brands" class="nav-link">Our Brands</a>
+            <a href="#philosophy" class="hover:text-[#E11D48] transition-colors">Our Philosophy</a>
+            <a href="#brands" class="hover:text-[#E11D48] transition-colors">Our Brands</a>
             <a href="mailto:info@kfoodsolution.com" class="bg-black text-white px-6 py-2 rounded-full hover:bg-[#E11D48] transition-colors">Enquire Now</a>
         </div>
-
-        <button class="md:hidden text-2xl">
-            <i class="fas fa-bars"></i>
-        </button>
     </nav>
 
     <header class="relative h-screen flex items-center justify-center overflow-hidden bg-zinc-900">
         <div class="absolute inset-0 z-0">
             <img src="https://images.unsplash.com/photo-1498654896293-37aacf113fd9?auto=format&fit=crop&q=80&w=2000" 
-                 alt="Korean Cuisine" 
                  class="w-full h-full object-cover opacity-60">
             <div class="absolute inset-0 bg-black/40"></div>
         </div>
-
         <div class="relative z-10 text-center text-white px-4">
             <p class="uppercase tracking-[0.3em] text-sm mb-4">Authentic & Inclusive</p>
             <h1 class="text-5xl md:text-8xl mb-8 leading-tight font-serif italic">The Soul of Korea,<br>Inclusive for All.</h1>
             <p class="text-lg md:text-xl mb-10 max-w-2xl mx-auto font-light text-gray-200">
-                Pioneering <span class="text-[#E11D48] font-semibold underline decoration-2 underline-offset-4">Pork-Free</span> Korean gastronomy through a diverse portfolio of franchise-ready brands.
+                Pioneering <span class="text-[#E11D48] font-semibold underline decoration-2 underline-offset-4">Pork-Free</span> Korean gastronomy through a diverse portfolio of brands.
             </p>
             <div class="flex flex-col md:flex-row justify-center gap-4">
                 <a href="#brands" class="bg-[#E11D48] border border-[#E11D48] px-10 py-4 rounded-full uppercase text-xs tracking-widest hover:bg-transparent hover:text-white transition-all">Explore Brands</a>
                 <a href="#philosophy" class="border border-white px-10 py-4 rounded-full uppercase text-xs tracking-widest hover:bg-white hover:text-black transition-all">Our Philosophy</a>
             </div>
         </div>
-
-        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 text-white animate-bounce">
-            <i class="fas fa-chevron-down"></i>
-        </div>
     </header>
 
     <section id="philosophy" class="py-24 px-6 md:px-12 bg-white">
         <div class="max-w-7xl mx-auto">
-            <div class="flex flex-col lg:flex-row items-center gap-16 mb-20">
+            <div class="flex flex-col lg:flex-row items-center gap-16">
+                
                 <div class="lg:w-1/2">
                     <div class="text-[#E11D48] font-bold uppercase tracking-[0.3em] text-xs mb-4">Our Mission</div>
                     <h2 class="text-4xl md:text-6xl font-serif mb-8 leading-tight text-zinc-900">
                         Dining Without <br><span class="italic text-[#E11D48]">Boundaries.</span>
                     </h2>
                     <p class="text-gray-600 text-lg leading-relaxed mb-6">
-                        At K Food Solution, we identified a gap in the global culinary market: the rich, communal experience of Korean gastronomy was often inaccessible to a significant portion of the population. 
+                        At K Food Solution, we identified a gap in the global culinary market: the communal experience of Korean gastronomy was often inaccessible to many.
                     </p>
-                    <p class="text-gray-600 text-lg leading-relaxed">
-                        By specializing in <span class="font-bold text-zinc-900">Pork-Free</span> Korean cuisine, we don't just change the ingredients; we expand the table. We've combined traditional techniques with premium alternative proteins to ensure that "authentic" and "inclusive" are no longer mutually exclusive.
+                    <p class="text-gray-600 text-lg leading-relaxed mb-10">
+                        By specializing in <span class="font-bold text-zinc-900">Pork-Free</span> Korean cuisine, we've combined traditional techniques with premium alternative proteins to ensure "authentic" and "inclusive" are no longer mutually exclusive.
                     </p>
-                </div>
-                <div class="lg:w-1/2 relative">
-                    <div class="grid grid-cols-2 gap-4">
-                        <img src="https://images.unsplash.com/photo-1553163147-622ab57b0600?auto=format&fit=crop&q=80&w=600" class="rounded-2xl shadow-2xl translate-y-12" alt="Korean BBQ">
-                        <img src="https://images.unsplash.com/photo-1580651214613-f45bc8346efb?auto=format&fit=crop&q=80&w=600" class="rounded-2xl shadow-2xl" alt="Bibimbap">
-                    </div>
-                </div>
-            </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-32">
-                <div class="p-8 border border-gray-100 rounded-2xl hover:shadow-xl transition-all">
-                    <div class="w-12 h-12 bg-[#E11D48]/10 rounded-full flex items-center justify-center text-[#E11D48] mb-6">
-                        <i class="fas fa-globe"></i>
+                    <div class="grid grid-cols-2 gap-8 border-t pt-8 border-gray-100">
+                        <div>
+                            <div class="text-3xl font-serif text-[#E11D48]">100%</div>
+                            <div class="text-xs uppercase tracking-widest text-gray-400">Pork-Free Menu</div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-serif text-[#E11D48]">Tier A</div>
+                            <div class="text-xs uppercase tracking-widest text-gray-400">Retail Standards</div>
+                        </div>
                     </div>
-                    <h3 class="font-serif text-xl mb-3">Global Accessibility</h3>
-                    <p class="text-sm text-gray-500 leading-relaxed">Opening the doors of Korean BBQ to Muslim, health-conscious, and diverse communities worldwide.</p>
                 </div>
 
-                <div class="p-8 border border-gray-100 rounded-2xl hover:shadow-xl transition-all">
-                    <div class="w-12 h-12 bg-[#E11D48]/10 rounded-full flex items-center justify-center text-[#E11D48] mb-6">
-                        <i class="fas fa-heart"></i>
+                <div class="lg:w-1/2 w-full">
+                    <div class="relative aspect-[4/5] md:aspect-square overflow-hidden rounded-2xl shadow-2xl bg-zinc-100">
+                        <img src="https://images.unsplash.com/photo-1553163147-622ab57b0600?auto=format&fit=crop&q=80&w=800" class="absolute inset-0 w-full h-full object-cover animate-fade-1">
+                        <img src="https://images.unsplash.com/photo-1580651214613-f45bc8346efb?auto=format&fit=crop&q=80&w=800" class="absolute inset-0 w-full h-full object-cover animate-fade-2">
+                        <img src="https://images.unsplash.com/photo-1498654896293-37aacf113fd9?auto=format&fit=crop&q=80&w=800" class="absolute inset-0 w-full h-full object-cover animate-fade-3">
+                        <img src="https://images.unsplash.com/photo-1626074353765-517a681e40be?auto=format&fit=crop&q=80&w=800" class="absolute inset-0 w-full h-full object-cover animate-fade-4">
+                        <img src="https://images.unsplash.com/photo-1623341214825-9f4f963727da?auto=format&fit=crop&q=80&w=800" class="absolute inset-0 w-full h-full object-cover animate-fade-5">
                     </div>
-                    <h3 class="font-serif text-xl mb-3">Pure Authenticity</h3>
-                    <p class="text-sm text-gray-500 leading-relaxed">Using house-made sauces and traditional methods to preserve the true soul of K-Flavor.</p>
                 </div>
 
-                <div class="p-8 border border-gray-100 rounded-2xl hover:shadow-xl transition-all">
-                    <div class="w-12 h-12 bg-[#E11D48]/10 rounded-full flex items-center justify-center text-[#E11D48] mb-6">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h3 class="font-serif text-xl mb-3">Scalable Innovation</h3>
-                    <p class="text-sm text-gray-500 leading-relaxed">Streamlined operational models designed for high-growth franchising in premium retail spaces.</p>
-                </div>
             </div>
         </div>
     </section>
@@ -147,62 +114,43 @@
         <div class="max-w-7xl mx-auto">
             <div class="mb-16 text-center">
                 <h2 class="text-4xl md:text-6xl mb-4 font-serif">Our Franchise Portfolio</h2>
-                <div class="w-20 h-1 bg-[#E11D48] mx-auto mb-6"></div>
+                <div class="w-20 h-1 bg-[#E11D48] mx-auto"></div>
             </div>
-
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                
-                <a href="oiso.html" class="brand-card relative h-[550px] overflow-hidden group cursor-pointer shadow-lg rounded-xl block bg-zinc-800">
-                    <img src="https://images.unsplash.com/photo-1626074353765-517a681e40be?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover transition-transform duration-700 opacity-80 group-hover:opacity-100">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-90"></div>
+                <a href="oiso.html" class="relative h-[550px] overflow-hidden group shadow-lg rounded-xl block bg-zinc-800">
+                    <img src="https://images.unsplash.com/photo-1626074353765-517a681e40be?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover transition duration-700 opacity-80 group-hover:scale-105 group-hover:opacity-100">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
                     <div class="absolute bottom-0 p-8 text-white w-full">
-                        <div class="bg-[#E11D48] text-[10px] font-bold uppercase tracking-widest px-2 py-1 inline-block mb-3 rounded">Premium BBQ</div>
+                        <div class="bg-[#E11D48] text-[10px] font-bold uppercase px-2 py-1 inline-block mb-3 rounded">Premium BBQ</div>
                         <h3 class="text-3xl mb-4">Oiso</h3>
-                        <span class="flex items-center gap-2 text-xs uppercase tracking-widest font-bold text-[#E11D48]">Explore Concept <i class="fas fa-arrow-right"></i></span>
+                        <span class="text-xs font-bold uppercase tracking-widest text-[#E11D48]">Explore Concept <i class="fas fa-arrow-right"></i></span>
                     </div>
                 </a>
-
-                <a href="neulbom-garden.html" class="brand-card relative h-[550px] overflow-hidden group cursor-pointer shadow-lg rounded-xl block bg-zinc-800">
-                    <img src="https://images.unsplash.com/photo-1623341214825-9f4f963727da?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover transition-transform duration-700 opacity-80 group-hover:opacity-100">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-90"></div>
+                <a href="neulbom.html" class="relative h-[550px] overflow-hidden group shadow-lg rounded-xl block bg-zinc-800">
+                    <img src="https://images.unsplash.com/photo-1623341214825-9f4f963727da?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover transition duration-700 opacity-80 group-hover:scale-105 group-hover:opacity-100">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
                     <div class="absolute bottom-0 p-8 text-white w-full">
-                        <div class="bg-[#E11D48] text-[10px] font-bold uppercase tracking-widest px-2 py-1 inline-block mb-3 rounded">Traditional Dining</div>
+                        <div class="bg-[#E11D48] text-[10px] font-bold uppercase px-2 py-1 inline-block mb-3 rounded">Traditional</div>
                         <h3 class="text-3xl mb-4">Neulbom Garden</h3>
-                        <span class="flex items-center gap-2 text-xs uppercase tracking-widest font-bold text-[#E11D48]">Explore Concept <i class="fas fa-arrow-right"></i></span>
+                        <span class="text-xs font-bold uppercase tracking-widest text-[#E11D48]">Explore Concept <i class="fas fa-arrow-right"></i></span>
                     </div>
                 </a>
-
-                <a href="mimi-guksu.html" class="brand-card relative h-[550px] overflow-hidden group cursor-pointer shadow-lg rounded-xl block bg-zinc-800">
-                    <img src="https://images.unsplash.com/photo-1590301157890-4810ed352733?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover transition-transform duration-700 opacity-80 group-hover:opacity-100">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-90"></div>
+                <a href="mimi.html" class="relative h-[550px] overflow-hidden group shadow-lg rounded-xl block bg-zinc-800">
+                    <img src="https://images.unsplash.com/photo-1590301157890-4810ed352733?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover transition duration-700 opacity-80 group-hover:scale-105 group-hover:opacity-100">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
                     <div class="absolute bottom-0 p-8 text-white w-full">
-                        <div class="bg-[#E11D48] text-[10px] font-bold uppercase tracking-widest px-2 py-1 inline-block mb-3 rounded">Noodle Specialist</div>
+                        <div class="bg-[#E11D48] text-[10px] font-bold uppercase px-2 py-1 inline-block mb-3 rounded">Noodles</div>
                         <h3 class="text-3xl mb-4">MiMi Guksu</h3>
-                        <span class="flex items-center gap-2 text-xs uppercase tracking-widest font-bold text-[#E11D48]">Explore Concept <i class="fas fa-arrow-right"></i></span>
+                        <span class="text-xs font-bold uppercase tracking-widest text-[#E11D48]">Explore Concept <i class="fas fa-arrow-right"></i></span>
                     </div>
                 </a>
-
             </div>
         </div>
     </section>
 
-    <footer class="py-16 px-6 md:px-12 border-t border-gray-100 bg-white">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 text-sm">
-            <div>
-                <div class="text-xl font-bold tracking-tighter uppercase font-serif mb-6">K FOOD <span class="text-[#E11D48]">SOLUTION</span></div>
-                <p class="text-gray-400">Authentic. Inclusive. Pork-Free.</p>
-            </div>
-            <div>
-                <h4 class="font-bold uppercase tracking-widest mb-6 text-xs">Explore</h4>
-                <ul class="text-gray-500 space-y-4">
-                    <li><a href="#philosophy" class="hover:text-[#E11D48] transition-colors">Our Philosophy</a></li>
-                    <li><a href="#brands" class="hover:text-[#E11D48] transition-colors">Brands</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="max-w-7xl mx-auto mt-12 pt-8 border-t border-gray-50 text-gray-400 text-xs text-center">
-            &copy; 2026 K Food Solution Group. All rights reserved.
-        </div>
+    <footer class="py-16 px-6 border-t border-gray-100 text-center">
+        <div class="text-xl font-bold font-serif uppercase mb-4">K FOOD <span class="text-[#E11D48]">SOLUTION</span></div>
+        <p class="text-xs text-gray-400 uppercase tracking-[0.2em]">&copy; 2026 K Food Solution Group. All rights reserved.</p>
     </footer>
 
     <script>
