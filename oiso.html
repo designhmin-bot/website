@@ -22,6 +22,11 @@
             backdrop-filter: blur(10px);
             background-color: rgba(255, 255, 255, 0.9);
         }
+        
+        /* Ensures the hero image covers correctly */
+        .hero-overlay {
+            background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.7) 100%);
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -37,64 +42,70 @@
         </div>
     </nav>
 
-    <header class="relative h-[60vh] flex items-center justify-center overflow-hidden">
+    <header class="relative h-[70vh] flex items-center justify-center overflow-hidden bg-zinc-900">
         <div class="absolute inset-0 z-0">
-            <img src="https://images.unsplash.com/photo-1553163147-622ab57b0600?auto=format&fit=crop&q=80&w=2000" 
-                 alt="Oiso Korean BBQ" class="w-full h-full object-cover">
-            <div class="absolute inset-0 bg-black opacity-50"></div>
+            <img src="https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?auto=format&fit=crop&q=80&w=2000" 
+                 alt="Oiso Premium BBQ" 
+                 class="w-full h-full object-cover opacity-70">
+            <div class="absolute inset-0 hero-overlay"></div>
         </div>
         <div class="relative z-10 text-center text-white px-4 mt-20">
             <div class="bg-[#E11D48] text-[10px] font-bold uppercase tracking-[0.3em] px-4 py-2 inline-block mb-6 rounded">Premium BBQ Concept</div>
-            <h1 class="text-5xl md:text-7xl font-serif italic mb-4">Oiso</h1>
-            <p class="text-lg font-light tracking-widest uppercase">The Pinnacle of Pork-Free Grilling</p>
+            <h1 class="text-6xl md:text-8xl font-serif italic mb-4">Oiso</h1>
+            <p class="text-lg font-light tracking-widest uppercase opacity-90">The Pinnacle of Pork-Free Grilling</p>
         </div>
     </header>
 
     <section class="py-24 px-6 md:px-12">
-        <div class="max-w-5xl mx-auto">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-start">
                 <div>
-                    <h2 class="text-3xl font-serif mb-6">Excellence in <span class="text-[#E11D48]">Every Cut</span></h2>
-                    <p class="text-gray-600 mb-6 leading-relaxed">
+                    <h2 class="text-4xl font-serif mb-8 italic">Excellence in <span class="text-[#E11D48]">Every Cut</span></h2>
+                    <p class="text-gray-600 mb-8 text-lg leading-relaxed">
                         Oiso is the group’s flagship BBQ destination, where the art of the Korean grill meets world-class beef selection. We have meticulously crafted a menu that celebrates the rich, smoky flavors of authentic BBQ without the use of pork, utilizing high-grade Wagyu and Black Angus cuts paired with our signature house-aged soy ferments.
                     </p>
-                    <div class="space-y-4">
-                        <div class="flex items-center gap-4">
-                            <div class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-[#E11D48]">
-                                <i class="fas fa-fire-burner"></i>
-                            </div>
-                            <span class="font-medium">Table-side Professional Grilling</span>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-10">
+                        <div class="p-6 bg-gray-50 rounded-xl">
+                            <i class="fas fa-fire-burner text-[#E11D48] text-2xl mb-4"></i>
+                            <h4 class="font-bold mb-2 uppercase text-xs tracking-widest">Service</h4>
+                            <p class="text-sm text-gray-500">Table-side Professional Grilling</p>
                         </div>
-                        <div class="flex items-center gap-4">
-                            <div class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-[#E11D48]">
-                                <i class="fas fa-award"></i>
-                            </div>
-                            <span class="font-medium">Certified Halal-Sourced Premium Beef</span>
-                        </div>
-                        <div class="flex items-center gap-4">
-                            <div class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-[#E11D48]">
-                                <i class="fas fa-wine-glass"></i>
-                            </div>
-                            <span class="font-medium">Upscale Architectural Atmosphere</span>
+                        <div class="p-6 bg-gray-50 rounded-xl">
+                            <i class="fas fa-award text-[#E11D48] text-2xl mb-4"></i>
+                            <h4 class="font-bold mb-2 uppercase text-xs tracking-widest">Sourcing</h4>
+                            <p class="text-sm text-gray-500">Halal-Sourced Premium Beef</p>
                         </div>
                     </div>
                 </div>
                 
-                <div class="bg-gray-50 p-8 rounded-2xl border border-gray-100">
-                    <h3 class="text-xl font-serif mb-6 italic">Franchise Specs</h3>
+                <div class="bg-white p-10 rounded-3xl border border-gray-100 shadow-2xl shadow-gray-200/50">
+                    <h3 class="text-2xl font-serif mb-8 italic">Franchise Specifications</h3>
                     <ul class="space-y-6 text-sm uppercase tracking-wider">
-                        <li class="flex justify-between border-b pb-2"><span>Format</span> <span class="font-bold">Premium Dining</span></li>
-                        <li class="flex justify-between border-b pb-2"><span>Space Required</span> <span class="font-bold">1,800 - 3,000 sqft</span></li>
-                        <li class="flex justify-between border-b pb-2"><span>Ideal Location</span> <span class="font-bold">Retail Flagships / Luxury Malls</span></li>
-                        <li class="flex justify-between"><span>Investment Tier</span> <span class="font-bold">Tier A</span></li>
+                        <li class="flex justify-between border-b border-gray-50 pb-4">
+                            <span class="text-gray-400">Format</span> 
+                            <span class="font-bold">Premium Dining</span>
+                        </li>
+                        <li class="flex justify-between border-b border-gray-50 pb-4">
+                            <span class="text-gray-400">Space Required</span> 
+                            <span class="font-bold">1,800 - 3,000 sqft</span>
+                        </li>
+                        <li class="flex justify-between border-b border-gray-50 pb-4">
+                            <span class="text-gray-400">Ideal Location</span> 
+                            <span class="font-bold text-right leading-tight">Retail Flagships /<br>Luxury Malls</span>
+                        </li>
+                        <li class="flex justify-between pb-4">
+                            <span class="text-gray-400">Investment Tier</span> 
+                            <span class="font-bold">Tier A</span>
+                        </li>
                     </ul>
-                    <a href="mailto:info@kfoodsolution.com?subject=Inquiry: Oiso" class="block w-full text-center bg-black text-white mt-8 py-4 rounded-lg hover:bg-[#E11D48] transition-all uppercase text-xs font-bold tracking-widest">Request Pitch Deck</a>
+                    <a href="mailto:info@kfoodsolution.com?subject=Inquiry: Oiso" class="block w-full text-center bg-black text-white mt-10 py-5 rounded-full hover:bg-[#E11D48] transition-all uppercase text-xs font-bold tracking-widest">Request Pitch Deck</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer class="py-16 px-6 md:px-12 border-t border-gray-100 bg-white">
+    <footer class="py-20 px-6 md:px-12 border-t border-gray-100 bg-white">
         <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 text-sm">
             <div>
                 <div class="text-xl font-bold tracking-tighter uppercase font-serif mb-6">K FOOD <span class="text-[#E11D48]">SOLUTION</span></div>
@@ -103,28 +114,15 @@
             <div>
                 <h4 class="font-bold uppercase tracking-widest mb-6 text-xs">Explore</h4>
                 <ul class="text-gray-500 space-y-4">
-                    <li><a href="index.html#philosophy">Our Philosophy</a></li>
-                    <li><a href="index.html#brands">Brands</a></li>
+                    <li><a href="index.html#philosophy" class="hover:text-[#E11D48]">Our Philosophy</a></li>
+                    <li><a href="index.html#brands" class="hover:text-[#E11D48]">Our Brands</a></li>
                 </ul>
             </div>
         </div>
-        <div class="max-w-7xl mx-auto mt-12 pt-8 border-t border-gray-50 text-gray-400 text-xs text-center">
+        <div class="max-w-7xl mx-auto mt-16 pt-8 border-t border-gray-50 text-gray-400 text-xs text-center">
             &copy; 2026 K Food Solution Group. All rights reserved.
         </div>
     </footer>
-
-    <script>
-        window.addEventListener('scroll', function() {
-            const nav = document.querySelector('nav');
-            if (window.scrollY > 50) {
-                nav.classList.add('py-2', 'shadow-md');
-                nav.classList.remove('py-4');
-            } else {
-                nav.classList.remove('py-2', 'shadow-md');
-                nav.classList.add('py-4');
-            }
-        });
-    </script>
 
 </body>
 </html>
