@@ -22,9 +22,43 @@
             backdrop-filter: blur(10px);
             background-color: rgba(255, 255, 255, 0.9);
         }
-        
-        .insta-card:hover .insta-overlay {
-            opacity: 1;
+
+        /* --- Sliding Gallery Animation --- */
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc(-250px * 4)); }
+        }
+
+        .slider {
+            background: white;
+            height: 350px;
+            margin: auto;
+            overflow: hidden;
+            position: relative;
+            width: 100%;
+        }
+
+        .slide-track {
+            animation: scroll 40s linear infinite;
+            display: flex;
+            width: calc(250px * 8); /* Double the number of slides for seamless loop */
+        }
+
+        .slide {
+            height: 350px;
+            width: 250px;
+            padding: 10px;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-cover: cover;
+            border-radius: 12px;
+        }
+
+        .slider:hover .slide-track {
+            animation-play-state: paused;
         }
     </style>
 </head>
@@ -42,7 +76,7 @@
     </nav>
 
     <header class="relative h-[60vh] flex items-center justify-center overflow-hidden bg-zinc-900">
-        <div class="absolute inset-0 z-0">
+        <div class="absolute inset-0 z-0 text-center">
             <img src="https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?auto=format&fit=crop&q=80&w=2000" 
                  alt="Oiso Premium BBQ" 
                  class="w-full h-full object-cover opacity-70">
@@ -79,19 +113,19 @@
                 </div>
                 
                 <div class="bg-white p-10 rounded-3xl border border-gray-100 shadow-2xl shadow-gray-200/50">
-                    <h3 class="text-2xl font-serif mb-8 italic">Franchise Specifications</h3>
+                    <h3 class="text-2xl font-serif mb-8 italic text-center">Franchise Specs</h3>
                     <ul class="space-y-6 text-sm uppercase tracking-wider">
                         <li class="flex justify-between border-b border-gray-50 pb-4">
-                            <span class="text-gray-400">Format</span> 
-                            <span class="font-bold">Premium Dining</span>
+                            <span class="text-gray-400 text-left">Format</span> 
+                            <span class="font-bold text-right">Premium Dining</span>
                         </li>
                         <li class="flex justify-between border-b border-gray-50 pb-4">
-                            <span class="text-gray-400">Space Required</span> 
-                            <span class="font-bold">1,800 - 3,000 sqft</span>
+                            <span class="text-gray-400 text-left">Space Required</span> 
+                            <span class="font-bold text-right">1,800 - 3,000 sqft</span>
                         </li>
                         <li class="flex justify-between pb-4">
-                            <span class="text-gray-400">Investment Tier</span> 
-                            <span class="font-bold">Tier A</span>
+                            <span class="text-gray-400 text-left">Investment Tier</span> 
+                            <span class="font-bold text-right">Tier A</span>
                         </li>
                     </ul>
                     <a href="mailto:info@kfoodsolution.com?subject=Inquiry: Oiso" class="block w-full text-center bg-black text-white mt-10 py-5 rounded-full hover:bg-[#E11D48] transition-all uppercase text-xs font-bold tracking-widest">Request Pitch Deck</a>
@@ -100,43 +134,25 @@
         </div>
     </section>
 
-    <section class="py-24 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
-                <div>
-                    <h2 class="text-4xl font-serif italic mb-2">On the Gram</h2>
-                    <p class="text-gray-500 tracking-widest uppercase text-xs">Follow our journey @oisowelcome</p>
-                </div>
-                <a href="https://www.instagram.com/oisowelcome?igsh=MWo5a25rdGY3eXhlag==" target="_blank" class="flex items-center gap-2 text-sm font-bold uppercase tracking-widest hover:text-[#E11D48] transition-colors">
-                    View Profile <i class="fab fa-instagram text-xl"></i>
-                </a>
+    <section class="py-20 bg-white overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 mb-12 flex justify-between items-end">
+            <div>
+                <h2 class="text-4xl font-serif italic mb-2">Signature Gallery</h2>
+                <p class="text-gray-500 tracking-widest uppercase text-xs">A Taste of the Oiso Experience</p>
             </div>
+            <a href="https://www.instagram.com/oisowelcome" target="_blank" class="text-xs font-bold uppercase tracking-widest hover:text-[#E11D48]">Follow @oisowelcome <i class="fab fa-instagram ml-1"></i></a>
+        </div>
 
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <a href="https://www.instagram.com/oisowelcome?igsh=MWo5a25rdGY3eXhlag==" target="_blank" class="group relative aspect-square overflow-hidden rounded-xl bg-zinc-200 insta-card">
-                    <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&q=80&w=600" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
-                    <div class="absolute inset-0 bg-black/40 opacity-0 transition-opacity duration-300 flex items-center justify-center insta-overlay">
-                        <i class="fab fa-instagram text-white text-3xl"></i>
-                    </div>
-                </a>
-                <a href="https://www.instagram.com/oisowelcome?igsh=MWo5a25rdGY3eXhlag==" target="_blank" class="group relative aspect-square overflow-hidden rounded-xl bg-zinc-200 insta-card">
-                    <img src="https://images.unsplash.com/photo-1632233033100-3486339bc077?auto=format&fit=crop&q=80&w=600" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
-                    <div class="absolute inset-0 bg-black/40 opacity-0 transition-opacity duration-300 flex items-center justify-center insta-overlay">
-                        <i class="fab fa-instagram text-white text-3xl"></i>
-                    </div>
-                </a>
-                <a href="https://www.instagram.com/oisowelcome?igsh=MWo5a25rdGY3eXhlag==" target="_blank" class="group relative aspect-square overflow-hidden rounded-xl bg-zinc-200 insta-card">
-                    <img src="https://images.unsplash.com/photo-1563379091339-03b21ef4a4f8?auto=format&fit=crop&q=80&w=600" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
-                    <div class="absolute inset-0 bg-black/40 opacity-0 transition-opacity duration-300 flex items-center justify-center insta-overlay">
-                        <i class="fab fa-instagram text-white text-3xl"></i>
-                    </div>
-                </a>
-                <a href="https://www.instagram.com/oisowelcome?igsh=MWo5a25rdGY3eXhlag==" target="_blank" class="group relative aspect-square overflow-hidden rounded-xl bg-zinc-200 insta-card">
-                    <img src="https://images.unsplash.com/photo-1514326640560-7d063ef2aed5?auto=format&fit=crop&q=80&w=600" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
-                    <div class="absolute inset-0 bg-black/40 opacity-0 transition-opacity duration-300 flex items-center justify-center insta-overlay">
-                        <i class="fab fa-instagram text-white text-3xl"></i>
-                    </div>
-                </a>
+        <div class="slider">
+            <div class="slide-track">
+                <div class="slide"><img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&q=80&w=400" alt="BBQ"></div>
+                <div class="slide"><img src="https://images.unsplash.com/photo-1632233033100-3486339bc077?auto=format&fit=crop&q=80&w=400" alt="Grill"></div>
+                <div class="slide"><img src="https://images.unsplash.com/photo-1563379091339-03b21ef4a4f8?auto=format&fit=crop&q=80&w=400" alt="Dining"></div>
+                <div class="slide"><img src="https://images.unsplash.com/photo-1514326640560-7d063ef2aed5?auto=format&fit=crop&q=80&w=400" alt="Beef"></div>
+                <div class="slide"><img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&q=80&w=400" alt="BBQ"></div>
+                <div class="slide"><img src="https://images.unsplash.com/photo-1632233033100-3486339bc077?auto=format&fit=crop&q=80&w=400" alt="Grill"></div>
+                <div class="slide"><img src="https://images.unsplash.com/photo-1563379091339-03b21ef4a4f8?auto=format&fit=crop&q=80&w=400" alt="Dining"></div>
+                <div class="slide"><img src="https://images.unsplash.com/photo-1514326640560-7d063ef2aed5?auto=format&fit=crop&q=80&w=400" alt="Beef"></div>
             </div>
         </div>
     </section>
@@ -148,8 +164,8 @@
                 <p class="text-gray-400">Authentic. Inclusive. Pork-Free.</p>
             </div>
             <div>
-                <h4 class="font-bold uppercase tracking-widest mb-6 text-xs">Explore</h4>
-                <ul class="text-gray-500 space-y-4">
+                <h4 class="font-bold uppercase tracking-widest mb-6 text-xs text-left">Explore</h4>
+                <ul class="text-gray-500 space-y-4 text-left">
                     <li><a href="index.html#philosophy" class="hover:text-[#E11D48]">Our Philosophy</a></li>
                     <li><a href="index.html#brands" class="hover:text-[#E11D48]">Our Brands</a></li>
                 </ul>
