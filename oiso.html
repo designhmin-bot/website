@@ -23,10 +23,10 @@
             background-color: rgba(255, 255, 255, 0.9);
         }
 
-        /* --- Sliding Gallery Animation (3:2 RATIO) --- */
+        /* --- Updated Sliding Gallery (2 Images Visible) --- */
         @keyframes scroll {
             0% { transform: translateX(0); }
-            100% { transform: translateX(calc(-360px * 4)); }
+            100% { transform: translateX(-200%); } /* Scrolls through the first set of 4 images */
         }
 
         .slider {
@@ -39,21 +39,21 @@
         }
 
         .slide-track {
-            animation: scroll 40s linear infinite;
+            animation: scroll 30s linear infinite;
             display: flex;
-            width: calc(360px * 8); 
+            width: 400%; /* 8 slides total, each 50% wide = 400% total width */
         }
 
         .slide {
-            width: 360px;
-            padding: 15px;
+            width: 50%; /* Shows exactly 2 images per screen width */
+            padding: 10px;
             flex-shrink: 0;
         }
 
         .slide img {
             width: 100%;
             height: auto;
-            aspect-ratio: 3 / 2; /* Precise 3:2 Ratio */
+            aspect-ratio: 3 / 2; /* Maintains 3:2 Ratio */
             object-fit: cover;
             border-radius: 12px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.08);
@@ -61,11 +61,20 @@
         }
         
         .slide img:hover {
-            transform: translateY(-5px);
+            transform: scale(1.02);
         }
 
         .slider:hover .slide-track {
             animation-play-state: paused;
+        }
+
+        /* Mobile adjustment: Show 1.2 images to hint at scrolling */
+        @media (max-width: 768px) {
+            .slide { width: 85%; }
+            @keyframes scroll {
+                0% { transform: translateX(0); }
+                100% { transform: translateX(-340%); } 
+            }
         }
     </style>
 </head>
@@ -152,14 +161,14 @@
 
         <div class="slider">
             <div class="slide-track">
-                <div class="slide"><img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&q=80&w=600" alt="Oiso Experience 1"></div>
-                <div class="slide"><img src="https://images.unsplash.com/photo-1632233033100-3486339bc077?auto=format&fit=crop&q=80&w=600" alt="Oiso Experience 2"></div>
-                <div class="slide"><img src="https://images.unsplash.com/photo-1563379091339-03b21ef4a4f8?auto=format&fit=crop&q=80&w=600" alt="Oiso Experience 3"></div>
-                <div class="slide"><img src="https://images.unsplash.com/photo-1514326640560-7d063ef2aed5?auto=format&fit=crop&q=80&w=600" alt="Oiso Experience 4"></div>
-                <div class="slide"><img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&q=80&w=600" alt="Oiso Experience 1"></div>
-                <div class="slide"><img src="https://images.unsplash.com/photo-1632233033100-3486339bc077?auto=format&fit=crop&q=80&w=600" alt="Oiso Experience 2"></div>
-                <div class="slide"><img src="https://images.unsplash.com/photo-1563379091339-03b21ef4a4f8?auto=format&fit=crop&q=80&w=600" alt="Oiso Experience 3"></div>
-                <div class="slide"><img src="https://images.unsplash.com/photo-1514326640560-7d063ef2aed5?auto=format&fit=crop&q=80&w=600" alt="Oiso Experience 4"></div>
+                <div class="slide"><img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&q=80&w=800" alt="Oiso 1"></div>
+                <div class="slide"><img src="https://images.unsplash.com/photo-1632233033100-3486339bc077?auto=format&fit=crop&q=80&w=800" alt="Oiso 2"></div>
+                <div class="slide"><img src="https://images.unsplash.com/photo-1563379091339-03b21ef4a4f8?auto=format&fit=crop&q=80&w=800" alt="Oiso 3"></div>
+                <div class="slide"><img src="https://images.unsplash.com/photo-1514326640560-7d063ef2aed5?auto=format&fit=crop&q=80&w=800" alt="Oiso 4"></div>
+                <div class="slide"><img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&q=80&w=800" alt="Oiso 1"></div>
+                <div class="slide"><img src="https://images.unsplash.com/photo-1632233033100-3486339bc077?auto=format&fit=crop&q=80&w=800" alt="Oiso 2"></div>
+                <div class="slide"><img src="https://images.unsplash.com/photo-1563379091339-03b21ef4a4f8?auto=format&fit=crop&q=80&w=800" alt="Oiso 3"></div>
+                <div class="slide"><img src="https://images.unsplash.com/photo-1514326640560-7d063ef2aed5?auto=format&fit=crop&q=80&w=800" alt="Oiso 4"></div>
             </div>
         </div>
     </section>
