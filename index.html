@@ -4,154 +4,157 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>K Food Solution</title>
-    
     <script src="https://cdn.tailwindcss.com"></script>
-    
     <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    
     <script src="https://unpkg.com/lucide@latest"></script>
-
     <style>
-        /* Prevents the 'flicker' of unstyled content before React loads */
-        [v-cloak] { display: none; }
-        body { margin: 0; padding: 0; }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
+        body { font-family: 'Inter', sans-serif; }
     </style>
 </head>
 <body>
     <div id="root"></div>
 
     <script type="text/babel">
-        // De-structuring hooks from the global React object
         const { useState, useEffect } = React;
 
-        // Custom Icon Wrapper for Lucide (since we aren't using npm imports)
-        const Icon = ({ name, size = 24, className = "" }) => {
-            useEffect(() => {
-                lucide.createIcons();
-            }, [name]);
+        const Icon = ({ name, size = 20, className = "" }) => {
+            useEffect(() => { lucide.createIcons(); }, [name]);
             return <i data-lucide={name} style={{ width: size, height: size }} className={className}></i>;
         };
 
         const App = () => {
             const [activeBrand, setActiveBrand] = useState(0);
             const [currentSlide, setCurrentSlide] = useState(0);
-            const [isMenuOpen, setIsMenuOpen] = useState(false);
 
             const brands = [
-                {
-                    id: 0,
-                    name: 'Oiso',
-                    tagline: 'Authentic Korean Comfort',
-                    description: 'Bringing the heart of Korean home-style cooking to your table with fresh ingredients and traditional recipes.',
-                    images: [
-                        'https://images.unsplash.com/photo-1583212292454-1fe6229603b7?auto=format&fit=crop&q=80&w=1200',
-                        'https://images.unsplash.com/photo-1498654896293-37aacf113fd9?auto=format&fit=crop&q=80&w=1200',
-                        'https://images.unsplash.com/photo-1553163147-622820be2931?auto=format&fit=crop&q=80&w=1200'
-                    ]
-                },
-                {
-                    id: 1,
-                    name: 'Neulbom Garden',
-                    tagline: 'Premium Korean BBQ',
-                    description: 'A sophisticated dining experience focusing on premium cuts of meat and an elegant garden atmosphere.',
-                    images: [
-                        'https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?auto=format&fit=crop&q=80&w=1200',
-                        'https://images.unsplash.com/photo-1629814249584-bd4d53cf0e7d?auto=format&fit=crop&q=80&w=1200',
-                        'https://images.unsplash.com/photo-1544124499-58912cbddaad?auto=format&fit=crop&q=80&w=1200'
-                    ]
-                },
-                {
-                    id: 2,
-                    name: 'MiMi Guksu',
-                    tagline: 'Traditional Noodle House',
-                    description: 'Specializing in delicate, handmade noodles served in rich, savory broths passed down through generations.',
-                    images: [
-                        'https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?auto=format&fit=crop&q=80&w=1200',
-                        'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&q=80&w=1200',
-                        'https://images.unsplash.com/photo-1552611052-33e04de081de?auto=format&fit=crop&q=80&w=1200'
-                    ]
-                }
+                { id: 0, name: 'OISO', tagline: 'Authentic Korean Comfort', description: 'Bringing the heart of Korean home-style cooking to your table with fresh ingredients and traditional recipes.', images: ['https://images.unsplash.com/photo-1583212292454-1fe6229603b7?auto=format&fit=crop&q=80&w=1200'] },
+                { id: 1, name: 'NEULBOM GARDEN', tagline: 'Premium Korean BBQ', description: 'A sophisticated dining experience focusing on premium cuts of meat and an elegant garden atmosphere.', images: ['https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?auto=format&fit=crop&q=80&w=1200'] },
+                { id: 2, name: 'MIMI GUKSU', tagline: 'Traditional Noodle House', description: 'Specializing in delicate, handmade noodles served in rich, savory broths passed down through generations.', images: ['https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?auto=format&fit=crop&q=80&w=1200'] }
             ];
 
-            useEffect(() => {
-                setCurrentSlide(0);
-            }, [activeBrand]);
-
-            const nextSlide = () => {
-                setCurrentSlide((prev) => (prev + 1) % brands[activeBrand].images.length);
-            };
-
-            const prevSlide = () => {
-                setCurrentSlide((prev) => (prev - 1 + brands[activeBrand].images.length) % brands[activeBrand].images.length);
-            };
-
             return (
-                <div className="min-h-screen bg-white font-sans text-slate-900">
-                    <header className="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm z-50 border-b border-slate-100">
+                <div className="min-h-screen bg-white">
+                    {/* Header */}
+                    <header className="fixed top-0 w-full bg-white z-50 border-b border-gray-100">
                         <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-                            <div className="text-2xl font-black tracking-tighter text-red-600">K FOOD SOLUTION</div>
-                            <nav className="hidden md:flex items-center space-x-8">
-                                <a href="#" className="text-sm font-bold tracking-widest hover:text-red-600 transition-colors uppercase">Our Philosophy</a>
-                                <a href="#" className="text-sm font-bold tracking-widest hover:text-red-600 transition-colors uppercase">Our Brand</a>
-                                <button className="bg-red-600 text-white px-6 py-3 text-sm font-bold tracking-widest hover:bg-red-700 transition-all uppercase rounded-full">Enquire Now</button>
+                            <div className="text-2xl font-black text-red-600 tracking-tighter">K FOOD SOLUTION</div>
+                            <nav className="hidden md:flex items-center space-x-10 text-sm font-bold tracking-widest uppercase">
+                                <a href="#" className="hover:text-red-600 transition">Our Philosophy</a>
+                                <a href="#" className="hover:text-red-600 transition">Our Brand</a>
+                                <button className="bg-red-600 text-white px-8 py-3 rounded-full hover:bg-red-700 transition">ENQUIRE NOW</button>
                             </nav>
-                            <button className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-                                {isMenuOpen ? <Icon name="x" size={28} /> : <Icon name="menu" size={28} />}
-                            </button>
                         </div>
-                        {isMenuOpen && (
-                            <div className="md:hidden bg-white border-b border-slate-100 p-6 flex flex-col space-y-6">
-                                <a href="#" className="text-lg font-bold uppercase tracking-widest">Our Philosophy</a>
-                                <a href="#" className="text-lg font-bold uppercase tracking-widest">Our Brand</a>
-                                <button className="bg-red-600 text-white px-6 py-4 text-lg font-bold tracking-widest uppercase rounded-xl">Enquire Now</button>
-                            </div>
-                        )}
                     </header>
 
-                    <section className="relative h-[80vh] flex items-center justify-center overflow-hidden pt-20">
+                    {/* Hero Section */}
+                    <section className="relative h-[85vh] flex items-center pt-20">
                         <div className="absolute inset-0">
                             <img src="https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&q=80&w=2000" className="w-full h-full object-cover" />
-                            <div className="absolute inset-0 bg-black/40"></div>
+                            <div className="absolute inset-0 bg-black/30"></div>
                         </div>
-                        <div className="relative text-center text-white px-6">
-                            <h1 className="text-5xl md:text-7xl font-black mb-6 tracking-tight">ELEVATING K-FOOD</h1>
-                            <p className="text-xl md:text-2xl font-light max-w-2xl mx-auto opacity-90 leading-relaxed">Delivering authentic Korean culinary experiences.</p>
+                        <div className="relative max-w-7xl mx-auto px-6 text-white">
+                            <h1 className="text-6xl md:text-8xl font-black mb-4 tracking-tight">ELEVATING K-FOOD</h1>
+                            <p className="text-xl md:text-2xl max-w-2xl opacity-90 leading-relaxed font-medium">
+                                Delivering authentic Korean culinary experiences through innovation, quality, and passion.
+                            </p>
                         </div>
                     </section>
 
-                    <section className="py-24 bg-slate-50">
+                    {/* Portfolio Section */}
+                    <section className="py-24 bg-[#F8F9FA]">
                         <div className="max-w-7xl mx-auto px-6">
-                            <div className="flex flex-col lg:flex-row gap-12">
-                                <div className="lg:w-1/4 flex flex-row lg:flex-col overflow-x-auto border-b lg:border-b-0 lg:border-l border-slate-200">
-                                    {brands.map((brand, index) => (
-                                        <button key={brand.id} onClick={() => setActiveBrand(index)} className={`px-6 py-6 text-left transition-all border-b-2 lg:border-b-0 lg:border-l-4 ${activeBrand === index ? 'border-red-600 text-red-600' : 'border-transparent text-slate-400'}`}>
-                                            <span className="text-xs block font-bold mb-1">0{index + 1}</span>
-                                            <span className="text-xl font-black uppercase">{brand.name}</span>
-                                        </button>
-                                    ))}
+                            <h2 className="text-red-600 font-bold tracking-[0.2em] text-sm mb-2 uppercase">Our Portfolio</h2>
+                            <h3 className="text-5xl font-black text-[#1A1A1A] mb-12">OUR BRANDS</h3>
+
+                            {/* Horizontal Tabs */}
+                            <div className="flex border-b border-gray-200 mb-12 overflow-x-auto">
+                                {brands.map((brand, idx) => (
+                                    <button 
+                                        key={idx}
+                                        onClick={() => setActiveBrand(idx)}
+                                        className={`px-10 py-6 text-left transition-all relative min-w-[200px] ${activeBrand === idx ? 'bg-white' : 'opacity-40 hover:opacity-100'}`}
+                                    >
+                                        <span className="text-xs font-bold text-red-600 block mb-1">0{idx + 1}</span>
+                                        <span className="text-2xl font-black tracking-tighter uppercase">{brand.name}</span>
+                                        {activeBrand === idx && <div className="absolute bottom-0 left-0 w-full h-1 bg-red-600"></div>}
+                                    </button>
+                                ))}
+                            </div>
+
+                            {/* Content Card */}
+                            <div className="bg-white rounded-[40px] shadow-sm overflow-hidden flex flex-col md:flex-row min-h-[500px]">
+                                <div className="md:w-1/2 relative h-[400px] md:h-auto m-6 rounded-[30px] overflow-hidden">
+                                    <img src={brands[activeBrand].images[0]} className="w-full h-full object-cover" />
+                                    <div className="absolute top-6 left-6 bg-black/50 text-white px-4 py-1 rounded-full text-xs font-bold">1 / 3</div>
+                                    <div className="absolute bottom-6 right-6 flex space-x-2">
+                                        <button className="p-4 bg-white rounded-full shadow-lg hover:scale-105 transition"><Icon name="chevron-left" /></button>
+                                        <button className="p-4 bg-white rounded-full shadow-lg hover:scale-105 transition"><Icon name="chevron-right" /></button>
+                                    </div>
                                 </div>
-                                <div className="lg:w-3/4 flex flex-col md:flex-row bg-white rounded-3xl shadow-xl overflow-hidden">
-                                    <div className="md:w-3/5 relative h-[400px] md:h-auto">
-                                        <div className="w-full h-full relative overflow-hidden">
-                                            {brands[activeBrand].images.map((img, idx) => (
-                                                <img key={idx} src={img} className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${currentSlide === idx ? 'opacity-100' : 'opacity-0'}`} />
-                                            ))}
-                                        </div>
-                                        <div className="absolute bottom-6 right-6 flex space-x-2">
-                                            <button onClick={prevSlide} className="p-3 bg-white/90 rounded-full shadow-lg"><Icon name="chevron-left" size={20} /></button>
-                                            <button onClick={nextSlide} className="p-3 bg-white/90 rounded-full shadow-lg"><Icon name="chevron-right" size={20} /></button>
-                                        </div>
-                                    </div>
-                                    <div className="md:w-2/5 p-8 flex flex-col justify-center">
-                                        <h4 className="text-3xl font-black mb-4 uppercase">{brands[activeBrand].name}</h4>
-                                        <p className="text-slate-500 mb-8">{brands[activeBrand].description}</p>
-                                    </div>
+                                <div className="md:w-1/2 p-12 md:p-16 flex flex-col justify-center">
+                                    <span className="text-red-600 font-bold text-xs tracking-widest uppercase mb-4">Signature Brand</span>
+                                    <h4 className="text-5xl font-black mb-4 uppercase">{brands[activeBrand].name}</h4>
+                                    <p className="text-xl font-bold italic text-gray-700 mb-6">"{brands[activeBrand].tagline}"</p>
+                                    <p className="text-gray-500 leading-relaxed mb-10 text-lg">{brands[activeBrand].description}</p>
+                                    <button className="flex items-center font-black text-sm tracking-widest uppercase group hover:text-red-600 transition">
+                                        View Menu <Icon name="chevron-right" size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
+                                    </button>
                                 </div>
                             </div>
                         </div>
                     </section>
+
+                    {/* Dark Footer */}
+                    <footer className="bg-[#0B1120] text-white py-20">
+                        <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-16 mb-20">
+                            <div>
+                                <h5 className="font-bold tracking-widest text-xs uppercase mb-8 text-gray-400">Quick Links</h5>
+                                <ul className="space-y-4 font-bold text-lg">
+                                    <li><a href="#" className="hover:text-red-500 transition">Our Philosophy</a></li>
+                                    <li><a href="#" className="hover:text-red-500 transition">Brand Portfolio</a></li>
+                                    <li><a href="#" className="hover:text-red-500 transition">Latest News</a></li>
+                                    <li><a href="#" className="hover:text-red-500 transition">Careers</a></li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h5 className="font-bold tracking-widest text-xs uppercase mb-8 text-gray-400">Our Brands</h5>
+                                <ul className="space-y-4 font-bold text-lg">
+                                    <li><a href="#" className="hover:text-red-500 transition">Oiso</a></li>
+                                    <li><a href="#" className="hover:text-red-500 transition">Neulbom Garden</a></li>
+                                    <li><a href="#" className="hover:text-red-500 transition">MiMi Guksu</a></li>
+                                    <li><a href="#" className="hover:text-red-500 transition">Catering Services</a></li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h5 className="font-bold tracking-widest text-xs uppercase mb-8 text-gray-400">Contact Us</h5>
+                                <div className="space-y-6 text-gray-300">
+                                    <div className="flex items-start gap-4">
+                                        <Icon name="map-pin" className="text-red-600 shrink-0" />
+                                        <p>123 Gangnam-daero, Seocho-gu, Seoul, Republic of Korea</p>
+                                    </div>
+                                    <div className="flex items-center gap-4">
+                                        <Icon name="mail" className="text-red-600" />
+                                        <p>inquiry@kfoodsolution.com</p>
+                                    </div>
+                                    <div className="flex items-center gap-4">
+                                        <Icon name="phone" className="text-red-600" />
+                                        <p>+82 (02) 1234-5678</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="max-w-7xl mx-auto px-6 pt-12 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center text-xs font-bold text-gray-500 tracking-widest">
+                            <p>© 2024 K FOOD SOLUTION. ALL RIGHTS RESERVED.</p>
+                            <div className="flex space-x-8 mt-4 md:mt-0 uppercase">
+                                <a href="#">Privacy Policy</a>
+                                <a href="#">Cookie Settings</a>
+                                <a href="#">Sitemap</a>
+                            </div>
+                        </div>
+                    </footer>
                 </div>
             );
         };
