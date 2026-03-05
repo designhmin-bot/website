@@ -74,7 +74,7 @@
         </div>
     </section>
 
-    <section id="our-brands" class="py-24 bg-slate-50 scroll-mt-32">
+    <section id="our-brands" class="py-24 bg-slate-50 scroll-mt-40">
         <div class="max-w-7xl mx-auto px-6">
             <div class="mb-16 text-center md:text-left">
                 <h2 class="text-sm font-bold tracking-[0.3em] text-red-600 uppercase mb-4">Our Portfolio</h2>
@@ -117,11 +117,11 @@
     </section>
 
     <footer class="bg-slate-900 text-slate-300 pt-20 pb-10">
-        <div class="max-w-7xl mx-auto px-6 text-center md:text-left">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 pb-16 border-b border-slate-800 text-left">
-                <div>
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 pb-16 border-b border-slate-800">
+                <div class="text-left">
                     <div class="text-2xl font-black tracking-tighter text-white mb-6">K FOOD SOLUTION</div>
-                    <p class="max-w-md text-slate-400 mb-8">Pioneering the future of Korean gastronomy through high-quality ingredients and innovative dining concepts.</p>
+                    <p class="max-w-md text-slate-400 mb-8 leading-relaxed">Pioneering the future of Korean gastronomy through high-quality ingredients and innovative dining concepts.</p>
                     <div class="flex space-x-5">
                         <a href="#" class="p-2 bg-slate-800 rounded-full hover:bg-red-600 transition-colors"><i data-lucide="instagram" class="w-5 h-5"></i></a>
                         <a href="#" class="p-2 bg-slate-800 rounded-full hover:bg-red-600 transition-colors"><i data-lucide="facebook" class="w-5 h-5"></i></a>
@@ -209,7 +209,6 @@
             document.getElementById('slide-counter').innerText = `${currentSlideIndex + 1} / ${brands[activeBrandIndex].images.length}`;
         }
 
-        // Mobile Menu logic
         const menuBtn = document.getElementById('menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
         function toggleMenu() {
