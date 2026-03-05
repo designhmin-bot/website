@@ -1,169 +1,285 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>K Food Solution | Pork-Free Korean Culinary Group</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&display=swap');
-        
-        :root {
-            --primary: #1a1a1a;
-            --accent: #E11D48;
-        }
+import React, { useState, useEffect } from 'react';
+import { ChevronLeft, ChevronRight, Menu, X, Instagram, Facebook, Linkedin, Youtube, Send, Phone, MapPin, Mail } from 'lucide-react';
 
-        html { scroll-behavior: smooth; }
-        body { font-family: 'Inter', sans-serif; background-color: #ffffff; color: var(--primary); }
-        h1, h2, h3, .font-serif { font-family: 'Playfair Display', serif; }
+const App = () => {
+  const [activeBrand, setActiveBrand] = useState(0);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-        .sticky-nav {
-            backdrop-filter: blur(10px);
-            background-color: rgba(255, 255, 255, 0.9);
-        }
+  const brands = [
+    {
+      id: 0,
+      name: 'Oiso',
+      tagline: 'Authentic Korean Comfort',
+      description: 'Bringing the heart of Korean home-style cooking to your table with fresh ingredients and traditional recipes.',
+      images: [
+        'https://images.unsplash.com/photo-1583212292454-1fe6229603b7?auto=format&fit=crop&q=80&w=1200',
+        'https://images.unsplash.com/photo-1498654896293-37aacf113fd9?auto=format&fit=crop&q=80&w=1200',
+        'https://images.unsplash.com/photo-1553163147-622820be2931?auto=format&fit=crop&q=80&w=1200'
+      ]
+    },
+    {
+      id: 1,
+      name: 'Neulbom Garden',
+      tagline: 'Premium Korean BBQ',
+      description: 'A sophisticated dining experience focusing on premium cuts of meat and an elegant garden atmosphere.',
+      images: [
+        'https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?auto=format&fit=crop&q=80&w=1200',
+        'https://images.unsplash.com/photo-1629814249584-bd4d53cf0e7d?auto=format&fit=crop&q=80&w=1200',
+        'https://images.unsplash.com/photo-1544124499-58912cbddaad?auto=format&fit=crop&q=80&w=1200'
+      ]
+    },
+    {
+      id: 2,
+      name: 'MiMi Guksu',
+      tagline: 'Traditional Noodle House',
+      description: 'Specializing in delicate, handmade noodles served in rich, savory broths passed down through generations.',
+      images: [
+        'https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?auto=format&fit=crop&q=80&w=1200',
+        'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&q=80&w=1200',
+        'https://images.unsplash.com/photo-1552611052-33e04de081de?auto=format&fit=crop&q=80&w=1200'
+      ]
+    }
+  ];
 
-        /* --- Animation for the Mission Image Rotation --- */
-        @keyframes crossfade {
-            0%, 20% { opacity: 1; transform: scale(1.02); }
-            25%, 100% { opacity: 0; transform: scale(1); }
-        }
+  // Reset slide when brand changes
+  useEffect(() => {
+    setCurrentSlide(0);
+  }, [activeBrand]);
 
-        .animate-fade-1 { animation: crossfade 20s infinite 0s; }
-        .animate-fade-2 { animation: crossfade 20s infinite 4s; }
-        .animate-fade-3 { animation: crossfade 20s infinite 8s; }
-        .animate-fade-4 { animation: crossfade 20s infinite 12s; }
-        .animate-fade-5 { animation: crossfade 20s infinite 16s; }
-    </style>
-</head>
-<body class="antialiased">
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % brands[activeBrand].images.length);
+  };
 
-    <nav class="fixed w-full z-50 transition-all duration-300 py-4 px-6 md:px-12 flex justify-between items-center sticky-nav border-b border-gray-100">
-        <div class="text-2xl font-bold tracking-tighter uppercase font-serif">
-            K FOOD <span class="text-[#E11D48]">SOLUTION</span>
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + brands[activeBrand].images.length) % brands[activeBrand].images.length);
+  };
+
+  return (
+    <div className="min-h-screen bg-white font-sans text-slate-900">
+      {/* Header */}
+      <header className="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm z-50 border-b border-slate-100">
+        <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+          <div className="text-2xl font-black tracking-tighter text-red-600">
+            K FOOD SOLUTION
+          </div>
+
+          <nav className="hidden md:flex items-center space-x-8">
+            <a href="#" className="text-sm font-bold tracking-widest hover:text-red-600 transition-colors uppercase">Our Philosophy</a>
+            <a href="#" className="text-sm font-bold tracking-widest hover:text-red-600 transition-colors uppercase">Our Brand</a>
+            <button className="bg-red-600 text-white px-6 py-3 text-sm font-bold tracking-widest hover:bg-red-700 transition-all uppercase rounded-full">
+              Enquire Now
+            </button>
+          </nav>
+
+          <button className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+            {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
+          </button>
         </div>
-        <div class="hidden md:flex space-x-8 items-center font-medium text-sm tracking-widest uppercase">
-            <a href="#philosophy" class="hover:text-[#E11D48] transition-colors">Our Philosophy</a>
-            <a href="#brands" class="hover:text-[#E11D48] transition-colors">Our Brands</a>
-            <a href="mailto:info@kfoodsolution.com" class="bg-black text-white px-6 py-2 rounded-full hover:bg-[#E11D48] transition-colors">Enquire Now</a>
-        </div>
-    </nav>
 
-    <header class="relative h-screen flex items-center justify-center overflow-hidden bg-zinc-900">
-        <div class="absolute inset-0 z-0">
-            <img src="https://images.unsplash.com/photo-1498654896293-37aacf113fd9?auto=format&fit=crop&q=80&w=2000" 
-                 class="w-full h-full object-cover opacity-60">
-            <div class="absolute inset-0 bg-black/40"></div>
+        {isMenuOpen && (
+          <div className="md:hidden bg-white border-b border-slate-100 p-6 flex flex-col space-y-6">
+            <a href="#" className="text-lg font-bold uppercase tracking-widest">Our Philosophy</a>
+            <a href="#" className="text-lg font-bold uppercase tracking-widest">Our Brand</a>
+            <button className="bg-red-600 text-white px-6 py-4 text-lg font-bold tracking-widest uppercase rounded-xl">
+              Enquire Now
+            </button>
+          </div>
+        )}
+      </header>
+
+      {/* Hero Banner */}
+      <section className="relative h-[80vh] flex items-center justify-center overflow-hidden pt-20">
+        <div className="absolute inset-0">
+          <img 
+            src="https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&q=80&w=2000" 
+            alt="Korean Food Banner" 
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-black/40"></div>
         </div>
-        <div class="relative z-10 text-center text-white px-4">
-            <p class="uppercase tracking-[0.3em] text-sm mb-4">Authentic & Inclusive</p>
-            <h1 class="text-5xl md:text-8xl mb-8 leading-tight font-serif italic">The Soul of Korea,<br>Inclusive for All.</h1>
-            <p class="text-lg md:text-xl mb-10 max-w-2xl mx-auto font-light text-gray-200">
-                Pioneering <span class="text-[#E11D48] font-semibold underline decoration-2 underline-offset-4">Pork-Free</span> Korean gastronomy through a diverse portfolio of brands.
-            </p>
-            <div class="flex flex-col md:flex-row justify-center gap-4">
-                <a href="#brands" class="bg-[#E11D48] border border-[#E11D48] px-10 py-4 rounded-full uppercase text-xs tracking-widest hover:bg-transparent hover:text-white transition-all">Explore Brands</a>
-                <a href="#philosophy" class="border border-white px-10 py-4 rounded-full uppercase text-xs tracking-widest hover:bg-white hover:text-black transition-all">Our Philosophy</a>
+        <div className="relative text-center text-white px-6">
+          <h1 className="text-5xl md:text-7xl font-black mb-6 tracking-tight">ELEVATING K-FOOD</h1>
+          <p className="text-xl md:text-2xl font-light max-w-2xl mx-auto opacity-90 leading-relaxed">
+            Delivering authentic Korean culinary experiences through innovation, quality, and passion.
+          </p>
+        </div>
+      </section>
+
+      {/* Our Brands Section */}
+      <section className="py-24 bg-slate-50">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="mb-16 text-center md:text-left">
+            <h2 className="text-sm font-bold tracking-[0.3em] text-red-600 uppercase mb-4">Our Portfolio</h2>
+            <h3 className="text-4xl md:text-5xl font-black">OUR BRANDS</h3>
+          </div>
+
+          <div className="flex flex-col lg:flex-row gap-12 min-h-[500px]">
+            <div className="lg:w-1/4 flex flex-row lg:flex-col overflow-x-auto lg:overflow-visible border-b lg:border-b-0 lg:border-l border-slate-200">
+              {brands.map((brand, index) => (
+                <button
+                  key={brand.id}
+                  onClick={() => setActiveBrand(index)}
+                  className={`px-6 py-6 text-left transition-all whitespace-nowrap lg:whitespace-normal group border-b-2 lg:border-b-0 lg:border-l-4 ${
+                    activeBrand === index 
+                    ? 'border-red-600 bg-white lg:bg-transparent text-red-600' 
+                    : 'border-transparent text-slate-400 hover:text-slate-600'
+                  }`}
+                >
+                  <span className={`text-xs block font-bold tracking-widest mb-1 opacity-60`}>0{index + 1}</span>
+                  <span className="text-xl md:text-2xl font-black uppercase tracking-tighter">
+                    {brand.name}
+                  </span>
+                </button>
+              ))}
             </div>
-        </div>
-    </header>
 
-    <section id="philosophy" class="py-24 px-6 md:px-12 bg-white">
-        <div class="max-w-7xl mx-auto">
-            <div class="flex flex-col lg:flex-row items-center gap-16">
+            <div className="lg:w-3/4 flex flex-col md:flex-row bg-white rounded-3xl shadow-xl shadow-slate-200/50 overflow-hidden">
+              <div className="md:w-3/5 relative group h-[400px] md:h-auto">
+                <div className="w-full h-full relative overflow-hidden">
+                  {brands[activeBrand].images.map((img, idx) => (
+                    <img
+                      key={idx}
+                      src={img}
+                      alt={`${brands[activeBrand].name} slide ${idx}`}
+                      className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ease-in-out ${
+                        currentSlide === idx ? 'opacity-100 scale-100' : 'opacity-0 scale-110'
+                      }`}
+                    />
+                  ))}
+                </div>
                 
-                <div class="lg:w-1/2">
-                    <div class="text-[#E11D48] font-bold uppercase tracking-[0.3em] text-xs mb-4">Our Mission</div>
-                    <h2 class="text-4xl md:text-6xl font-serif mb-8 leading-tight text-zinc-900">
-                        Dining Without <br><span class="italic text-[#E11D48]">Boundaries.</span>
-                    </h2>
-                    <p class="text-gray-600 text-lg leading-relaxed mb-6">
-                        At K Food Solution, we identified a gap in the global culinary market: the communal experience of Korean gastronomy was often inaccessible to many.
-                    </p>
-                    <p class="text-gray-600 text-lg leading-relaxed mb-10">
-                        By specializing in <span class="font-bold text-zinc-900">Pork-Free</span> Korean cuisine, we've combined traditional techniques with premium alternative proteins to ensure "authentic" and "inclusive" are no longer mutually exclusive.
-                    </p>
-
-                    <div class="grid grid-cols-2 gap-8 border-t pt-8 border-gray-100">
-                        <div>
-                            <div class="text-3xl font-serif text-[#E11D48]">100%</div>
-                            <div class="text-xs uppercase tracking-widest text-gray-400">Pork-Free Menu</div>
-                        </div>
-                        <div>
-                            <div class="text-3xl font-serif text-[#E11D48]">Tier A</div>
-                            <div class="text-xs uppercase tracking-widest text-gray-400">Retail Standards</div>
-                        </div>
-                    </div>
+                <div className="absolute bottom-6 right-6 flex space-x-2">
+                  <button 
+                    onClick={prevSlide}
+                    className="p-3 bg-white/90 hover:bg-white rounded-full shadow-lg transition-transform active:scale-95"
+                  >
+                    <ChevronLeft size={20} />
+                  </button>
+                  <button 
+                    onClick={nextSlide}
+                    className="p-3 bg-white/90 hover:bg-white rounded-full shadow-lg transition-transform active:scale-95"
+                  >
+                    <ChevronRight size={20} />
+                  </button>
                 </div>
 
-                <div class="lg:w-1/2 w-full">
-                    <div class="relative aspect-[4/5] md:aspect-square overflow-hidden rounded-2xl shadow-2xl bg-zinc-100">
-                        <img src="https://images.unsplash.com/photo-1553163147-622ab57b0600?auto=format&fit=crop&q=80&w=800" class="absolute inset-0 w-full h-full object-cover animate-fade-1">
-                        <img src="https://images.unsplash.com/photo-1580651214613-f45bc8346efb?auto=format&fit=crop&q=80&w=800" class="absolute inset-0 w-full h-full object-cover animate-fade-2">
-                        <img src="https://images.unsplash.com/photo-1498654896293-37aacf113fd9?auto=format&fit=crop&q=80&w=800" class="absolute inset-0 w-full h-full object-cover animate-fade-3">
-                        <img src="https://images.unsplash.com/photo-1626074353765-517a681e40be?auto=format&fit=crop&q=80&w=800" class="absolute inset-0 w-full h-full object-cover animate-fade-4">
-                        <img src="https://images.unsplash.com/photo-1623341214825-9f4f963727da?auto=format&fit=crop&q=80&w=800" class="absolute inset-0 w-full h-full object-cover animate-fade-5">
-                    </div>
+                <div className="absolute top-6 left-6 px-4 py-1 bg-black/50 backdrop-blur-md text-white rounded-full text-xs font-bold tracking-widest">
+                  {currentSlide + 1} / {brands[activeBrand].images.length}
                 </div>
+              </div>
 
+              <div className="md:w-2/5 p-8 md:p-12 flex flex-col justify-center">
+                <span className="text-red-600 font-bold text-xs tracking-widest uppercase mb-2">Signature Brand</span>
+                <h4 className="text-3xl font-black mb-4 uppercase">{brands[activeBrand].name}</h4>
+                <p className="text-lg font-bold text-slate-600 mb-6 italic leading-snug">
+                  "{brands[activeBrand].tagline}"
+                </p>
+                <p className="text-slate-500 leading-relaxed mb-8">
+                  {brands[activeBrand].description}
+                </p>
+                <button className="flex items-center font-black text-sm tracking-widest uppercase group">
+                  View Menu 
+                  <ChevronRight size={18} className="ml-2 group-hover:translate-x-1 transition-transform" />
+                </button>
+              </div>
             </div>
+          </div>
         </div>
-    </section>
+      </section>
 
-    <section id="brands" class="py-24 px-6 md:px-12 bg-gray-50">
-        <div class="max-w-7xl mx-auto">
-            <div class="mb-16 text-center">
-                <h2 class="text-4xl md:text-6xl mb-4 font-serif">Our Franchise Portfolio</h2>
-                <div class="w-20 h-1 bg-[#E11D48] mx-auto"></div>
+      {/* Modern Enhanced Footer */}
+      <footer className="bg-slate-900 text-slate-300 pt-20 pb-10">
+        <div className="max-w-7xl mx-auto px-6">
+          {/* Top Footer: Subscription & Brand */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 pb-16 border-b border-slate-800">
+            <div>
+              <div className="text-2xl font-black tracking-tighter text-white mb-6">
+                K FOOD SOLUTION
+              </div>
+              <p className="max-w-md text-slate-400 leading-relaxed mb-8">
+                Pioneering the future of Korean gastronomy through high-quality ingredients and innovative dining concepts across the globe.
+              </p>
+              <div className="flex space-x-5">
+                <a href="#" className="p-2 bg-slate-800 rounded-full hover:bg-red-600 transition-colors"><Instagram size={20} /></a>
+                <a href="#" className="p-2 bg-slate-800 rounded-full hover:bg-red-600 transition-colors"><Facebook size={20} /></a>
+                <a href="#" className="p-2 bg-slate-800 rounded-full hover:bg-red-600 transition-colors"><Linkedin size={20} /></a>
+                <a href="#" className="p-2 bg-slate-800 rounded-full hover:bg-red-600 transition-colors"><Youtube size={20} /></a>
+              </div>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <a href="oiso.html" class="relative h-[550px] overflow-hidden group shadow-lg rounded-xl block bg-zinc-800">
-                    <img src="https://images.unsplash.com/photo-1626074353765-517a681e40be?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover transition duration-700 opacity-80 group-hover:scale-105 group-hover:opacity-100">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
-                    <div class="absolute bottom-0 p-8 text-white w-full">
-                        <div class="bg-[#E11D48] text-[10px] font-bold uppercase px-2 py-1 inline-block mb-3 rounded">Premium BBQ</div>
-                        <h3 class="text-3xl mb-4">Oiso</h3>
-                        <span class="text-xs font-bold uppercase tracking-widest text-[#E11D48]">Explore Concept <i class="fas fa-arrow-right"></i></span>
-                    </div>
-                </a>
-                <a href="neulbom-garden.html" class="relative h-[550px] overflow-hidden group shadow-lg rounded-xl block bg-zinc-800">
-                    <img src="https://images.unsplash.com/photo-1623341214825-9f4f963727da?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover transition duration-700 opacity-80 group-hover:scale-105 group-hover:opacity-100">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
-                    <div class="absolute bottom-0 p-8 text-white w-full">
-                        <div class="bg-[#E11D48] text-[10px] font-bold uppercase px-2 py-1 inline-block mb-3 rounded">Traditional</div>
-                        <h3 class="text-3xl mb-4">Neulbom Garden</h3>
-                        <span class="text-xs font-bold uppercase tracking-widest text-[#E11D48]">Explore Concept <i class="fas fa-arrow-right"></i></span>
-                    </div>
-                </a>
-                <a href="mimi-guksu.html" class="relative h-[550px] overflow-hidden group shadow-lg rounded-xl block bg-zinc-800">
-                    <img src="https://images.unsplash.com/photo-1590301157890-4810ed352733?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover transition duration-700 opacity-80 group-hover:scale-105 group-hover:opacity-100">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
-                    <div class="absolute bottom-0 p-8 text-white w-full">
-                        <div class="bg-[#E11D48] text-[10px] font-bold uppercase px-2 py-1 inline-block mb-3 rounded">Noodles</div>
-                        <h3 class="text-3xl mb-4">MiMi Guksu</h3>
-                        <span class="text-xs font-bold uppercase tracking-widest text-[#E11D48]">Explore Concept <i class="fas fa-arrow-right"></i></span>
-                    </div>
-                </a>
+            
+            <div className="flex flex-col justify-center">
+              <h4 className="text-white font-bold tracking-widest uppercase text-sm mb-4">Stay Informed</h4>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <input 
+                  type="email" 
+                  placeholder="Enter your email" 
+                  className="bg-slate-800 border-none rounded-full px-6 py-4 flex-grow focus:ring-2 focus:ring-red-600 outline-none transition-all"
+                />
+                <button className="bg-red-600 hover:bg-red-700 text-white font-bold px-8 py-4 rounded-full flex items-center justify-center space-x-2 transition-all">
+                  <span>SUBSCRIBE</span>
+                  <Send size={16} />
+                </button>
+              </div>
             </div>
+          </div>
+
+          {/* Middle Footer: Links & Info */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 py-16 border-b border-slate-800">
+            <div>
+              <h5 className="text-white font-bold uppercase tracking-widest text-sm mb-6">Quick Links</h5>
+              <ul className="space-y-4 text-sm font-medium">
+                <li><a href="#" className="hover:text-red-600 transition-colors">Our Philosophy</a></li>
+                <li><a href="#" className="hover:text-red-600 transition-colors">Brand Portfolio</a></li>
+                <li><a href="#" className="hover:text-red-600 transition-colors">Latest News</a></li>
+                <li><a href="#" className="hover:text-red-600 transition-colors">Careers</a></li>
+              </ul>
+            </div>
+
+            <div>
+              <h5 className="text-white font-bold uppercase tracking-widest text-sm mb-6">Our Brands</h5>
+              <ul className="space-y-4 text-sm font-medium">
+                <li><a href="#" className="hover:text-red-600 transition-colors">Oiso</a></li>
+                <li><a href="#" className="hover:text-red-600 transition-colors">Neulbom Garden</a></li>
+                <li><a href="#" className="hover:text-red-600 transition-colors">MiMi Guksu</a></li>
+                <li><a href="#" className="hover:text-red-600 transition-colors">Catering Services</a></li>
+              </ul>
+            </div>
+
+            <div className="lg:col-span-2">
+              <h5 className="text-white font-bold uppercase tracking-widest text-sm mb-6">Contact Us</h5>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="flex items-start space-x-3">
+                  <MapPin className="text-red-600 shrink-0" size={20} />
+                  <span className="text-sm">123 Gangnam-daero, Seocho-gu, Seoul, Republic of Korea</span>
+                </div>
+                <div className="flex items-start space-x-3">
+                  <Mail className="text-red-600 shrink-0" size={20} />
+                  <span className="text-sm">inquiry@kfoodsolution.com</span>
+                </div>
+                <div className="flex items-start space-x-3">
+                  <Phone className="text-red-600 shrink-0" size={20} />
+                  <span className="text-sm">+82 (02) 1234-5678</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Bottom Footer: Copyright */}
+          <div className="pt-10 flex flex-col md:flex-row justify-between items-center text-xs tracking-widest font-bold opacity-50">
+            <div className="mb-4 md:mb-0 uppercase">
+              © 2024 K FOOD SOLUTION. ALL RIGHTS RESERVED.
+            </div>
+            <div className="flex space-x-8 uppercase">
+              <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
+              <a href="#" className="hover:text-white transition-colors">Cookie Settings</a>
+              <a href="#" className="hover:text-white transition-colors">Sitemap</a>
+            </div>
+          </div>
         </div>
-    </section>
+      </footer>
+    </div>
+  );
+};
 
-    <footer class="py-16 px-6 border-t border-gray-100 text-center">
-        <div class="text-xl font-bold font-serif uppercase mb-4">K FOOD <span class="text-[#E11D48]">SOLUTION</span></div>
-        <p class="text-xs text-gray-400 uppercase tracking-[0.2em]">&copy; 2026 K Food Solution Group. All rights reserved.</p>
-    </footer>
-
-    <script>
-        window.addEventListener('scroll', function() {
-            const nav = document.querySelector('nav');
-            if (window.scrollY > 50) {
-                nav.classList.add('py-2', 'shadow-md');
-                nav.classList.remove('py-4');
-            } else {
-                nav.classList.remove('py-2', 'shadow-md');
-                nav.classList.add('py-4');
-            }
-        });
-    </script>
-</body>
-</html>
+export default App;
