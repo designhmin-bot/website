@@ -4,31 +4,160 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>K Food Solution</title>
+    
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
     <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        /* Prevents the 'flicker' of unstyled content before React loads */
+        [v-cloak] { display: none; }
+        body { margin: 0; padding: 0; }
+    </style>
 </head>
 <body>
     <div id="root"></div>
 
     <script type="text/babel">
+        // De-structuring hooks from the global React object
         const { useState, useEffect } = React;
-        // Map Lucide icons from the global window object
-        const ChevronLeft = () => <i data-lucide="chevron-left"></i>;
-        const ChevronRight = () => <i data-lucide="chevron-right"></i>;
-        // ... rest of your App code here ...
+
+        // Custom Icon Wrapper for Lucide (since we aren't using npm imports)
+        const Icon = ({ name, size = 24, className = "" }) => {
+            useEffect(() => {
+                lucide.createIcons();
+            }, [name]);
+            return <i data-lucide={name} style={{ width: size, height: size }} className={className}></i>;
+        };
 
         const App = () => {
-            // PASTE YOUR REACT CODE HERE
+            const [activeBrand, setActiveBrand] = useState(0);
+            const [currentSlide, setCurrentSlide] = useState(0);
+            const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+            const brands = [
+                {
+                    id: 0,
+                    name: 'Oiso',
+                    tagline: 'Authentic Korean Comfort',
+                    description: 'Bringing the heart of Korean home-style cooking to your table with fresh ingredients and traditional recipes.',
+                    images: [
+                        'https://images.unsplash.com/photo-1583212292454-1fe6229603b7?auto=format&fit=crop&q=80&w=1200',
+                        'https://images.unsplash.com/photo-1498654896293-37aacf113fd9?auto=format&fit=crop&q=80&w=1200',
+                        'https://images.unsplash.com/photo-1553163147-622820be2931?auto=format&fit=crop&q=80&w=1200'
+                    ]
+                },
+                {
+                    id: 1,
+                    name: 'Neulbom Garden',
+                    tagline: 'Premium Korean BBQ',
+                    description: 'A sophisticated dining experience focusing on premium cuts of meat and an elegant garden atmosphere.',
+                    images: [
+                        'https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?auto=format&fit=crop&q=80&w=1200',
+                        'https://images.unsplash.com/photo-1629814249584-bd4d53cf0e7d?auto=format&fit=crop&q=80&w=1200',
+                        'https://images.unsplash.com/photo-1544124499-58912cbddaad?auto=format&fit=crop&q=80&w=1200'
+                    ]
+                },
+                {
+                    id: 2,
+                    name: 'MiMi Guksu',
+                    tagline: 'Traditional Noodle House',
+                    description: 'Specializing in delicate, handmade noodles served in rich, savory broths passed down through generations.',
+                    images: [
+                        'https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?auto=format&fit=crop&q=80&w=1200',
+                        'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&q=80&w=1200',
+                        'https://images.unsplash.com/photo-1552611052-33e04de081de?auto=format&fit=crop&q=80&w=1200'
+                    ]
+                }
+            ];
+
+            useEffect(() => {
+                setCurrentSlide(0);
+            }, [activeBrand]);
+
+            const nextSlide = () => {
+                setCurrentSlide((prev) => (prev + 1) % brands[activeBrand].images.length);
+            };
+
+            const prevSlide = () => {
+                setCurrentSlide((prev) => (prev - 1 + brands[activeBrand].images.length) % brands[activeBrand].images.length);
+            };
+
+            return (
+                <div className="min-h-screen bg-white font-sans text-slate-900">
+                    <header className="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm z-50 border-b border-slate-100">
+                        <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+                            <div className="text-2xl font-black tracking-tighter text-red-600">K FOOD SOLUTION</div>
+                            <nav className="hidden md:flex items-center space-x-8">
+                                <a href="#" className="text-sm font-bold tracking-widest hover:text-red-600 transition-colors uppercase">Our Philosophy</a>
+                                <a href="#" className="text-sm font-bold tracking-widest hover:text-red-600 transition-colors uppercase">Our Brand</a>
+                                <button className="bg-red-600 text-white px-6 py-3 text-sm font-bold tracking-widest hover:bg-red-700 transition-all uppercase rounded-full">Enquire Now</button>
+                            </nav>
+                            <button className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+                                {isMenuOpen ? <Icon name="x" size={28} /> : <Icon name="menu" size={28} />}
+                            </button>
+                        </div>
+                        {isMenuOpen && (
+                            <div className="md:hidden bg-white border-b border-slate-100 p-6 flex flex-col space-y-6">
+                                <a href="#" className="text-lg font-bold uppercase tracking-widest">Our Philosophy</a>
+                                <a href="#" className="text-lg font-bold uppercase tracking-widest">Our Brand</a>
+                                <button className="bg-red-600 text-white px-6 py-4 text-lg font-bold tracking-widest uppercase rounded-xl">Enquire Now</button>
+                            </div>
+                        )}
+                    </header>
+
+                    <section className="relative h-[80vh] flex items-center justify-center overflow-hidden pt-20">
+                        <div className="absolute inset-0">
+                            <img src="https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&q=80&w=2000" className="w-full h-full object-cover" />
+                            <div className="absolute inset-0 bg-black/40"></div>
+                        </div>
+                        <div className="relative text-center text-white px-6">
+                            <h1 className="text-5xl md:text-7xl font-black mb-6 tracking-tight">ELEVATING K-FOOD</h1>
+                            <p className="text-xl md:text-2xl font-light max-w-2xl mx-auto opacity-90 leading-relaxed">Delivering authentic Korean culinary experiences.</p>
+                        </div>
+                    </section>
+
+                    <section className="py-24 bg-slate-50">
+                        <div className="max-w-7xl mx-auto px-6">
+                            <div className="flex flex-col lg:flex-row gap-12">
+                                <div className="lg:w-1/4 flex flex-row lg:flex-col overflow-x-auto border-b lg:border-b-0 lg:border-l border-slate-200">
+                                    {brands.map((brand, index) => (
+                                        <button key={brand.id} onClick={() => setActiveBrand(index)} className={`px-6 py-6 text-left transition-all border-b-2 lg:border-b-0 lg:border-l-4 ${activeBrand === index ? 'border-red-600 text-red-600' : 'border-transparent text-slate-400'}`}>
+                                            <span className="text-xs block font-bold mb-1">0{index + 1}</span>
+                                            <span className="text-xl font-black uppercase">{brand.name}</span>
+                                        </button>
+                                    ))}
+                                </div>
+                                <div className="lg:w-3/4 flex flex-col md:flex-row bg-white rounded-3xl shadow-xl overflow-hidden">
+                                    <div className="md:w-3/5 relative h-[400px] md:h-auto">
+                                        <div className="w-full h-full relative overflow-hidden">
+                                            {brands[activeBrand].images.map((img, idx) => (
+                                                <img key={idx} src={img} className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${currentSlide === idx ? 'opacity-100' : 'opacity-0'}`} />
+                                            ))}
+                                        </div>
+                                        <div className="absolute bottom-6 right-6 flex space-x-2">
+                                            <button onClick={prevSlide} className="p-3 bg-white/90 rounded-full shadow-lg"><Icon name="chevron-left" size={20} /></button>
+                                            <button onClick={nextSlide} className="p-3 bg-white/90 rounded-full shadow-lg"><Icon name="chevron-right" size={20} /></button>
+                                        </div>
+                                    </div>
+                                    <div className="md:w-2/5 p-8 flex flex-col justify-center">
+                                        <h4 className="text-3xl font-black mb-4 uppercase">{brands[activeBrand].name}</h4>
+                                        <p className="text-slate-500 mb-8">{brands[activeBrand].description}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            );
         };
 
         const root = ReactDOM.createRoot(document.getElementById('root'));
         root.render(<App />);
-        
-        // Initialize icons
-        setTimeout(() => lucide.createIcons(), 100);
     </script>
 </body>
 </html>
