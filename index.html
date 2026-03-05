@@ -9,7 +9,7 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap');
         
-        body { font-family: 'Inter', sans-serif; }
+        body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
 
         /* Smooth transitions for the slideshow */
         .fade-in { 
@@ -34,13 +34,13 @@
 
     <header class="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm z-50 border-b border-slate-100">
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <div class="text-2xl font-black tracking-tighter text-red-600">
+            <div class="text-2xl font-black tracking-tighter text-red-600 cursor-pointer" onclick="window.scrollTo(0,0)">
                 K FOOD SOLUTION
             </div>
 
             <nav class="hidden md:flex items-center space-x-8">
                 <a href="#" class="text-sm font-bold tracking-widest hover:text-red-600 transition-colors uppercase">Our Philosophy</a>
-                <a href="#" class="text-sm font-bold tracking-widest hover:text-red-600 transition-colors uppercase">Our Brand</a>
+                <a href="#our-brands" class="text-sm font-bold tracking-widest hover:text-red-600 transition-colors uppercase">Our Brands</a>
                 <button class="bg-red-600 text-white px-6 py-3 text-sm font-bold tracking-widest hover:bg-red-700 transition-all uppercase rounded-full">
                     Enquire Now
                 </button>
@@ -52,8 +52,8 @@
         </div>
 
         <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-100 p-6 flex flex-col space-y-6">
-            <a href="#" class="text-lg font-bold uppercase tracking-widest">Our Philosophy</a>
-            <a href="#" class="text-lg font-bold uppercase tracking-widest">Our Brand</a>
+            <a href="#" class="mobile-link text-lg font-bold uppercase tracking-widest">Our Philosophy</a>
+            <a href="#our-brands" class="mobile-link text-lg font-bold uppercase tracking-widest">Our Brands</a>
             <button class="bg-red-600 text-white px-6 py-4 text-lg font-bold tracking-widest uppercase rounded-xl">
                 Enquire Now
             </button>
@@ -77,7 +77,7 @@
         </div>
     </section>
 
-    <section class="py-24 bg-slate-50">
+    <section id="our-brands" class="py-24 bg-slate-50 scroll-mt-20">
         <div class="max-w-7xl mx-auto px-6">
             <div class="mb-16 text-center md:text-left">
                 <h2 class="text-sm font-bold tracking-[0.3em] text-red-600 uppercase mb-4">Our Portfolio</h2>
@@ -251,12 +251,24 @@
         // Mobile Menu Toggle
         const menuBtn = document.getElementById('menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
-        menuBtn.onclick = () => {
+        
+        function toggleMobileMenu() {
             const isHidden = mobileMenu.classList.toggle('hidden');
             const iconName = isHidden ? 'menu' : 'x';
             menuBtn.innerHTML = `<i data-lucide="${iconName}"></i>`;
             lucide.createIcons();
-        };
+        }
+
+        menuBtn.onclick = toggleMobileMenu;
+
+        // Close mobile menu when a link is clicked
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.onclick = () => {
+                if (!mobileMenu.classList.contains('hidden')) {
+                    toggleMobileMenu();
+                }
+            };
+        });
 
         init();
     </script>
