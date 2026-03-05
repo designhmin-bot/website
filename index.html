@@ -11,32 +11,34 @@
         html { scroll-behavior: smooth; }
         body { font-family: 'Inter', sans-serif; }
 
+        /* Banner Transitions */
         .fade-in { transition: opacity 0.8s ease-in-out; }
         .hidden-slide { opacity: 0; pointer-events: none; }
         .active-slide { opacity: 1; }
 
+        /* Progress Bar Styles */
         .progress-bar {
-    height: 2px;
-    background: rgba(255,255,255,0.3);
-    width: 150px;
-    position: relative;
-    overflow: hidden;
-}
-.progress-fill {
-    position: absolute;
-    left: 0;
-    top: 0;
-    height: 100%;
-    background: white;
-    width: 0%;
-}
-@keyframes progressAnim {
-    from { width: 0%; }
-    to { width: 100%; }
-}
-.animate-progress {
-    animation: progressAnim 5000ms linear forwards;
-}
+            height: 2px;
+            background: rgba(255,255,255,0.3);
+            width: 150px;
+            position: relative;
+            overflow: hidden;
+        }
+        .progress-fill {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            background: white;
+            width: 0%;
+        }
+        @keyframes progressAnim {
+            from { width: 0%; }
+            to { width: 100%; }
+        }
+        .animate-progress {
+            animation: progressAnim 5000ms linear forwards;
+        }
 
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
@@ -69,16 +71,23 @@
         </div>
     </header>
 
-    <section class="relative h-[80vh] flex items-center justify-center overflow-hidden pt-20">
-        <div class="absolute inset-0">
-            <img src="banner-1.png" alt="Banner" class="w-full h-full object-cover"/>
-            <div class="absolute inset-0 bg-black/40"></div>
+    <section class="relative h-[85vh] overflow-hidden bg-black pt-20">
+        <div id="hero-slider" class="absolute inset-0">
+            </div>
+        
+        <div class="relative h-full flex items-center px-12 md:px-24 z-20">
+            <div class="max-w-3xl text-white">
+                <span class="inline-block px-3 py-1 bg-red-600 text-[10px] font-bold tracking-widest uppercase mb-4">Premium Quality</span>
+                <h1 id="hero-title" class="text-5xl md:text-8xl font-black mb-6 tracking-tighter leading-none">ELEVATING<br>K-FOOD</h1>
+            </div>
         </div>
-        <div class="relative text-center text-white px-6">
-            <h1 class="text-5xl md:text-7xl font-black mb-6 tracking-tight">ELEVATING K-FOOD</h1>
-            <p class="text-xl md:text-2xl font-light max-w-2xl mx-auto opacity-90 leading-relaxed">
-                Delivering authentic Korean culinary experiences through innovation, quality, and passion.
-            </p>
+
+        <div class="absolute bottom-12 left-12 md:left-24 flex items-center space-x-6 z-30 text-white font-bold text-xs tracking-widest">
+            <div id="hero-numbers" class="flex items-center space-x-4">
+                </div>
+            <div class="progress-bar">
+                <div id="hero-progress" class="progress-fill"></div>
+            </div>
         </div>
     </section>
 
@@ -132,6 +141,66 @@
     <div class="h-64 bg-slate-900"></div>
 
     <script>
+        // --- NEW BANNER LOGIC ---
+        const heroSlides = [
+            { image: 'banner-1.png', title: 'ELEVATING<br>K-FOOD' },
+            { image: '542757880_122095103211013620_6375155299099234845_n.jpg', title: 'AUTHENTIC<br>FLAVORS' },
+            { image: 'https://images.unsplash.com/photo-1547592166-23ac45744acd?q=80&w=2000', title: 'TRADITION<br>MEETS MODERN' }
+        ];
+
+        let currentHeroIndex = 0;
+        let heroTimer;
+        const slideDuration = 5000;
+
+        function initHero() {
+            const container = document.getElementById('hero-slider');
+            const numContainer = document.getElementById('hero-numbers');
+            
+            heroSlides.forEach((slide, i) => {
+                const img = document.createElement('div');
+                img.className = `absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ${i === 0 ? 'active-slide' : 'hidden-slide'}`;
+                img.style.backgroundImage = `linear-gradient(to right, rgba(0,0,0,0.7), transparent), url('${slide.image}')`;
+                container.appendChild(img);
+
+                const num = document.createElement('span');
+                num.innerText = (i + 1).toString().padStart(2, '0');
+                num.className = `cursor-pointer transition-colors hover:text-white ${i === 0 ? 'text-white' : 'text-white/30'}`;
+                num.onclick = () => goToHeroSlide(i);
+                numContainer.appendChild(num);
+            });
+            startHeroTimer();
+        }
+
+        function startHeroTimer() {
+            clearTimeout(heroTimer);
+            const progressBar = document.getElementById('hero-progress');
+            progressBar.classList.remove('animate-progress');
+            void progressBar.offsetWidth; 
+            progressBar.classList.add('animate-progress');
+            heroTimer = setTimeout(() => nextHeroSlide(), slideDuration);
+        }
+
+        function goToHeroSlide(index) {
+            if (index === currentHeroIndex) return;
+            const slides = document.querySelectorAll('#hero-slider div');
+            const nums = document.querySelectorAll('#hero-numbers span');
+            
+            slides[currentHeroIndex].classList.replace('active-slide', 'hidden-slide');
+            nums[currentHeroIndex].classList.replace('text-white', 'text-white/30');
+            
+            currentHeroIndex = index;
+            slides[currentHeroIndex].classList.replace('hidden-slide', 'active-slide');
+            nums[currentHeroIndex].classList.replace('text-white/30', 'text-white');
+            document.getElementById('hero-title').innerHTML = heroSlides[currentHeroIndex].title;
+            
+            startHeroTimer();
+        }
+
+        function nextHeroSlide() {
+            goToHeroSlide((currentHeroIndex + 1) % heroSlides.length);
+        }
+
+        // --- ORIGINAL BRAND LOGIC ---
         const brands = [
             { name: 'Oiso', tagline: 'Authentic Korean Comfort', description: 'Bringing the heart of Korean home-style cooking to your table with fresh ingredients and traditional recipes.', images: ['oiso-1.jpg', 'oiso-2.jpg', 'oiso-3.jpg'] },
             { name: 'Neulbom Garden', tagline: 'Premium Korean BBQ', description: 'A sophisticated dining experience focusing on premium cuts of meat and an elegant garden atmosphere.', images: ['neulbom-1.jpg', 'neulbom-2.jpg', 'neulbom-3.jpg'] },
@@ -142,6 +211,7 @@
         let currentSlideIndex = 0;
 
         function init() {
+            initHero(); // Initialize the new banner
             renderBrandNav();
             updateBrandDisplay();
             lucide.createIcons();
@@ -158,7 +228,7 @@
 
         function setActiveBrand(index) {
             activeBrandIndex = index;
-            currentSlideIndex = 0; // Reset index to avoid clicking multiple times
+            currentSlideIndex = 0; 
             renderBrandNav();
             updateBrandDisplay();
         }
@@ -168,11 +238,8 @@
             document.getElementById('brand-name').innerText = brand.name;
             document.getElementById('brand-tagline').innerText = `"${brand.tagline}"`;
             document.getElementById('brand-desc').innerText = brand.description;
-            
             const imgContainer = document.getElementById('image-container');
-            // Clear only the images, keep the controls
             imgContainer.querySelectorAll('img').forEach(img => img.remove());
-            
             brand.images.forEach((src, i) => {
                 const img = document.createElement('img');
                 img.src = src;
@@ -185,11 +252,9 @@
         function changeSlide(direction) {
             const slides = document.querySelectorAll('#image-container img');
             if (slides.length <= 1) return;
-            
             slides[currentSlideIndex].classList.replace('active-slide', 'hidden-slide');
             currentSlideIndex = (currentSlideIndex + direction + slides.length) % slides.length;
             slides[currentSlideIndex].classList.replace('hidden-slide', 'active-slide');
-            
             updateSlideUI();
         }
 
@@ -197,7 +262,6 @@
             document.getElementById('slide-counter').innerText = `${currentSlideIndex + 1} / ${brands[activeBrandIndex].images.length}`;
         }
 
-        // Mobile Menu Logic
         const menuBtn = document.getElementById('menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
         menuBtn.onclick = () => {
