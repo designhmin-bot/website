@@ -9,9 +9,10 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap');
         
-        body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+        /* Smooth scrolling for the entire page */
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; }
 
-        /* Smooth transitions for the slideshow */
         .fade-in { 
             transition: opacity 0.7s ease-in-out, transform 0.7s ease-in-out; 
         }
@@ -25,7 +26,6 @@
             transform: scale(1); 
         }
 
-        /* Hide scrollbars but keep functionality */
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
@@ -62,11 +62,7 @@
 
     <section class="relative h-[80vh] flex items-center justify-center overflow-hidden pt-20">
         <div class="absolute inset-0">
-            <img 
-                src="https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&q=80&w=2000" 
-                alt="Korean Food Banner" 
-                class="w-full h-full object-cover"
-            />
+            <img src="https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&q=80&w=2000" alt="Banner" class="w-full h-full object-cover"/>
             <div class="absolute inset-0 bg-black/40"></div>
         </div>
         <div class="relative text-center text-white px-6">
@@ -85,24 +81,15 @@
             </div>
 
             <div class="flex flex-col lg:flex-row gap-12 min-h-[600px]">
-                <div id="brand-nav" class="lg:w-1/4 flex flex-row lg:flex-col overflow-x-auto no-scrollbar border-b lg:border-b-0 lg:border-l border-slate-200">
-                    </div>
+                <div id="brand-nav" class="lg:w-1/4 flex flex-row lg:flex-col overflow-x-auto no-scrollbar border-b lg:border-b-0 lg:border-l border-slate-200"></div>
 
                 <div class="lg:w-3/4 flex flex-col md:flex-row bg-white rounded-3xl shadow-xl shadow-slate-200/50 overflow-hidden">
-                    
                     <div class="md:w-3/5 relative aspect-[4/3] md:aspect-auto overflow-hidden bg-slate-200" id="image-container">
                         <div class="absolute bottom-6 right-6 flex space-x-2 z-20">
-                            <button onclick="changeSlide(-1)" class="p-3 bg-white/90 hover:bg-white rounded-full shadow-lg transition-transform active:scale-95">
-                                <i data-lucide="chevron-left" class="w-5 h-5"></i>
-                            </button>
-                            <button onclick="changeSlide(1)" class="p-3 bg-white/90 hover:bg-white rounded-full shadow-lg transition-transform active:scale-95">
-                                <i data-lucide="chevron-right" class="w-5 h-5"></i>
-                            </button>
+                            <button onclick="changeSlide(-1)" class="p-3 bg-white/90 hover:bg-white rounded-full shadow-lg active:scale-95 transition-transform"><i data-lucide="chevron-left" class="w-5 h-5"></i></button>
+                            <button onclick="changeSlide(1)" class="p-3 bg-white/90 hover:bg-white rounded-full shadow-lg active:scale-95 transition-transform"><i data-lucide="chevron-right" class="w-5 h-5"></i></button>
                         </div>
-
-                        <div id="slide-counter" class="absolute top-6 left-6 px-4 py-1 bg-black/50 backdrop-blur-md text-white rounded-full text-xs font-bold tracking-widest z-20">
-                            1 / 3
-                        </div>
+                        <div id="slide-counter" class="absolute top-6 left-6 px-4 py-1 bg-black/50 backdrop-blur-md text-white rounded-full text-xs font-bold tracking-widest z-20">1 / 3</div>
                     </div>
 
                     <div class="md:w-2/5 p-8 md:p-12 flex flex-col justify-center">
@@ -111,8 +98,7 @@
                         <p id="brand-tagline" class="text-lg font-bold text-slate-600 mb-6 italic leading-snug"></p>
                         <p id="brand-desc" class="text-slate-500 leading-relaxed mb-8"></p>
                         <button class="flex items-center font-black text-sm tracking-widest uppercase group text-slate-900">
-                            View Menu 
-                            <i data-lucide="chevron-right" class="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                            View Menu <i data-lucide="chevron-right" class="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
                         </button>
                     </div>
                 </div>
@@ -125,9 +111,7 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 pb-16 border-b border-slate-800">
                 <div>
                     <div class="text-2xl font-black tracking-tighter text-white mb-6">K FOOD SOLUTION</div>
-                    <p class="max-w-md text-slate-400 leading-relaxed mb-8">
-                        Pioneering the future of Korean gastronomy through high-quality ingredients and innovative dining concepts across the globe.
-                    </p>
+                    <p class="max-w-md text-slate-400 mb-8">Pioneering the future of Korean gastronomy through high-quality ingredients and innovative dining concepts.</p>
                     <div class="flex space-x-5">
                         <a href="#" class="p-2 bg-slate-800 rounded-full hover:bg-red-600 transition-colors"><i data-lucide="instagram" class="w-5 h-5"></i></a>
                         <a href="#" class="p-2 bg-slate-800 rounded-full hover:bg-red-600 transition-colors"><i data-lucide="facebook" class="w-5 h-5"></i></a>
@@ -135,18 +119,16 @@
                     </div>
                 </div>
                 <div class="flex flex-col justify-center">
-                    <h4 class="text-white font-bold tracking-widest uppercase text-sm mb-4">Stay Informed</h4>
                     <div class="flex flex-col sm:flex-row gap-4">
-                        <input type="email" placeholder="Enter your email" class="bg-slate-800 border-none rounded-full px-6 py-4 flex-grow focus:ring-2 focus:ring-red-600 outline-none text-white transition-all">
-                        <button class="bg-red-600 hover:bg-red-700 text-white font-bold px-8 py-4 rounded-full flex items-center justify-center space-x-2 transition-all">
-                            <span>SUBSCRIBE</span>
-                            <i data-lucide="send" class="w-4 h-4"></i>
+                        <input type="email" placeholder="Enter your email" class="bg-slate-800 border-none rounded-full px-6 py-4 flex-grow outline-none text-white">
+                        <button class="bg-red-600 hover:bg-red-700 text-white font-bold px-8 py-4 rounded-full flex items-center justify-center space-x-2">
+                            <span>SUBSCRIBE</span><i data-lucide="send" class="w-4 h-4"></i>
                         </button>
                     </div>
                 </div>
             </div>
             <div class="pt-10 flex flex-col md:flex-row justify-between items-center text-[10px] tracking-widest font-bold opacity-50">
-                <div class="mb-4 md:mb-0 uppercase">© 2024 K FOOD SOLUTION. ALL RIGHTS RESERVED.</div>
+                <div>© 2024 K FOOD SOLUTION. ALL RIGHTS RESERVED.</div>
                 <div class="flex space-x-8 uppercase">
                     <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
                     <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
@@ -157,36 +139,9 @@
 
     <script>
         const brands = [
-            {
-                name: 'Oiso',
-                tagline: 'Authentic Korean Comfort',
-                description: 'Bringing the heart of Korean home-style cooking to your table with fresh ingredients and traditional recipes.',
-                images: [
-                    'https://images.unsplash.com/photo-1583212292454-1fe6229603b7?auto=format&fit=crop&q=80&w=1200',
-                    'https://images.unsplash.com/photo-1498654896293-37aacf113fd9?auto=format&fit=crop&q=80&w=1200',
-                    'https://images.unsplash.com/photo-1553163147-622820be2931?auto=format&fit=crop&q=80&w=1200'
-                ]
-            },
-            {
-                name: 'Neulbom Garden',
-                tagline: 'Premium Korean BBQ',
-                description: 'A sophisticated dining experience focusing on premium cuts of meat and an elegant garden atmosphere.',
-                images: [
-                    'https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?auto=format&fit=crop&q=80&w=1200',
-                    'https://images.unsplash.com/photo-1629814249584-bd4d53cf0e7d?auto=format&fit=crop&q=80&w=1200',
-                    'https://images.unsplash.com/photo-1544124499-58912cbddaad?auto=format&fit=crop&q=80&w=1200'
-                ]
-            },
-            {
-                name: 'MiMi Guksu',
-                tagline: 'Traditional Noodle House',
-                description: 'Specializing in delicate, handmade noodles served in rich, savory broths passed down through generations.',
-                images: [
-                    'https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?auto=format&fit=crop&q=80&w=1200',
-                    'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&q=80&w=1200',
-                    'https://images.unsplash.com/photo-1552611052-33e04de081de?auto=format&fit=crop&q=80&w=1200'
-                ]
-            }
+            { name: 'Oiso', tagline: 'Authentic Korean Comfort', description: 'Bringing the heart of Korean home-style cooking to your table with fresh ingredients and traditional recipes.', images: ['https://images.unsplash.com/photo-1583212292454-1fe6229603b7?auto=format&fit=crop&q=80&w=1200', 'https://images.unsplash.com/photo-1498654896293-37aacf113fd9?auto=format&fit=crop&q=80&w=1200', 'https://images.unsplash.com/photo-1553163147-622820be2931?auto=format&fit=crop&q=80&w=1200'] },
+            { name: 'Neulbom Garden', tagline: 'Premium Korean BBQ', description: 'A sophisticated dining experience focusing on premium cuts of meat and an elegant garden atmosphere.', images: ['https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?auto=format&fit=crop&q=80&w=1200', 'https://images.unsplash.com/photo-1629814249584-bd4d53cf0e7d?auto=format&fit=crop&q=80&w=1200', 'https://images.unsplash.com/photo-1544124499-58912cbddaad?auto=format&fit=crop&q=80&w=1200'] },
+            { name: 'MiMi Guksu', tagline: 'Traditional Noodle House', description: 'Specializing in delicate, handmade noodles served in rich, savory broths passed down through generations.', images: ['https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?auto=format&fit=crop&q=80&w=1200', 'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&q=80&w=1200', 'https://images.unsplash.com/photo-1552611052-33e04de081de?auto=format&fit=crop&q=80&w=1200'] }
         ];
 
         let activeBrandIndex = 0;
@@ -220,11 +175,8 @@
             document.getElementById('brand-name').innerText = brand.name;
             document.getElementById('brand-tagline').innerText = `"${brand.tagline}"`;
             document.getElementById('brand-desc').innerText = brand.description;
-            
             const imgContainer = document.getElementById('image-container');
-            // Remove old images
             imgContainer.querySelectorAll('img').forEach(img => img.remove());
-
             brand.images.forEach((src, i) => {
                 const img = document.createElement('img');
                 img.src = src;
@@ -237,7 +189,6 @@
         function changeSlide(direction) {
             const slides = document.querySelectorAll('#image-container img');
             if (slides.length <= 1) return;
-
             slides[currentSlideIndex].classList.replace('active-slide', 'hidden-slide');
             currentSlideIndex = (currentSlideIndex + direction + slides.length) % slides.length;
             slides[currentSlideIndex].classList.replace('hidden-slide', 'active-slide');
@@ -248,27 +199,16 @@
             document.getElementById('slide-counter').innerText = `${currentSlideIndex + 1} / ${brands[activeBrandIndex].images.length}`;
         }
 
-        // Mobile Menu Toggle
+        // Toggle Mobile Menu and Close on Link Click
         const menuBtn = document.getElementById('menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
-        
-        function toggleMobileMenu() {
-            const isHidden = mobileMenu.classList.toggle('hidden');
-            const iconName = isHidden ? 'menu' : 'x';
-            menuBtn.innerHTML = `<i data-lucide="${iconName}"></i>`;
+        function toggleMenu() {
+            const hidden = mobileMenu.classList.toggle('hidden');
+            menuBtn.innerHTML = `<i data-lucide="${hidden ? 'menu' : 'x'}"></i>`;
             lucide.createIcons();
         }
-
-        menuBtn.onclick = toggleMobileMenu;
-
-        // Close mobile menu when a link is clicked
-        document.querySelectorAll('.mobile-link').forEach(link => {
-            link.onclick = () => {
-                if (!mobileMenu.classList.contains('hidden')) {
-                    toggleMobileMenu();
-                }
-            };
-        });
+        menuBtn.onclick = toggleMenu;
+        document.querySelectorAll('.mobile-link').forEach(link => link.onclick = toggleMenu);
 
         init();
     </script>
