@@ -11,9 +11,32 @@
         html { scroll-behavior: smooth; }
         body { font-family: 'Inter', sans-serif; }
 
-        .fade-in { transition: opacity 0.7s ease-in-out, transform 0.7s ease-in-out; }
-        .hidden-slide { opacity: 0; transform: scale(1.05); pointer-events: none; }
-        .active-slide { opacity: 1; transform: scale(1); }
+        .fade-in { transition: opacity 0.8s ease-in-out; }
+        .hidden-slide { opacity: 0; pointer-events: none; }
+        .active-slide { opacity: 1; }
+
+        .progress-bar {
+    height: 2px;
+    background: rgba(255,255,255,0.3);
+    width: 150px;
+    position: relative;
+    overflow: hidden;
+}
+.progress-fill {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    background: white;
+    width: 0%;
+}
+@keyframes progressAnim {
+    from { width: 0%; }
+    to { width: 100%; }
+}
+.animate-progress {
+    animation: progressAnim 5000ms linear forwards;
+}
 
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
