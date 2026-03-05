@@ -8,22 +8,12 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap');
-        
         html { scroll-behavior: smooth; }
         body { font-family: 'Inter', sans-serif; }
 
-        .fade-in { 
-            transition: opacity 0.7s ease-in-out, transform 0.7s ease-in-out; 
-        }
-        .hidden-slide { 
-            opacity: 0; 
-            transform: scale(1.05); 
-            pointer-events: none; 
-        }
-        .active-slide { 
-            opacity: 1; 
-            transform: scale(1); 
-        }
+        .fade-in { transition: opacity 0.7s ease-in-out, transform 0.7s ease-in-out; }
+        .hidden-slide { opacity: 0; transform: scale(1.05); pointer-events: none; }
+        .active-slide { opacity: 1; transform: scale(1); }
 
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
@@ -31,7 +21,7 @@
 </head>
 <body class="min-h-screen bg-white text-slate-900">
 
-    <header class="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm z-50 border-b border-slate-100">
+    <header class="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm z-[100] border-b border-slate-100">
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
             <div class="text-2xl font-black tracking-tighter text-red-600 cursor-pointer" onclick="window.scrollTo(0,0)">
                 K FOOD SOLUTION
@@ -53,9 +43,6 @@
         <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-100 p-6 flex flex-col space-y-6">
             <a href="#" class="mobile-link text-lg font-bold uppercase tracking-widest">Our Philosophy</a>
             <a href="#our-brands" class="mobile-link text-lg font-bold uppercase tracking-widest">Our Brands</a>
-            <button class="bg-red-600 text-white px-6 py-4 text-lg font-bold tracking-widest uppercase rounded-xl">
-                Enquire Now
-            </button>
         </div>
     </header>
 
@@ -72,11 +59,11 @@
         </div>
     </section>
 
-    <section id="our-brands" class="py-24 bg-slate-50" style="scroll-margin-top: 15px;">
+    <section id="our-brands" class="py-24 bg-slate-50" style="scroll-margin-top: 100px;">
         <div class="max-w-7xl mx-auto px-6">
             <div class="mb-16 text-center md:text-left">
                 <h2 class="text-sm font-bold tracking-[0.3em] text-red-600 uppercase mb-4">Our Portfolio</h2>
-                <h3 class="text-4xl md:text-5xl font-black">OUR BRANDS</h3>
+                <h3 class="text-4xl md:text-5xl font-black uppercase">Our Brands</h3>
             </div>
 
             <div class="flex flex-col lg:flex-row gap-12 min-h-[600px]">
@@ -84,7 +71,6 @@
                 </div>
 
                 <div class="lg:w-3/4 flex flex-col md:flex-row bg-white rounded-3xl shadow-xl shadow-slate-200/50 overflow-hidden">
-                    
                     <div class="md:w-3/5 relative aspect-[4/3] md:aspect-auto overflow-hidden bg-slate-200" id="image-container">
                         <div class="absolute bottom-6 right-6 flex space-x-2 z-20">
                             <button onclick="changeSlide(-1)" class="p-3 bg-white/90 hover:bg-white rounded-full shadow-lg active:scale-95 transition-transform">
@@ -115,32 +101,24 @@
     </section>
 
     <footer class="bg-slate-900 text-slate-300 pt-20 pb-10">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 pb-16 border-b border-slate-800">
-                <div class="text-left">
-                    <div class="text-2xl font-black tracking-tighter text-white mb-6">K FOOD SOLUTION</div>
-                    <p class="max-w-md text-slate-400 mb-8 leading-relaxed">Pioneering the future of Korean gastronomy through high-quality ingredients and innovative dining concepts.</p>
-                </div>
-                <div class="flex flex-col justify-center">
-                    <div class="flex flex-col sm:flex-row gap-4">
-                        <input type="email" placeholder="Enter your email" class="bg-slate-800 border-none rounded-full px-6 py-4 flex-grow outline-none text-white">
-                        <button class="bg-red-600 hover:bg-red-700 text-white font-bold px-8 py-4 rounded-full flex items-center justify-center space-x-2">
-                            <span>SUBSCRIBE</span><i data-lucide="send" class="w-4 h-4"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div class="pt-10 flex flex-col md:flex-row justify-between items-center text-[10px] tracking-widest font-bold opacity-50">
-                <div class="mb-4 md:mb-0 uppercase">© 2026 K FOOD SOLUTION. ALL RIGHTS RESERVED.</div>
-            </div>
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <p>© 2026 K FOOD SOLUTION. ALL RIGHTS RESERVED.</p>
         </div>
     </footer>
+
+    <div class="h-64 bg-slate-900"></div>
 
     <script>
         const brands = [
             { name: 'Oiso', tagline: 'Authentic Korean Comfort', description: 'Bringing the heart of Korean home-style cooking to your table with fresh ingredients and traditional recipes.', images: ['oiso-1.jpg', 'oiso-2.jpg', 'oiso-3.jpg'] },
             { name: 'Neulbom Garden', tagline: 'Premium Korean BBQ', description: 'A sophisticated dining experience focusing on premium cuts of meat and an elegant garden atmosphere.', images: ['neulbom-1.jpg', 'neulbom-2.jpg', 'neulbom-3.jpg'] },
-            { name: 'MiMi Guksu', tagline: 'Traditional Noodle House', description: 'Specializing in delicate, handmade noodles served in rich, savory broths passed down through generations.', images: ['mimi-guksu-1.jpg', 'mimi-guksu-2.jpg', 'mimi-guksu-3.jpg'] }
+            { 
+                name: 'MiMi Guksu', 
+                tagline: 'Traditional Noodle House', 
+                description: 'Handmade noodles in rich, savory broths.', 
+                // Added your noodle photo filename here
+                images: ['542757880_122095103211013620_6375155299099234845_n.jpg', 'mimi-guksu-2.jpg', 'mimi-guksu-3.jpg'] 
+            }
         ];
 
         let activeBrandIndex = 0;
@@ -155,16 +133,15 @@
         function renderBrandNav() {
             const nav = document.getElementById('brand-nav');
             nav.innerHTML = brands.map((brand, i) => `
-                <button onclick="setActiveBrand(${i})" class="px-6 py-6 text-left transition-all whitespace-nowrap lg:whitespace-normal border-b-2 lg:border-b-0 lg:border-l-4 ${i === activeBrandIndex ? 'border-red-600 bg-white lg:bg-transparent text-red-600' : 'border-transparent text-slate-400 hover:text-slate-600'}">
-                    <span class="text-xs block font-bold tracking-widest mb-1 opacity-60">0${i + 1}</span>
-                    <span class="text-xl md:text-2xl font-black uppercase tracking-tighter">${brand.name}</span>
+                <button onclick="setActiveBrand(${i})" class="px-6 py-6 text-left transition-all border-l-4 ${i === activeBrandIndex ? 'border-red-600 text-red-600 bg-slate-100' : 'border-transparent text-slate-400'}">
+                    <span class="text-xl font-black uppercase">${brand.name}</span>
                 </button>
             `).join('');
         }
 
         function setActiveBrand(index) {
             activeBrandIndex = index;
-            currentSlideIndex = 0;
+            currentSlideIndex = 0; // Reset index to avoid clicking multiple times
             renderBrandNav();
             updateBrandDisplay();
         }
@@ -174,8 +151,11 @@
             document.getElementById('brand-name').innerText = brand.name;
             document.getElementById('brand-tagline').innerText = `"${brand.tagline}"`;
             document.getElementById('brand-desc').innerText = brand.description;
+            
             const imgContainer = document.getElementById('image-container');
+            // Clear only the images, keep the controls
             imgContainer.querySelectorAll('img').forEach(img => img.remove());
+            
             brand.images.forEach((src, i) => {
                 const img = document.createElement('img');
                 img.src = src;
@@ -188,9 +168,11 @@
         function changeSlide(direction) {
             const slides = document.querySelectorAll('#image-container img');
             if (slides.length <= 1) return;
+            
             slides[currentSlideIndex].classList.replace('active-slide', 'hidden-slide');
             currentSlideIndex = (currentSlideIndex + direction + slides.length) % slides.length;
             slides[currentSlideIndex].classList.replace('hidden-slide', 'active-slide');
+            
             updateSlideUI();
         }
 
@@ -198,15 +180,14 @@
             document.getElementById('slide-counter').innerText = `${currentSlideIndex + 1} / ${brands[activeBrandIndex].images.length}`;
         }
 
+        // Mobile Menu Logic
         const menuBtn = document.getElementById('menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
-        function toggleMenu() {
-            const hidden = mobileMenu.classList.toggle('hidden');
-            menuBtn.innerHTML = `<i data-lucide="${hidden ? 'menu' : 'x'}"></i>`;
+        menuBtn.onclick = () => {
+            const isHidden = mobileMenu.classList.toggle('hidden');
+            menuBtn.innerHTML = `<i data-lucide="${isHidden ? 'menu' : 'x'}"></i>`;
             lucide.createIcons();
-        }
-        menuBtn.onclick = toggleMenu;
-        document.querySelectorAll('.mobile-link').forEach(link => link.onclick = toggleMenu);
+        };
 
         init();
     </script>
