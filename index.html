@@ -1,219 +1,34 @@
-import React, { useState, useEffect } from 'react';
-import { ChevronLeft, ChevronRight, Menu, X, Mail } from 'lucide-react';
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>K Food Solution</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <div id="root"></div>
 
-const App = () => {
-  const [activeBrand, setActiveBrand] = useState(0);
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+        // Map Lucide icons from the global window object
+        const ChevronLeft = () => <i data-lucide="chevron-left"></i>;
+        const ChevronRight = () => <i data-lucide="chevron-right"></i>;
+        // ... rest of your App code here ...
 
-  const brands = [
-    {
-      id: 0,
-      name: 'Oiso',
-      tagline: 'Authentic Korean Comfort',
-      description: 'Bringing the heart of Korean home-style cooking to your table with fresh ingredients and traditional recipes.',
-      images: [
-        'https://images.unsplash.com/photo-1583212292454-1fe6229603b7?auto=format&fit=crop&q=80&w=1200',
-        'https://images.unsplash.com/photo-1498654896293-37aacf113fd9?auto=format&fit=crop&q=80&w=1200',
-        'https://images.unsplash.com/photo-1553163147-622820be2931?auto=format&fit=crop&q=80&w=1200'
-      ]
-    },
-    {
-      id: 1,
-      name: 'Neulbom Garden',
-      tagline: 'Premium Korean BBQ',
-      description: 'A sophisticated dining experience focusing on premium cuts of meat and an elegant garden atmosphere.',
-      images: [
-        'https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?auto=format&fit=crop&q=80&w=1200',
-        'https://images.unsplash.com/photo-1629814249584-bd4d53cf0e7d?auto=format&fit=crop&q=80&w=1200',
-        'https://images.unsplash.com/photo-1544124499-58912cbddaad?auto=format&fit=crop&q=80&w=1200'
-      ]
-    },
-    {
-      id: 2,
-      name: 'MiMi Guksu',
-      tagline: 'Traditional Noodle House',
-      description: 'Specializing in delicate, handmade noodles served in rich, savory broths passed down through generations.',
-      images: [
-        'https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?auto=format&fit=crop&q=80&w=1200',
-        'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&q=80&w=1200',
-        'https://images.unsplash.com/photo-1552611052-33e04de081de?auto=format&fit=crop&q=80&w=1200'
-      ]
-    }
-  ];
+        const App = () => {
+            // PASTE YOUR REACT CODE HERE
+        };
 
-  // Reset slide when brand changes
-  useEffect(() => {
-    setCurrentSlide(0);
-  }, [activeBrand]);
-
-  const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % brands[activeBrand].images.length);
-  };
-
-  const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + brands[activeBrand].images.length) % brands[activeBrand].images.length);
-  };
-
-  return (
-    <div className="min-h-screen bg-white font-sans text-slate-900">
-      {/* Header */}
-      <header className="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm z-50 border-b border-slate-100">
-        <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-          {/* Logo Placeholder */}
-          <div className="text-2xl font-black tracking-tighter text-red-600">
-            K FOOD SOLUTION
-          </div>
-
-          {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center space-x-8">
-            <a href="#" className="text-sm font-bold tracking-widest hover:text-red-600 transition-colors uppercase">Our Philosophy</a>
-            <a href="#" className="text-sm font-bold tracking-widest hover:text-red-600 transition-colors uppercase">Our Brand</a>
-            <button className="bg-red-600 text-white px-6 py-3 text-sm font-bold tracking-widest hover:bg-red-700 transition-all uppercase rounded-full">
-              Enquire Now
-            </button>
-          </nav>
-
-          {/* Mobile Menu Toggle */}
-          <button className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-            {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
-          </button>
-        </div>
-
-        {/* Mobile Nav */}
-        {isMenuOpen && (
-          <div className="md:hidden bg-white border-b border-slate-100 p-6 flex flex-col space-y-6">
-            <a href="#" className="text-lg font-bold uppercase tracking-widest">Our Philosophy</a>
-            <a href="#" className="text-lg font-bold uppercase tracking-widest">Our Brand</a>
-            <button className="bg-red-600 text-white px-6 py-4 text-lg font-bold tracking-widest uppercase rounded-xl">
-              Enquire Now
-            </button>
-          </div>
-        )}
-      </header>
-
-      {/* Hero Banner */}
-      <section className="relative h-[80vh] flex items-center justify-center overflow-hidden pt-20">
-        <div className="absolute inset-0">
-          <img 
-            src="https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&q=80&w=2000" 
-            alt="Korean Food Banner" 
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-black/40"></div>
-        </div>
-        <div className="relative text-center text-white px-6">
-          <h1 className="text-5xl md:text-7xl font-black mb-6 tracking-tight">ELEVATING K-FOOD</h1>
-          <p className="text-xl md:text-2xl font-light max-w-2xl mx-auto opacity-90 leading-relaxed">
-            Delivering authentic Korean culinary experiences through innovation, quality, and passion.
-          </p>
-        </div>
-      </section>
-
-      {/* Our Brands Section (Reference Layout) */}
-      <section className="py-24 bg-slate-50">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="mb-16 text-center md:text-left">
-            <h2 className="text-sm font-bold tracking-[0.3em] text-red-600 uppercase mb-4">Our Portfolio</h2>
-            <h3 className="text-4xl md:text-5xl font-black">OUR BRANDS</h3>
-          </div>
-
-          <div className="flex flex-col lg:flex-row gap-12 min-h-[500px]">
-            {/* Left Sidebar: Brand List */}
-            <div className="lg:w-1/4 flex flex-row lg:flex-col overflow-x-auto lg:overflow-visible border-b lg:border-b-0 lg:border-l border-slate-200">
-              {brands.map((brand, index) => (
-                <button
-                  key={brand.id}
-                  onClick={() => setActiveBrand(index)}
-                  className={`px-6 py-6 text-left transition-all whitespace-nowrap lg:whitespace-normal group border-b-2 lg:border-b-0 lg:border-l-4 ${
-                    activeBrand === index 
-                    ? 'border-red-600 bg-white lg:bg-transparent text-red-600' 
-                    : 'border-transparent text-slate-400 hover:text-slate-600'
-                  }`}
-                >
-                  <span className={`text-xs block font-bold tracking-widest mb-1 opacity-60`}>0{index + 1}</span>
-                  <span className="text-xl md:text-2xl font-black uppercase tracking-tighter">
-                    {brand.name}
-                  </span>
-                </button>
-              ))}
-            </div>
-
-            {/* Right Side: Slideshow & Content */}
-            <div className="lg:w-3/4 flex flex-col md:flex-row bg-white rounded-3xl shadow-xl shadow-slate-200/50 overflow-hidden">
-              {/* Image Gallery */}
-              <div className="md:w-3/5 relative group h-[400px] md:h-auto">
-                <div className="w-full h-full relative overflow-hidden">
-                  {brands[activeBrand].images.map((img, idx) => (
-                    <img
-                      key={idx}
-                      src={img}
-                      alt={`${brands[activeBrand].name} slide ${idx}`}
-                      className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ease-in-out ${
-                        currentSlide === idx ? 'opacity-100 scale-100' : 'opacity-0 scale-110'
-                      }`}
-                    />
-                  ))}
-                </div>
-                
-                {/* Navigation Arrows */}
-                <div className="absolute bottom-6 right-6 flex space-x-2">
-                  <button 
-                    onClick={prevSlide}
-                    className="p-3 bg-white/90 hover:bg-white rounded-full shadow-lg transition-transform active:scale-95"
-                  >
-                    <ChevronLeft size={20} />
-                  </button>
-                  <button 
-                    onClick={nextSlide}
-                    className="p-3 bg-white/90 hover:bg-white rounded-full shadow-lg transition-transform active:scale-95"
-                  >
-                    <ChevronRight size={20} />
-                  </button>
-                </div>
-
-                {/* Counter */}
-                <div className="absolute top-6 left-6 px-4 py-1 bg-black/50 backdrop-blur-md text-white rounded-full text-xs font-bold tracking-widest">
-                  {currentSlide + 1} / {brands[activeBrand].images.length}
-                </div>
-              </div>
-
-              {/* Brand Info */}
-              <div className="md:w-2/5 p-8 md:p-12 flex flex-col justify-center">
-                <span className="text-red-600 font-bold text-xs tracking-widest uppercase mb-2">Signature Brand</span>
-                <h4 className="text-3xl font-black mb-4 uppercase">{brands[activeBrand].name}</h4>
-                <p className="text-lg font-bold text-slate-600 mb-6 italic leading-snug">
-                  "{brands[activeBrand].tagline}"
-                </p>
-                <p className="text-slate-500 leading-relaxed mb-8">
-                  {brands[activeBrand].description}
-                </p>
-                <button className="flex items-center font-black text-sm tracking-widest uppercase group">
-                  View Menu 
-                  <ChevronRight size={18} className="ml-2 group-hover:translate-x-1 transition-transform" />
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Simple Footer */}
-      <footer className="bg-slate-900 text-white py-12">
-        <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center">
-          <div className="text-xl font-black mb-8 md:mb-0">K FOOD SOLUTION</div>
-          <div className="flex space-x-8 text-sm font-bold opacity-60">
-            <a href="#" className="hover:opacity-100">PRIVACY POLICY</a>
-            <a href="#" className="hover:opacity-100">TERMS OF USE</a>
-            <a href="#" className="hover:opacity-100">CAREERS</a>
-          </div>
-          <div className="mt-8 md:mt-0 opacity-40 text-xs">
-            © 2024 K FOOD SOLUTION. ALL RIGHTS RESERVED.
-          </div>
-        </div>
-      </footer>
-    </div>
-  );
-};
-
-export default App;
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+        
+        // Initialize icons
+        setTimeout(() => lucide.createIcons(), 100);
+    </script>
+</body>
+</html>
