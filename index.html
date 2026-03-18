@@ -1,190 +1,382 @@
-import React, { useState, useEffect } from 'react';
-import { Menu, X, Instagram, Youtube } from 'lucide-react';
-
-const App = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const brands = [
-    {
-      name: "본죽&비빔밥",
-      slogan: "정성으로 지은 더 건강 한 상",
-      img: "https://images.unsplash.com/photo-1590301157890-4810ed352733?auto=format&fit=crop&q=80",
-      bgColor: "bg-[#D6D9C0]", // Light sage green
-      logo: (
-        <div className="flex items-center justify-center gap-1">
-          <span className="text-[#6B1D1D] font-black text-3xl">본죽</span>
-          <span className="text-[#D32F2F] font-black text-2xl">&</span>
-          <span className="text-[#3E5C31] font-black text-3xl">비빔밥</span>
-        </div>
-      )
-    },
-    {
-      name: "본죽",
-      slogan: "가장 속 편한 행복",
-      img: "https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&q=80",
-      bgColor: "bg-[#EBEBEB]", // Light grey
-      logo: (
-        <div className="flex items-center justify-center">
-          <span className="text-[#8B1D1D] font-black text-4xl">본죽</span>
-        </div>
-      )
-    },
-    {
-      name: "본도시락",
-      slogan: "자연을 생각한 그릇에 담다",
-      img: "https://images.unsplash.com/photo-1512058560366-cd242d4532be?auto=format&fit=crop&q=80",
-      bgColor: "bg-[#F9F5F0]", // Warm cream
-      logo: (
-        <div className="flex items-center justify-center gap-2">
-           <div className="grid grid-cols-2 gap-0.5">
-              <div className="w-3 h-3 bg-[#E67E22] rounded-sm"></div>
-              <div className="w-3 h-3 bg-[#E67E22] rounded-sm rotate-45"></div>
-              <div className="w-3 h-3 bg-[#E67E22] rounded-sm"></div>
-              <div className="w-3 h-3 bg-[#E67E22] rounded-sm"></div>
-           </div>
-          <span className="text-[#4A3728] font-black text-3xl tracking-tighter">본도시락</span>
-        </div>
-      )
-    }
-  ];
-
-  return (
-    <div className="min-h-screen bg-white font-sans text-stone-800">
-      {/* Navigation */}
-      <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white shadow-md py-4' : 'bg-transparent py-6'}`}>
-        <div className="container mx-auto px-6 flex justify-between items-center">
-          <div className="flex items-center">
-            <span className={`text-2xl font-bold tracking-tighter transition-colors ${isScrolled ? 'text-stone-900' : 'text-white'}`}>
-              BON<span className="text-orange-500">IF</span>
-            </span>
-          </div>
-          
-          <div className={`hidden md:flex gap-10 items-center text-sm font-bold tracking-tight ${isScrolled ? 'text-stone-900' : 'text-white'}`}>
-            <a href="#" className="hover:opacity-70 transition-opacity">브랜드소개</a>
-            <a href="#" className="hover:opacity-70 transition-opacity">메뉴소개</a>
-            <a href="#" className="hover:opacity-70 transition-opacity">매장 찾기</a>
-            <a href="#" className="hover:opacity-70 transition-opacity">창업 안내</a>
-          </div>
-
-          <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className={`md:hidden p-2 ${isScrolled ? 'text-stone-900' : 'text-white'}`}>
-            {mobileMenuOpen ? <X /> : <Menu />}
-          </button>
-        </div>
-      </nav>
-
-      {/* Hero Section - Matching Screenshot 2 */}
-      <section className="relative h-[70vh] flex items-center justify-center text-center">
-        <div 
-          className="absolute inset-0 bg-cover bg-center" 
-          style={{ backgroundImage: `url('https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&q=80')` }}
-        >
-          {/* Dark Overlay to match Screenshot 2 */}
-          <div className="absolute inset-0 bg-black/60"></div>
-        </div>
-
-        <div className="container mx-auto px-6 relative z-10">
-          <h1 className="text-white text-3xl md:text-5xl font-bold leading-relaxed serif-style drop-shadow-lg">
-            본아이에프는 정성을 그릇에 담아 <br />
-            행복한 삶을 추구합니다.
-          </h1>
-        </div>
-      </section>
-
-      {/* Brand Portal Grid - Matching Screenshot 1 */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4 max-w-7xl">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-1">
-            {brands.map((brand, idx) => (
-              <div key={idx} className={`${brand.bgColor} h-[600px] flex flex-col items-center pt-20 relative group overflow-hidden`}>
-                
-                {/* Brand Logo & Slogan */}
-                <div className="text-center z-20 px-4 mb-8">
-                  <div className="mb-4">
-                    {brand.logo}
-                  </div>
-                  <p className="text-sm md:text-base font-medium text-stone-700 tracking-tight">
-                    {brand.slogan}
-                  </p>
-                </div>
-
-                {/* Social Icons - Centered circular style from screenshot */}
-                <div className="flex gap-3 z-20">
-                  <div className="w-10 h-10 bg-black/30 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-black/50 transition-colors border border-white/20">
-                    <Instagram size={20} strokeWidth={1.5} />
-                  </div>
-                  <div className="w-10 h-10 bg-black/30 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-black/50 transition-colors border border-white/20">
-                    <Youtube size={20} strokeWidth={1.5} />
-                  </div>
-                </div>
-
-                {/* Food Image - Bottom docked */}
-                <div className="absolute bottom-0 left-0 w-full h-[60%] z-10 flex items-end justify-center">
-                   <div 
-                    className="w-full h-full bg-contain bg-no-repeat bg-bottom group-hover:scale-105 transition-transform duration-1000 ease-out"
-                    style={{ backgroundImage: `url('${brand.img}')` }}
-                   />
-                </div>
-
-                {/* Subtle Hover Shadow */}
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-300 pointer-events-none"></div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="bg-[#1A1A1A] text-stone-500 py-20">
-        <div className="container mx-auto px-6">
-          <div className="flex flex-col md:flex-row justify-between items-start mb-12 border-b border-stone-800 pb-12">
-            <div>
-              <h2 className="text-2xl font-bold text-white mb-6 tracking-tighter">BON<span className="text-orange-500">IF</span></h2>
-              <address className="not-italic text-sm leading-relaxed text-stone-400">
-                서울 특별시 영등포구 양평로 21길 26 본타워 7층 <br />
-                본아이에프(주) | 대표이사 : 이진희
-              </address>
-            </div>
-            <div className="mt-8 md:mt-0">
-               <ul className="flex flex-wrap gap-8 text-xs font-bold text-stone-400 uppercase tracking-widest">
-                  <li><a href="#" className="hover:text-white transition-colors">Brands</a></li>
-                  <li><a href="#" className="hover:text-white transition-colors">Support</a></li>
-                  <li><a href="#" className="hover:text-white transition-colors">Franchise</a></li>
-                  <li><a href="#" className="hover:text-white transition-colors text-white underline">Privacy Policy</a></li>
-               </ul>
-            </div>
-          </div>
-          <div className="text-[11px] text-stone-600 flex justify-between items-center">
-            <p>© 2024 BONIF CO., LTD. ALL RIGHTS RESERVED.</p>
-            <div className="flex gap-4">
-              <span>CS 1644-6288</span>
-            </div>
-          </div>
-        </div>
-      </footer>
-
-      <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Noto+Serif+KR:wght@400;700&display=swap');
-        
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>브랜드 소개 | 본아이에프</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
         body {
-          font-family: 'Noto Sans KR', sans-serif;
-          -webkit-font-smoothing: antialiased;
+            font-family: 'Noto Sans KR', sans-serif;
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        .nav-transition {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .serif-style {
-          font-family: 'Noto Serif KR', serif;
+        .brand-card {
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid #e5e7eb;
         }
-      `}</style>
-    </div>
-  );
-};
 
-export default App;
+        .brand-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.08);
+            border-color: #d1d5db;
+        }
+
+        .brand-image-container img {
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .brand-card:hover .brand-image-container img {
+            transform: scale(1.08);
+        }
+
+        .btn-link {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            padding: 1rem 0;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #4b5563;
+            transition: color 0.3s;
+        }
+
+        .btn-link:hover {
+            color: #b91c1c;
+        }
+
+        .btn-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0.8rem;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: #b91c1c;
+            transition: width 0.3s;
+        }
+
+        .btn-link:hover::after {
+            width: 100%;
+        }
+
+        @keyframes slide-up {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-slide-up {
+            animation: slide-up 1s ease-out forwards;
+        }
+    </style>
+</head>
+<body class="bg-white text-stone-900 selection:bg-red-50 selection:text-red-900">
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed top-0 w-full z-50 nav-transition py-6">
+        <div class="max-w-7xl mx-auto px-6 md:px-10 flex justify-between items-center">
+            <div class="flex items-center">
+                <a href="#" class="flex items-center gap-3">
+                    <span id="logo" class="text-2xl font-black tracking-tighter text-white">BONIF</span>
+                    <div id="divider" class="h-4 w-[1px] bg-white/30 mx-2"></div>
+                    <span id="nav-subtitle" class="text-sm font-medium text-white/90">브랜드소개</span>
+                </a>
+            </div>
+
+            <div id="nav-links" class="hidden lg:flex items-center gap-12">
+                <a href="#" class="text-[15px] font-bold text-white hover:text-red-400 transition-colors">브랜드</a>
+                <a href="#" class="text-[15px] font-bold text-white hover:text-red-400 transition-colors">메뉴소개</a>
+                <a href="#" class="text-[15px] font-bold text-white hover:text-red-400 transition-colors">매장찾기</a>
+                <a href="#" class="text-[15px] font-bold text-white hover:text-red-400 transition-colors">창업안내</a>
+            </div>
+
+            <div class="flex items-center gap-6">
+                <button id="order-btn" class="hidden sm:flex items-center gap-2 px-7 py-2.5 rounded-full text-sm font-bold transition-all bg-white text-stone-900 hover:bg-stone-100 shadow-xl">
+                    본오더 주문하기
+                </button>
+                <button id="mobile-menu-btn" class="lg:hidden p-1 text-white">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative h-[80vh] min-h-[600px] flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img 
+                src="https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&q=80&w=2000" 
+                class="w-full h-full object-cover brightness-75 scale-105"
+                alt="Main Food Image"
+            >
+            <div class="absolute inset-0 bg-black/20"></div>
+        </div>
+
+        <div class="relative z-10 text-center px-6 max-w-5xl animate-slide-up">
+            <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.2] mb-6 drop-shadow-lg">
+                본아이에프는 정성을 그릇에 담아<br />
+                행복한 삶을 추구합니다.
+            </h1>
+            <p class="text-white/90 text-lg md:text-xl font-light tracking-wide mb-10">
+                건강한 먹거리로 따뜻한 세상을 만드는 본아이에프의 철학입니다.
+            </p>
+        </div>
+    </section>
+
+    <!-- Brand Selection Grid -->
+    <section class="py-24 px-6 md:px-10 max-w-7xl mx-auto">
+        <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+            <div>
+                <h2 class="text-4xl font-bold text-stone-900 mb-4">브랜드 소개</h2>
+                <p class="text-stone-500 text-lg">대한민국을 대표하는 한식 프랜차이즈, 본아이에프의 브랜드입니다.</p>
+            </div>
+            <div class="flex gap-4 border-b border-stone-200 w-full md:w-auto">
+                <button class="pb-4 px-6 border-b-2 border-red-700 font-bold text-red-700">전체</button>
+                <button class="pb-4 px-6 border-b-2 border-transparent font-medium text-stone-400 hover:text-stone-600">외식브랜드</button>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+            <!-- Brand Item 1: 본죽 & 비빔밥 -->
+            <div class="brand-card rounded-[40px] overflow-hidden flex flex-col">
+                <div class="brand-image-container h-[340px] overflow-hidden relative">
+                    <img src="https://images.unsplash.com/photo-1590301157890-4810ed352733?auto=format&fit=crop&q=80&w=1000" class="w-full h-full object-cover">
+                    <div class="absolute top-8 left-8 bg-white/90 backdrop-blur px-5 py-2 rounded-full shadow-sm">
+                        <span class="text-xs font-bold text-red-800 tracking-widest uppercase">Signature</span>
+                    </div>
+                </div>
+                <div class="p-10 flex-grow">
+                    <h3 class="text-3xl font-bold mb-4">본죽 & 비빔밥</h3>
+                    <p class="text-stone-500 mb-8 leading-relaxed">
+                        전통의 가치를 담아 정성스럽게 지은 죽과 비빔밥을 통해 건강한 한 끼를 대접합니다.
+                    </p>
+                    <div class="grid grid-cols-2 sm:grid-cols-4 border-t border-stone-100 pt-2">
+                        <a href="#" class="btn-link">브랜드소개</a>
+                        <a href="#" class="btn-link">메뉴소개</a>
+                        <a href="#" class="btn-link">매장찾기</a>
+                        <a href="#" class="btn-link font-bold text-red-700">주문하기</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Brand Item 2: 본도시락 -->
+            <div class="brand-card rounded-[40px] overflow-hidden flex flex-col">
+                <div class="brand-image-container h-[340px] overflow-hidden relative">
+                    <img src="https://images.unsplash.com/photo-1512058560366-cd2427ff56f3?auto=format&fit=crop&q=80&w=1000" class="w-full h-full object-cover">
+                    <div class="absolute top-8 left-8 bg-white/90 backdrop-blur px-5 py-2 rounded-full shadow-sm">
+                        <span class="text-xs font-bold text-green-800 tracking-widest uppercase">Premium</span>
+                    </div>
+                </div>
+                <div class="p-10 flex-grow">
+                    <h3 class="text-3xl font-bold mb-4">본도시락</h3>
+                    <p class="text-stone-500 mb-8 leading-relaxed">
+                        잘 차린 한 상의 정성을 도시락에 담아 어디서든 품격 있는 식사를 즐기실 수 있습니다.
+                    </p>
+                    <div class="grid grid-cols-2 sm:grid-cols-4 border-t border-stone-100 pt-2">
+                        <a href="#" class="btn-link">브랜드소개</a>
+                        <a href="#" class="btn-link">메뉴소개</a>
+                        <a href="#" class="btn-link">매장찾기</a>
+                        <a href="#" class="btn-link font-bold text-red-700">주문하기</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Brand Item 3: 본설렁탕 -->
+            <div class="brand-card rounded-[40px] overflow-hidden flex flex-col">
+                <div class="brand-image-container h-[340px] overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&q=80&w=1000" class="w-full h-full object-cover">
+                </div>
+                <div class="p-10 flex-grow">
+                    <h3 class="text-3xl font-bold mb-4">본설렁탕</h3>
+                    <p class="text-stone-500 mb-8 leading-relaxed">
+                        12시간의 기다림, 정직한 육수로 끓여낸 건강한 설렁탕 한 그릇을 선사합니다.
+                    </p>
+                    <div class="grid grid-cols-2 sm:grid-cols-4 border-t border-stone-100 pt-2">
+                        <a href="#" class="btn-link">브랜드소개</a>
+                        <a href="#" class="btn-link">메뉴소개</a>
+                        <a href="#" class="btn-link">매장찾기</a>
+                        <a href="#" class="btn-link font-bold text-red-700">주문하기</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Brand Item 4: 본우리반상 -->
+            <div class="brand-card rounded-[40px] overflow-hidden flex flex-col">
+                <div class="brand-image-container h-[340px] overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1541544741938-0af808891cc5?auto=format&fit=crop&q=80&w=1000" class="w-full h-full object-cover">
+                </div>
+                <div class="p-10 flex-grow">
+                    <h3 class="text-3xl font-bold mb-4">본우리반상</h3>
+                    <p class="text-stone-500 mb-8 leading-relaxed">
+                        전국 팔도의 귀한 식재료로 만든 지역별 반상을 한 그릇에 정성껏 담아냅니다.
+                    </p>
+                    <div class="grid grid-cols-2 sm:grid-cols-4 border-t border-stone-100 pt-2">
+                        <a href="#" class="btn-link">브랜드소개</a>
+                        <a href="#" class="btn-link">메뉴소개</a>
+                        <a href="#" class="btn-link">매장찾기</a>
+                        <a href="#" class="btn-link font-bold text-red-700">주문하기</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Value Section -->
+    <section class="bg-stone-50 py-32 px-6">
+        <div class="max-w-4xl mx-auto text-center">
+            <h3 class="text-red-700 font-black text-sm uppercase tracking-[0.3em] mb-8">Management Philosophy</h3>
+            <h2 class="text-4xl md:text-5xl font-bold text-stone-900 leading-tight mb-12">
+                우리는 정성을 다해<br />
+                삶의 행복을 디자인합니다
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mt-20">
+                <div class="bg-white p-10 rounded-[30px] shadow-sm">
+                    <div class="w-16 h-16 bg-red-50 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#b91c1c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.42 4.58a5.4 5.4 0 0 0-7.65 0l-.77.78-.77-.78a5.4 5.4 0 0 0-7.65 0 5.4 5.4 0 0 0 0 7.65l.77.78L12 20.42l7.65-7.65.77-.78a5.4 5.4 0 0 0 0-7.65z"/></svg>
+                    </div>
+                    <h4 class="text-xl font-bold mb-4">진심 (Heart)</h4>
+                    <p class="text-stone-500 text-sm leading-relaxed">고객을 향한 따뜻한 마음을 음식에 담습니다.</p>
+                </div>
+                <div class="bg-white p-10 rounded-[30px] shadow-sm">
+                    <div class="w-16 h-16 bg-red-50 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#b91c1c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    </div>
+                    <h4 class="text-xl font-bold mb-4">정직 (Trust)</h4>
+                    <p class="text-stone-500 text-sm leading-relaxed">최상의 식재료와 정직한 조리 원칙을 준수합니다.</p>
+                </div>
+                <div class="bg-white p-10 rounded-[30px] shadow-sm">
+                    <div class="w-16 h-16 bg-red-50 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#b91c1c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                    </div>
+                    <h4 class="text-xl font-bold mb-4">창조 (Creation)</h4>
+                    <p class="text-stone-500 text-sm leading-relaxed">새로운 한식 문화를 위해 끊임없이 도전합니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-stone-900 text-stone-500 py-20 px-6 md:px-10">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col lg:flex-row justify-between items-start gap-16 mb-16">
+                <div>
+                    <h2 class="text-3xl font-black text-white mb-8">BONIF</h2>
+                    <p class="text-sm leading-loose">
+                        (주)본아이에프 | 대표이사 이진희 | 사업자등록번호 101-86-11814<br />
+                        서울특별시 영등포구 선유로 146 본타워 5~8층<br />
+                        대표전화 1644-6288 | 창업상담 1668-3007
+                    </p>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-12 text-sm">
+                    <div>
+                        <h4 class="text-white font-bold mb-6">회사소개</h4>
+                        <ul class="space-y-3">
+                            <li><a href="#" class="hover:text-white transition-colors">본아이에프 소개</a></li>
+                            <li><a href="#" class="hover:text-white transition-colors">연혁</a></li>
+                            <li><a href="#" class="hover:text-white transition-colors">사회공헌</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-white font-bold mb-6">브랜드</h4>
+                        <ul class="space-y-3">
+                            <li><a href="#" class="hover:text-white transition-colors">본죽</a></li>
+                            <li><a href="#" class="hover:text-white transition-colors">본도시락</a></li>
+                            <li><a href="#" class="hover:text-white transition-colors">본설렁탕</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-white font-bold mb-6">서비스안내</h4>
+                        <ul class="space-y-3">
+                            <li><a href="#" class="hover:text-white transition-colors">자주 묻는 질문</a></li>
+                            <li><a href="#" class="hover:text-white transition-colors">1:1 문의</a></li>
+                            <li><a href="#" class="hover:text-white transition-colors">본오더 가이드</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-white font-bold mb-6">SNS</h4>
+                        <div class="flex gap-4">
+                            <a href="#" class="w-10 h-10 rounded-full border border-stone-800 flex items-center justify-center hover:bg-stone-800 transition-colors">In</a>
+                            <a href="#" class="w-10 h-10 rounded-full border border-stone-800 flex items-center justify-center hover:bg-stone-800 transition-colors">Fb</a>
+                            <a href="#" class="w-10 h-10 rounded-full border border-stone-800 flex items-center justify-center hover:bg-stone-800 transition-colors">Yt</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pt-10 border-t border-stone-800 flex flex-col md:flex-row justify-between items-center gap-6 text-[11px]">
+                <p>© 2024 BONIF. All Rights Reserved.</p>
+                <div class="flex gap-8 font-medium">
+                    <a href="#" class="text-white">개인정보처리방침</a>
+                    <a href="#" class="hover:text-white transition-colors">이용약관</a>
+                    <a href="#" class="hover:text-white transition-colors">이메일무단수집거부</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const navbar = document.getElementById('navbar');
+        const logo = document.getElementById('logo');
+        const divider = document.getElementById('divider');
+        const navSubtitle = document.getElementById('nav-subtitle');
+        const orderBtn = document.getElementById('order-btn');
+        const navLinks = document.querySelectorAll('#nav-links a');
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                navbar.classList.add('bg-white', 'shadow-lg', 'py-4');
+                navbar.classList.remove('py-6');
+                
+                logo.classList.add('text-red-700');
+                logo.classList.remove('text-white');
+                
+                divider.classList.add('bg-stone-200');
+                divider.classList.remove('bg-white/30');
+                
+                navSubtitle.classList.add('text-stone-500');
+                navSubtitle.classList.remove('text-white/90');
+                
+                orderBtn.classList.add('bg-red-700', 'text-white');
+                orderBtn.classList.remove('bg-white', 'text-stone-900');
+                
+                navLinks.forEach(link => {
+                    link.classList.add('text-stone-700');
+                    link.classList.remove('text-white');
+                });
+
+                mobileMenuBtn.classList.add('text-stone-900');
+                mobileMenuBtn.classList.remove('text-white');
+            } else {
+                navbar.classList.remove('bg-white', 'shadow-lg', 'py-4');
+                navbar.classList.add('py-6');
+                
+                logo.classList.remove('text-red-700');
+                logo.classList.add('text-white');
+                
+                divider.classList.remove('bg-stone-200');
+                divider.classList.add('bg-white/30');
+                
+                navSubtitle.classList.remove('text-stone-500');
+                navSubtitle.classList.add('text-white/90');
+                
+                orderBtn.classList.remove('bg-red-700', 'text-white');
+                orderBtn.classList.add('bg-white', 'text-stone-900');
+
+                navLinks.forEach(link => {
+                    link.classList.remove('text-stone-700');
+                    link.classList.add('text-white');
+                });
+
+                mobileMenuBtn.classList.remove('text-stone-900');
+                mobileMenuBtn.classList.add('text-white');
+            }
+        });
+    </script>
+</body>
+</html>
