@@ -1,276 +1,190 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>K FOOD SOLUTION | Elevating K-Food</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap');
-        html { scroll-behavior: smooth; }
-        body { font-family: 'Inter', sans-serif; }
+import React, { useState, useEffect } from 'react';
+import { Menu, X, Instagram, Youtube } from 'lucide-react';
 
-        /* Banner Transitions */
-        .fade-in { transition: opacity 0.8s ease-in-out; }
-        .hidden-slide { opacity: 0; pointer-events: none; }
-        .active-slide { opacity: 1; }
+const App = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-        /* Progress Bar Styles */
-        .progress-bar {
-            height: 2px;
-            background: rgba(255,255,255,0.3);
-            width: 150px;
-            position: relative;
-            overflow: hidden;
-        }
-        .progress-fill {
-            position: absolute;
-            left: 0;
-            top: 0;
-            height: 100%;
-            background: white;
-            width: 0%;
-        }
-        @keyframes progressAnim {
-            from { width: 0%; }
-            to { width: 100%; }
-        }
-        .animate-progress {
-            animation: progressAnim 5000ms linear forwards;
-        }
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
-        .no-scrollbar::-webkit-scrollbar { display: none; }
-        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-    </style>
-</head>
-<body class="min-h-screen bg-white text-slate-900">
+  const brands = [
+    {
+      name: "본죽&비빔밥",
+      slogan: "정성으로 지은 더 건강 한 상",
+      img: "https://images.unsplash.com/photo-1590301157890-4810ed352733?auto=format&fit=crop&q=80",
+      bgColor: "bg-[#D6D9C0]", // Light sage green
+      logo: (
+        <div className="flex items-center justify-center gap-1">
+          <span className="text-[#6B1D1D] font-black text-3xl">본죽</span>
+          <span className="text-[#D32F2F] font-black text-2xl">&</span>
+          <span className="text-[#3E5C31] font-black text-3xl">비빔밥</span>
+        </div>
+      )
+    },
+    {
+      name: "본죽",
+      slogan: "가장 속 편한 행복",
+      img: "https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&q=80",
+      bgColor: "bg-[#EBEBEB]", // Light grey
+      logo: (
+        <div className="flex items-center justify-center">
+          <span className="text-[#8B1D1D] font-black text-4xl">본죽</span>
+        </div>
+      )
+    },
+    {
+      name: "본도시락",
+      slogan: "자연을 생각한 그릇에 담다",
+      img: "https://images.unsplash.com/photo-1512058560366-cd242d4532be?auto=format&fit=crop&q=80",
+      bgColor: "bg-[#F9F5F0]", // Warm cream
+      logo: (
+        <div className="flex items-center justify-center gap-2">
+           <div className="grid grid-cols-2 gap-0.5">
+              <div className="w-3 h-3 bg-[#E67E22] rounded-sm"></div>
+              <div className="w-3 h-3 bg-[#E67E22] rounded-sm rotate-45"></div>
+              <div className="w-3 h-3 bg-[#E67E22] rounded-sm"></div>
+              <div className="w-3 h-3 bg-[#E67E22] rounded-sm"></div>
+           </div>
+          <span className="text-[#4A3728] font-black text-3xl tracking-tighter">본도시락</span>
+        </div>
+      )
+    }
+  ];
 
-    <header class="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm z-[100] border-b border-slate-100">
-        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <div class="text-2xl font-black tracking-tighter text-red-600 cursor-pointer" onclick="window.scrollTo(0,0)">
-                K FOOD SOLUTION
-            </div>
+  return (
+    <div className="min-h-screen bg-white font-sans text-stone-800">
+      {/* Navigation */}
+      <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white shadow-md py-4' : 'bg-transparent py-6'}`}>
+        <div className="container mx-auto px-6 flex justify-between items-center">
+          <div className="flex items-center">
+            <span className={`text-2xl font-bold tracking-tighter transition-colors ${isScrolled ? 'text-stone-900' : 'text-white'}`}>
+              BON<span className="text-orange-500">IF</span>
+            </span>
+          </div>
+          
+          <div className={`hidden md:flex gap-10 items-center text-sm font-bold tracking-tight ${isScrolled ? 'text-stone-900' : 'text-white'}`}>
+            <a href="#" className="hover:opacity-70 transition-opacity">브랜드소개</a>
+            <a href="#" className="hover:opacity-70 transition-opacity">메뉴소개</a>
+            <a href="#" className="hover:opacity-70 transition-opacity">매장 찾기</a>
+            <a href="#" className="hover:opacity-70 transition-opacity">창업 안내</a>
+          </div>
 
-            <nav class="hidden md:flex items-center space-x-8">
-                <a href="#" class="text-sm font-bold tracking-widest hover:text-red-600 transition-colors uppercase">Our Philosophy</a>
-                <a href="#our-brands" class="text-sm font-bold tracking-widest hover:text-red-600 transition-colors uppercase">Our Brands</a>
-                <button class="bg-red-600 text-white px-6 py-3 text-sm font-bold tracking-widest hover:bg-red-700 transition-all uppercase rounded-full">
-                    Enquire Now
-                </button>
-            </nav>
+          <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className={`md:hidden p-2 ${isScrolled ? 'text-stone-900' : 'text-white'}`}>
+            {mobileMenuOpen ? <X /> : <Menu />}
+          </button>
+        </div>
+      </nav>
 
-            <button class="md:hidden" id="menu-btn">
-                <i data-lucide="menu" id="menu-icon"></i>
-            </button>
+      {/* Hero Section - Matching Screenshot 2 */}
+      <section className="relative h-[70vh] flex items-center justify-center text-center">
+        <div 
+          className="absolute inset-0 bg-cover bg-center" 
+          style={{ backgroundImage: `url('https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&q=80')` }}
+        >
+          {/* Dark Overlay to match Screenshot 2 */}
+          <div className="absolute inset-0 bg-black/60"></div>
         </div>
 
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-100 p-6 flex flex-col space-y-6">
-            <a href="#" class="mobile-link text-lg font-bold uppercase tracking-widest">Our Philosophy</a>
-            <a href="#our-brands" class="mobile-link text-lg font-bold uppercase tracking-widest">Our Brands</a>
+        <div className="container mx-auto px-6 relative z-10">
+          <h1 className="text-white text-3xl md:text-5xl font-bold leading-relaxed serif-style drop-shadow-lg">
+            본아이에프는 정성을 그릇에 담아 <br />
+            행복한 삶을 추구합니다.
+          </h1>
         </div>
-    </header>
+      </section>
 
-    <section class="relative h-[85vh] overflow-hidden bg-black pt-20">
-        <div id="hero-slider" class="absolute inset-0">
+      {/* Brand Portal Grid - Matching Screenshot 1 */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-4 max-w-7xl">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-1">
+            {brands.map((brand, idx) => (
+              <div key={idx} className={`${brand.bgColor} h-[600px] flex flex-col items-center pt-20 relative group overflow-hidden`}>
+                
+                {/* Brand Logo & Slogan */}
+                <div className="text-center z-20 px-4 mb-8">
+                  <div className="mb-4">
+                    {brand.logo}
+                  </div>
+                  <p className="text-sm md:text-base font-medium text-stone-700 tracking-tight">
+                    {brand.slogan}
+                  </p>
+                </div>
+
+                {/* Social Icons - Centered circular style from screenshot */}
+                <div className="flex gap-3 z-20">
+                  <div className="w-10 h-10 bg-black/30 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-black/50 transition-colors border border-white/20">
+                    <Instagram size={20} strokeWidth={1.5} />
+                  </div>
+                  <div className="w-10 h-10 bg-black/30 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-black/50 transition-colors border border-white/20">
+                    <Youtube size={20} strokeWidth={1.5} />
+                  </div>
+                </div>
+
+                {/* Food Image - Bottom docked */}
+                <div className="absolute bottom-0 left-0 w-full h-[60%] z-10 flex items-end justify-center">
+                   <div 
+                    className="w-full h-full bg-contain bg-no-repeat bg-bottom group-hover:scale-105 transition-transform duration-1000 ease-out"
+                    style={{ backgroundImage: `url('${brand.img}')` }}
+                   />
+                </div>
+
+                {/* Subtle Hover Shadow */}
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-300 pointer-events-none"></div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-[#1A1A1A] text-stone-500 py-20">
+        <div className="container mx-auto px-6">
+          <div className="flex flex-col md:flex-row justify-between items-start mb-12 border-b border-stone-800 pb-12">
+            <div>
+              <h2 className="text-2xl font-bold text-white mb-6 tracking-tighter">BON<span className="text-orange-500">IF</span></h2>
+              <address className="not-italic text-sm leading-relaxed text-stone-400">
+                서울 특별시 영등포구 양평로 21길 26 본타워 7층 <br />
+                본아이에프(주) | 대표이사 : 이진희
+              </address>
             </div>
+            <div className="mt-8 md:mt-0">
+               <ul className="flex flex-wrap gap-8 text-xs font-bold text-stone-400 uppercase tracking-widest">
+                  <li><a href="#" className="hover:text-white transition-colors">Brands</a></li>
+                  <li><a href="#" className="hover:text-white transition-colors">Support</a></li>
+                  <li><a href="#" className="hover:text-white transition-colors">Franchise</a></li>
+                  <li><a href="#" className="hover:text-white transition-colors text-white underline">Privacy Policy</a></li>
+               </ul>
+            </div>
+          </div>
+          <div className="text-[11px] text-stone-600 flex justify-between items-center">
+            <p>© 2024 BONIF CO., LTD. ALL RIGHTS RESERVED.</p>
+            <div className="flex gap-4">
+              <span>CS 1644-6288</span>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Noto+Serif+KR:wght@400;700&display=swap');
         
-        <div class="relative h-full flex items-center px-12 md:px-24 z-20">
-            <div class="max-w-3xl text-white">
-                <span class="inline-block px-3 py-1 bg-red-600 text-[10px] font-bold tracking-widest uppercase mb-4">Premium Quality</span>
-                <h1 id="hero-title" class="text-5xl md:text-8xl font-black mb-6 tracking-tighter leading-none">ELEVATING<br>K-FOOD</h1>
-            </div>
-        </div>
-
-        <div class="absolute bottom-12 left-12 md:left-24 flex items-center space-x-6 z-30 text-white font-bold text-xs tracking-widest">
-            <div id="hero-numbers" class="flex items-center space-x-4">
-                </div>
-            <div class="progress-bar">
-                <div id="hero-progress" class="progress-fill"></div>
-            </div>
-        </div>
-    </section>
-
-    <section id="our-brands" class="py-24 bg-slate-50" style="scroll-margin-top: 100px;">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="mb-16 text-center md:text-left">
-                <h2 class="text-sm font-bold tracking-[0.3em] text-red-600 uppercase mb-4">Pork-free Korean Cuisine</h2>
-                <h3 class="text-4xl md:text-5xl font-black uppercase">Our Brands</h3>
-            </div>
-
-            <div class="flex flex-col lg:flex-row gap-12 min-h-[600px]">
-                <div id="brand-nav" class="lg:w-1/4 flex flex-row lg:flex-col overflow-x-auto no-scrollbar border-b lg:border-b-0 lg:border-l border-slate-200">
-                </div>
-
-                <div class="lg:w-3/4 flex flex-col md:flex-row bg-white rounded-3xl shadow-xl shadow-slate-200/50 overflow-hidden">
-                    <div class="md:w-3/5 relative aspect-[4/3] md:aspect-auto overflow-hidden bg-slate-200" id="image-container">
-                        <div class="absolute bottom-6 right-6 flex space-x-2 z-20">
-                            <button onclick="changeSlide(-1)" class="p-3 bg-white/90 hover:bg-white rounded-full shadow-lg active:scale-95 transition-transform">
-                                <i data-lucide="chevron-left" class="w-5 h-5"></i>
-                            </button>
-                            <button onclick="changeSlide(1)" class="p-3 bg-white/90 hover:bg-white rounded-full shadow-lg active:scale-95 transition-transform">
-                                <i data-lucide="chevron-right" class="w-5 h-5"></i>
-                            </button>
-                        </div>
-                        <div id="slide-counter" class="absolute top-6 left-6 px-4 py-1 bg-black/50 backdrop-blur-md text-white rounded-full text-xs font-bold tracking-widest z-20">
-                            1 / 3
-                        </div>
-                    </div>
-
-                    <div class="md:w-2/5 p-8 md:p-12 flex flex-col justify-center">
-                        <span class="text-red-600 font-bold text-xs tracking-widest uppercase mb-2">Signature Brand</span>
-                        <h4 id="brand-name" class="text-3xl font-black mb-4 uppercase text-slate-900"></h4>
-                        <p id="brand-tagline" class="text-lg font-bold text-slate-600 mb-6 italic leading-snug"></p>
-                        <p id="brand-desc" class="text-slate-500 leading-relaxed mb-8"></p>
-                        <button class="flex items-center font-black text-sm tracking-widest uppercase group text-slate-900">
-                            View Menu 
-                            <i data-lucide="chevron-right" class="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer class="bg-slate-900 text-slate-300 pt-20 pb-10">
-        <div class="max-w-7xl mx-auto px-6 text-center">
-            <p>© 2026 K FOOD SOLUTION. ALL RIGHTS RESERVED.</p>
-        </div>
-    </footer>
-
-    <div class="h-64 bg-slate-900"></div>
-
-    <script>
-        // --- NEW BANNER LOGIC ---
-        const heroSlides = [
-            { image: 'banner-1.png', title: 'ELEVATING<br>K-FOOD' },
-            { image: 'banner-2.jpg', title: 'AUTHENTIC<br>FLAVORS' },
-            { image: 'https://images.unsplash.com/photo-1547592166-23ac45744acd?q=80&w=2000', title: 'TRADITION<br>MEETS MODERN' }
-        ];
-
-        let currentHeroIndex = 0;
-        let heroTimer;
-        const slideDuration = 5000;
-
-        function initHero() {
-            const container = document.getElementById('hero-slider');
-            const numContainer = document.getElementById('hero-numbers');
-            
-            heroSlides.forEach((slide, i) => {
-                const img = document.createElement('div');
-                img.className = `absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ${i === 0 ? 'active-slide' : 'hidden-slide'}`;
-                img.style.backgroundImage = `linear-gradient(to right, rgba(0,0,0,0.7), transparent), url('${slide.image}')`;
-                container.appendChild(img);
-
-                const num = document.createElement('span');
-                num.innerText = (i + 1).toString().padStart(2, '0');
-                num.className = `cursor-pointer transition-colors hover:text-white ${i === 0 ? 'text-white' : 'text-white/30'}`;
-                num.onclick = () => goToHeroSlide(i);
-                numContainer.appendChild(num);
-            });
-            startHeroTimer();
+        body {
+          font-family: 'Noto Sans KR', sans-serif;
+          -webkit-font-smoothing: antialiased;
         }
 
-        function startHeroTimer() {
-            clearTimeout(heroTimer);
-            const progressBar = document.getElementById('hero-progress');
-            progressBar.classList.remove('animate-progress');
-            void progressBar.offsetWidth; 
-            progressBar.classList.add('animate-progress');
-            heroTimer = setTimeout(() => nextHeroSlide(), slideDuration);
+        .serif-style {
+          font-family: 'Noto Serif KR', serif;
         }
+      `}</style>
+    </div>
+  );
+};
 
-        function goToHeroSlide(index) {
-            if (index === currentHeroIndex) return;
-            const slides = document.querySelectorAll('#hero-slider div');
-            const nums = document.querySelectorAll('#hero-numbers span');
-            
-            slides[currentHeroIndex].classList.replace('active-slide', 'hidden-slide');
-            nums[currentHeroIndex].classList.replace('text-white', 'text-white/30');
-            
-            currentHeroIndex = index;
-            slides[currentHeroIndex].classList.replace('hidden-slide', 'active-slide');
-            nums[currentHeroIndex].classList.replace('text-white/30', 'text-white');
-            document.getElementById('hero-title').innerHTML = heroSlides[currentHeroIndex].title;
-            
-            startHeroTimer();
-        }
-
-        function nextHeroSlide() {
-            goToHeroSlide((currentHeroIndex + 1) % heroSlides.length);
-        }
-
-        // --- ORIGINAL BRAND LOGIC ---
-        const brands = [
-            { name: 'Oiso', tagline: 'Authentic Korean Comfort', description: 'Bringing the heart of Korean home-style cooking to your table with fresh ingredients and traditional recipes.', images: ['oiso-1.jpg', 'oiso-2.jpg', 'oiso-3.jpg'] },
-            { name: 'Neulbom Garden', tagline: 'Premium Korean BBQ', description: 'A sophisticated dining experience focusing on premium cuts of meat and an elegant garden atmosphere.', images: ['neulbom-1.jpg', 'neulbom-2.jpg', 'neulbom-3.jpg'] },
-            { name: 'MiMi Guksu', tagline: 'Traditional Noodle House', description: 'Specializing in delicate, handmade noodles served in rich, savory broths passed down through generations.', images: ['mimi-guksu-1.jpg', 'mimi-guksu-2.jpg', 'mimi-guksu-3.jpg'] }
-        ];
-
-        let activeBrandIndex = 0;
-        let currentSlideIndex = 0;
-
-        function init() {
-            initHero(); // Initialize the new banner
-            renderBrandNav();
-            updateBrandDisplay();
-            lucide.createIcons();
-        }
-
-        function renderBrandNav() {
-            const nav = document.getElementById('brand-nav');
-            nav.innerHTML = brands.map((brand, i) => `
-                <button onclick="setActiveBrand(${i})" class="px-6 py-6 text-left transition-all border-l-4 ${i === activeBrandIndex ? 'border-red-600 text-red-600 bg-slate-100' : 'border-transparent text-slate-400'}">
-                    <span class="text-xl font-black uppercase">${brand.name}</span>
-                </button>
-            `).join('');
-        }
-
-        function setActiveBrand(index) {
-            activeBrandIndex = index;
-            currentSlideIndex = 0; 
-            renderBrandNav();
-            updateBrandDisplay();
-        }
-
-        function updateBrandDisplay() {
-            const brand = brands[activeBrandIndex];
-            document.getElementById('brand-name').innerText = brand.name;
-            document.getElementById('brand-tagline').innerText = `"${brand.tagline}"`;
-            document.getElementById('brand-desc').innerText = brand.description;
-            const imgContainer = document.getElementById('image-container');
-            imgContainer.querySelectorAll('img').forEach(img => img.remove());
-            brand.images.forEach((src, i) => {
-                const img = document.createElement('img');
-                img.src = src;
-                img.className = `absolute inset-0 w-full h-full object-cover fade-in ${i === 0 ? 'active-slide' : 'hidden-slide'}`;
-                imgContainer.prepend(img);
-            });
-            updateSlideUI();
-        }
-
-        function changeSlide(direction) {
-            const slides = document.querySelectorAll('#image-container img');
-            if (slides.length <= 1) return;
-            slides[currentSlideIndex].classList.replace('active-slide', 'hidden-slide');
-            currentSlideIndex = (currentSlideIndex + direction + slides.length) % slides.length;
-            slides[currentSlideIndex].classList.replace('hidden-slide', 'active-slide');
-            updateSlideUI();
-        }
-
-        function updateSlideUI() {
-            document.getElementById('slide-counter').innerText = `${currentSlideIndex + 1} / ${brands[activeBrandIndex].images.length}`;
-        }
-
-        const menuBtn = document.getElementById('menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        menuBtn.onclick = () => {
-            const isHidden = mobileMenu.classList.toggle('hidden');
-            menuBtn.innerHTML = `<i data-lucide="${isHidden ? 'menu' : 'x'}"></i>`;
-            lucide.createIcons();
-        };
-
-        init();
-    </script>
-</body>
-</html>
+export default App;
