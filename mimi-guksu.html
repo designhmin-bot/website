@@ -1,130 +1,382 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MiMi Guksu | K Food Solution</title>
+    <title>브랜드 소개 | 본아이에프</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&display=swap');
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+        }
         
-        :root {
-            --primary: #1a1a1a;
-            --accent: #E11D48;
+        .nav-transition {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        html { scroll-behavior: smooth; }
-        body { font-family: 'Inter', sans-serif; background-color: #ffffff; color: var(--primary); }
-        h1, h2, h3, .font-serif { font-family: 'Playfair Display', serif; }
+        .brand-card {
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid #e5e7eb;
+        }
 
-        .sticky-nav {
-            backdrop-filter: blur(10px);
-            background-color: rgba(255, 255, 255, 0.9);
+        .brand-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.08);
+            border-color: #d1d5db;
+        }
+
+        .brand-image-container img {
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .brand-card:hover .brand-image-container img {
+            transform: scale(1.08);
+        }
+
+        .btn-link {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            padding: 1rem 0;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #4b5563;
+            transition: color 0.3s;
+        }
+
+        .btn-link:hover {
+            color: #b91c1c;
+        }
+
+        .btn-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0.8rem;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: #b91c1c;
+            transition: width 0.3s;
+        }
+
+        .btn-link:hover::after {
+            width: 100%;
+        }
+
+        @keyframes slide-up {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-slide-up {
+            animation: slide-up 1s ease-out forwards;
         }
     </style>
 </head>
-<body class="antialiased">
+<body class="bg-white text-stone-900 selection:bg-red-50 selection:text-red-900">
 
-    <nav class="fixed w-full z-50 transition-all duration-300 py-4 px-6 md:px-12 flex justify-between items-center sticky-nav border-b border-gray-100">
-        <a href="index.html" class="text-2xl font-bold tracking-tighter uppercase font-serif">
-            K FOOD <span class="text-[#E11D48]">SOLUTION</span>
-        </a>
-        <div class="hidden md:flex space-x-8 items-center font-medium text-sm tracking-widest uppercase">
-            <a href="index.html#philosophy" class="hover:text-[#E11D48] transition-colors">Our Philosophy</a>
-            <a href="index.html#brands" class="hover:text-[#E11D48] transition-colors">Our Brands</a>
-            <a href="mailto:info@kfoodsolution.com" class="bg-black text-white px-6 py-2 rounded-full hover:bg-[#E11D48] transition-colors">Enquire Now</a>
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed top-0 w-full z-50 nav-transition py-6">
+        <div class="max-w-7xl mx-auto px-6 md:px-10 flex justify-between items-center">
+            <div class="flex items-center">
+                <a href="#" class="flex items-center gap-3">
+                    <span id="logo" class="text-2xl font-black tracking-tighter text-white">BONIF</span>
+                    <div id="divider" class="h-4 w-[1px] bg-white/30 mx-2"></div>
+                    <span id="nav-subtitle" class="text-sm font-medium text-white/90">브랜드소개</span>
+                </a>
+            </div>
+
+            <div id="nav-links" class="hidden lg:flex items-center gap-12">
+                <a href="#" class="text-[15px] font-bold text-white hover:text-red-400 transition-colors">브랜드</a>
+                <a href="#" class="text-[15px] font-bold text-white hover:text-red-400 transition-colors">메뉴소개</a>
+                <a href="#" class="text-[15px] font-bold text-white hover:text-red-400 transition-colors">매장찾기</a>
+                <a href="#" class="text-[15px] font-bold text-white hover:text-red-400 transition-colors">창업안내</a>
+            </div>
+
+            <div class="flex items-center gap-6">
+                <button id="order-btn" class="hidden sm:flex items-center gap-2 px-7 py-2.5 rounded-full text-sm font-bold transition-all bg-white text-stone-900 hover:bg-stone-100 shadow-xl">
+                    본오더 주문하기
+                </button>
+                <button id="mobile-menu-btn" class="lg:hidden p-1 text-white">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+                </button>
+            </div>
         </div>
     </nav>
 
-    <header class="relative h-[60vh] flex items-center justify-center overflow-hidden">
+    <!-- Hero Section -->
+    <section class="relative h-[80vh] min-h-[600px] flex items-center justify-center overflow-hidden">
         <div class="absolute inset-0 z-0">
-            <img src="https://images.unsplash.com/photo-1590301157890-4810ed352733?auto=format&fit=crop&q=80&w=2000" 
-                 alt="MiMi Guksu" class="w-full h-full object-cover">
-            <div class="absolute inset-0 bg-black opacity-50"></div>
+            <img 
+                src="https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&q=80&w=2000" 
+                class="w-full h-full object-cover brightness-75 scale-105"
+                alt="Main Food Image"
+            >
+            <div class="absolute inset-0 bg-black/20"></div>
         </div>
-        <div class="relative z-10 text-center text-white px-4 mt-20">
-            <div class="bg-[#E11D48] text-[10px] font-bold uppercase tracking-[0.3em] px-4 py-2 inline-block mb-6 rounded">Noodle Specialist Concept</div>
-            <h1 class="text-5xl md:text-7xl font-serif italic mb-4">MiMi Guksu</h1>
-            <p class="text-lg font-light tracking-widest uppercase">Artisanal Noodles & Soulful Broths</p>
-        </div>
-    </header>
 
-    <section class="py-24 px-6 md:px-12">
-        <div class="max-w-5xl mx-auto">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
-                <div>
-                    <h2 class="text-3xl font-serif mb-6">The Craft of the <span class="text-[#E11D48]">Perfect Bowl</span></h2>
-                    <p class="text-gray-600 mb-6 leading-relaxed">
-                        MiMi Guksu is a tribute to the humble Korean noodle. Specializing in warm, comforting Guksu and refreshing cold noodles, our pork-free recipes use a rich beef-and-anchovy base that delivers deep umami without compromise. Each bowl is a balance of delicate textures and bold, clean flavors.
-                    </p>
-                    <div class="space-y-4">
-                        <div class="flex items-center gap-4">
-                            <div class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-[#E11D48]">
-                                <i class="fas fa-bowl-rice"></i>
-                            </div>
-                            <span class="font-medium">Signature 12-Hour Beef Broth</span>
-                        </div>
-                        <div class="flex items-center gap-4">
-                            <div class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-[#E11D48]">
-                                <i class="fas fa-wheat-awn"></i>
-                            </div>
-                            <span class="font-medium">House-Made Artisanal Noodles</span>
-                        </div>
-                        <div class="flex items-center gap-4">
-                            <div class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-[#E11D48]">
-                                <i class="fas fa-clock"></i>
-                            </div>
-                            <span class="font-medium">Efficient, Fast-Casual Operation</span>
-                        </div>
+        <div class="relative z-10 text-center px-6 max-w-5xl animate-slide-up">
+            <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.2] mb-6 drop-shadow-lg">
+                본아이에프는 정성을 그릇에 담아<br />
+                행복한 삶을 추구합니다.
+            </h1>
+            <p class="text-white/90 text-lg md:text-xl font-light tracking-wide mb-10">
+                건강한 먹거리로 따뜻한 세상을 만드는 본아이에프의 철학입니다.
+            </p>
+        </div>
+    </section>
+
+    <!-- Brand Selection Grid -->
+    <section class="py-24 px-6 md:px-10 max-w-7xl mx-auto">
+        <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+            <div>
+                <h2 class="text-4xl font-bold text-stone-900 mb-4">브랜드 소개</h2>
+                <p class="text-stone-500 text-lg">대한민국을 대표하는 한식 프랜차이즈, 본아이에프의 브랜드입니다.</p>
+            </div>
+            <div class="flex gap-4 border-b border-stone-200 w-full md:w-auto">
+                <button class="pb-4 px-6 border-b-2 border-red-700 font-bold text-red-700">전체</button>
+                <button class="pb-4 px-6 border-b-2 border-transparent font-medium text-stone-400 hover:text-stone-600">외식브랜드</button>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+            <!-- Brand Item 1: 본죽 & 비빔밥 -->
+            <div class="brand-card rounded-[40px] overflow-hidden flex flex-col">
+                <div class="brand-image-container h-[340px] overflow-hidden relative">
+                    <img src="https://images.unsplash.com/photo-1590301157890-4810ed352733?auto=format&fit=crop&q=80&w=1000" class="w-full h-full object-cover">
+                    <div class="absolute top-8 left-8 bg-white/90 backdrop-blur px-5 py-2 rounded-full shadow-sm">
+                        <span class="text-xs font-bold text-red-800 tracking-widest uppercase">Signature</span>
                     </div>
                 </div>
-                
-                <div class="bg-gray-50 p-8 rounded-2xl border border-gray-100">
-                    <h3 class="text-xl font-serif mb-6 italic">Franchise Specs</h3>
-                    <ul class="space-y-6 text-sm uppercase tracking-wider">
-                        <li class="flex justify-between border-b pb-2"><span>Format</span> <span class="font-bold">Fast Casual / Express</span></li>
-                        <li class="flex justify-between border-b pb-2"><span>Space Required</span> <span class="font-bold">800 - 1,500 sqft</span></li>
-                        <li class="flex justify-between border-b pb-2"><span>Ideal Location</span> <span class="font-bold">Office Hubs / Food Courts</span></li>
-                        <li class="flex justify-between"><span>Investment Tier</span> <span class="font-bold">Tier B</span></li>
-                    </ul>
-                    <a href="mailto:info@kfoodsolution.com?subject=Inquiry: MiMi Guksu" class="block w-full text-center bg-black text-white mt-8 py-4 rounded-lg hover:bg-[#E11D48] transition-all uppercase text-xs font-bold tracking-widest">Request Pitch Deck</a>
+                <div class="p-10 flex-grow">
+                    <h3 class="text-3xl font-bold mb-4">본죽 & 비빔밥</h3>
+                    <p class="text-stone-500 mb-8 leading-relaxed">
+                        전통의 가치를 담아 정성스럽게 지은 죽과 비빔밥을 통해 건강한 한 끼를 대접합니다.
+                    </p>
+                    <div class="grid grid-cols-2 sm:grid-cols-4 border-t border-stone-100 pt-2">
+                        <a href="#" class="btn-link">브랜드소개</a>
+                        <a href="#" class="btn-link">메뉴소개</a>
+                        <a href="#" class="btn-link">매장찾기</a>
+                        <a href="#" class="btn-link font-bold text-red-700">주문하기</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Brand Item 2: 본도시락 -->
+            <div class="brand-card rounded-[40px] overflow-hidden flex flex-col">
+                <div class="brand-image-container h-[340px] overflow-hidden relative">
+                    <img src="https://images.unsplash.com/photo-1512058560366-cd2427ff56f3?auto=format&fit=crop&q=80&w=1000" class="w-full h-full object-cover">
+                    <div class="absolute top-8 left-8 bg-white/90 backdrop-blur px-5 py-2 rounded-full shadow-sm">
+                        <span class="text-xs font-bold text-green-800 tracking-widest uppercase">Premium</span>
+                    </div>
+                </div>
+                <div class="p-10 flex-grow">
+                    <h3 class="text-3xl font-bold mb-4">본도시락</h3>
+                    <p class="text-stone-500 mb-8 leading-relaxed">
+                        잘 차린 한 상의 정성을 도시락에 담아 어디서든 품격 있는 식사를 즐기실 수 있습니다.
+                    </p>
+                    <div class="grid grid-cols-2 sm:grid-cols-4 border-t border-stone-100 pt-2">
+                        <a href="#" class="btn-link">브랜드소개</a>
+                        <a href="#" class="btn-link">메뉴소개</a>
+                        <a href="#" class="btn-link">매장찾기</a>
+                        <a href="#" class="btn-link font-bold text-red-700">주문하기</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Brand Item 3: 본설렁탕 -->
+            <div class="brand-card rounded-[40px] overflow-hidden flex flex-col">
+                <div class="brand-image-container h-[340px] overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&q=80&w=1000" class="w-full h-full object-cover">
+                </div>
+                <div class="p-10 flex-grow">
+                    <h3 class="text-3xl font-bold mb-4">본설렁탕</h3>
+                    <p class="text-stone-500 mb-8 leading-relaxed">
+                        12시간의 기다림, 정직한 육수로 끓여낸 건강한 설렁탕 한 그릇을 선사합니다.
+                    </p>
+                    <div class="grid grid-cols-2 sm:grid-cols-4 border-t border-stone-100 pt-2">
+                        <a href="#" class="btn-link">브랜드소개</a>
+                        <a href="#" class="btn-link">메뉴소개</a>
+                        <a href="#" class="btn-link">매장찾기</a>
+                        <a href="#" class="btn-link font-bold text-red-700">주문하기</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Brand Item 4: 본우리반상 -->
+            <div class="brand-card rounded-[40px] overflow-hidden flex flex-col">
+                <div class="brand-image-container h-[340px] overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1541544741938-0af808891cc5?auto=format&fit=crop&q=80&w=1000" class="w-full h-full object-cover">
+                </div>
+                <div class="p-10 flex-grow">
+                    <h3 class="text-3xl font-bold mb-4">본우리반상</h3>
+                    <p class="text-stone-500 mb-8 leading-relaxed">
+                        전국 팔도의 귀한 식재료로 만든 지역별 반상을 한 그릇에 정성껏 담아냅니다.
+                    </p>
+                    <div class="grid grid-cols-2 sm:grid-cols-4 border-t border-stone-100 pt-2">
+                        <a href="#" class="btn-link">브랜드소개</a>
+                        <a href="#" class="btn-link">메뉴소개</a>
+                        <a href="#" class="btn-link">매장찾기</a>
+                        <a href="#" class="btn-link font-bold text-red-700">주문하기</a>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer class="py-16 px-6 md:px-12 border-t border-gray-100 bg-white">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 text-sm">
-            <div>
-                <div class="text-xl font-bold tracking-tighter uppercase font-serif mb-6">K FOOD <span class="text-[#E11D48]">SOLUTION</span></div>
-                <p class="text-gray-400">Authentic. Inclusive. Pork-Free.</p>
-            </div>
-            <div>
-                <h4 class="font-bold uppercase tracking-widest mb-6 text-xs">Explore</h4>
-                <ul class="text-gray-500 space-y-4">
-                    <li><a href="index.html#philosophy">Our Philosophy</a></li>
-                    <li><a href="index.html#brands">Brands</a></li>
-                </ul>
+    <!-- Value Section -->
+    <section class="bg-stone-50 py-32 px-6">
+        <div class="max-w-4xl mx-auto text-center">
+            <h3 class="text-red-700 font-black text-sm uppercase tracking-[0.3em] mb-8">Management Philosophy</h3>
+            <h2 class="text-4xl md:text-5xl font-bold text-stone-900 leading-tight mb-12">
+                우리는 정성을 다해<br />
+                삶의 행복을 디자인합니다
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mt-20">
+                <div class="bg-white p-10 rounded-[30px] shadow-sm">
+                    <div class="w-16 h-16 bg-red-50 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#b91c1c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.42 4.58a5.4 5.4 0 0 0-7.65 0l-.77.78-.77-.78a5.4 5.4 0 0 0-7.65 0 5.4 5.4 0 0 0 0 7.65l.77.78L12 20.42l7.65-7.65.77-.78a5.4 5.4 0 0 0 0-7.65z"/></svg>
+                    </div>
+                    <h4 class="text-xl font-bold mb-4">진심 (Heart)</h4>
+                    <p class="text-stone-500 text-sm leading-relaxed">고객을 향한 따뜻한 마음을 음식에 담습니다.</p>
+                </div>
+                <div class="bg-white p-10 rounded-[30px] shadow-sm">
+                    <div class="w-16 h-16 bg-red-50 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#b91c1c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    </div>
+                    <h4 class="text-xl font-bold mb-4">정직 (Trust)</h4>
+                    <p class="text-stone-500 text-sm leading-relaxed">최상의 식재료와 정직한 조리 원칙을 준수합니다.</p>
+                </div>
+                <div class="bg-white p-10 rounded-[30px] shadow-sm">
+                    <div class="w-16 h-16 bg-red-50 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#b91c1c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                    </div>
+                    <h4 class="text-xl font-bold mb-4">창조 (Creation)</h4>
+                    <p class="text-stone-500 text-sm leading-relaxed">새로운 한식 문화를 위해 끊임없이 도전합니다.</p>
+                </div>
             </div>
         </div>
-        <div class="max-w-7xl mx-auto mt-12 pt-8 border-t border-gray-50 text-gray-400 text-xs text-center">
-            &copy; 2026 K Food Solution Group. All rights reserved.
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-stone-900 text-stone-500 py-20 px-6 md:px-10">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col lg:flex-row justify-between items-start gap-16 mb-16">
+                <div>
+                    <h2 class="text-3xl font-black text-white mb-8">BONIF</h2>
+                    <p class="text-sm leading-loose">
+                        (주)본아이에프 | 대표이사 이진희 | 사업자등록번호 101-86-11814<br />
+                        서울특별시 영등포구 선유로 146 본타워 5~8층<br />
+                        대표전화 1644-6288 | 창업상담 1668-3007
+                    </p>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-12 text-sm">
+                    <div>
+                        <h4 class="text-white font-bold mb-6">회사소개</h4>
+                        <ul class="space-y-3">
+                            <li><a href="#" class="hover:text-white transition-colors">본아이에프 소개</a></li>
+                            <li><a href="#" class="hover:text-white transition-colors">연혁</a></li>
+                            <li><a href="#" class="hover:text-white transition-colors">사회공헌</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-white font-bold mb-6">브랜드</h4>
+                        <ul class="space-y-3">
+                            <li><a href="#" class="hover:text-white transition-colors">본죽</a></li>
+                            <li><a href="#" class="hover:text-white transition-colors">본도시락</a></li>
+                            <li><a href="#" class="hover:text-white transition-colors">본설렁탕</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-white font-bold mb-6">서비스안내</h4>
+                        <ul class="space-y-3">
+                            <li><a href="#" class="hover:text-white transition-colors">자주 묻는 질문</a></li>
+                            <li><a href="#" class="hover:text-white transition-colors">1:1 문의</a></li>
+                            <li><a href="#" class="hover:text-white transition-colors">본오더 가이드</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-white font-bold mb-6">SNS</h4>
+                        <div class="flex gap-4">
+                            <a href="#" class="w-10 h-10 rounded-full border border-stone-800 flex items-center justify-center hover:bg-stone-800 transition-colors">In</a>
+                            <a href="#" class="w-10 h-10 rounded-full border border-stone-800 flex items-center justify-center hover:bg-stone-800 transition-colors">Fb</a>
+                            <a href="#" class="w-10 h-10 rounded-full border border-stone-800 flex items-center justify-center hover:bg-stone-800 transition-colors">Yt</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pt-10 border-t border-stone-800 flex flex-col md:flex-row justify-between items-center gap-6 text-[11px]">
+                <p>© 2024 BONIF. All Rights Reserved.</p>
+                <div class="flex gap-8 font-medium">
+                    <a href="#" class="text-white">개인정보처리방침</a>
+                    <a href="#" class="hover:text-white transition-colors">이용약관</a>
+                    <a href="#" class="hover:text-white transition-colors">이메일무단수집거부</a>
+                </div>
+            </div>
         </div>
     </footer>
 
     <script>
-        window.addEventListener('scroll', function() {
-            const nav = document.querySelector('nav');
-            if (window.scrollY > 50) {
-                nav.classList.add('py-2', 'shadow-md');
-                nav.classList.remove('py-4');
+        const navbar = document.getElementById('navbar');
+        const logo = document.getElementById('logo');
+        const divider = document.getElementById('divider');
+        const navSubtitle = document.getElementById('nav-subtitle');
+        const orderBtn = document.getElementById('order-btn');
+        const navLinks = document.querySelectorAll('#nav-links a');
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                navbar.classList.add('bg-white', 'shadow-lg', 'py-4');
+                navbar.classList.remove('py-6');
+                
+                logo.classList.add('text-red-700');
+                logo.classList.remove('text-white');
+                
+                divider.classList.add('bg-stone-200');
+                divider.classList.remove('bg-white/30');
+                
+                navSubtitle.classList.add('text-stone-500');
+                navSubtitle.classList.remove('text-white/90');
+                
+                orderBtn.classList.add('bg-red-700', 'text-white');
+                orderBtn.classList.remove('bg-white', 'text-stone-900');
+                
+                navLinks.forEach(link => {
+                    link.classList.add('text-stone-700');
+                    link.classList.remove('text-white');
+                });
+
+                mobileMenuBtn.classList.add('text-stone-900');
+                mobileMenuBtn.classList.remove('text-white');
             } else {
-                nav.classList.remove('py-2', 'shadow-md');
-                nav.classList.add('py-4');
+                navbar.classList.remove('bg-white', 'shadow-lg', 'py-4');
+                navbar.classList.add('py-6');
+                
+                logo.classList.remove('text-red-700');
+                logo.classList.add('text-white');
+                
+                divider.classList.remove('bg-stone-200');
+                divider.classList.add('bg-white/30');
+                
+                navSubtitle.classList.remove('text-stone-500');
+                navSubtitle.classList.add('text-white/90');
+                
+                orderBtn.classList.remove('bg-red-700', 'text-white');
+                orderBtn.classList.add('bg-white', 'text-stone-900');
+
+                navLinks.forEach(link => {
+                    link.classList.remove('text-stone-700');
+                    link.classList.add('text-white');
+                });
+
+                mobileMenuBtn.classList.remove('text-stone-900');
+                mobileMenuBtn.classList.add('text-white');
             }
         });
     </script>
-
 </body>
 </html>
