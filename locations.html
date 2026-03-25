@@ -15,11 +15,7 @@
         tailwind.config = {
             theme: {
                 extend: {
-                    colors: {
-                        "primary": "#496455",
-                        "secondary": "#9f403d",
-                        "surface": "#f9f9f7",
-                    },
+                    colors: { "primary": "#496455", "secondary": "#9f403d", "surface": "#f9f9f7" },
                     fontFamily: {
                         "headline": ["Manrope", "sans-serif"],
                         "body": ["Public Sans", "sans-serif"],
@@ -31,49 +27,47 @@
     </script>
     <style>
         [x-cloak] { display: none !important; }
-        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24; }
         .viewport-height { height: calc(100vh - 80px); min-height: 600px; }
-        /* Custom Scrollbar for the long Oiso list */
         .custom-scroll::-webkit-scrollbar { width: 4px; }
-        .custom-scroll::-webkit-scrollbar-track { background: #f1f1f1; }
         .custom-scroll::-webkit-scrollbar-thumb { background: #496455; }
     </style>
 </head>
 
-<body class="bg-surface font-body text-on-surface antialiased" x-data="{ 
+<body class="bg-surface font-body antialiased" x-data="{ 
     selectedBrand: 'Oiso',
+    currentMap: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3983.873587440938!2d101.6358825!3d3.1285493!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31cc492576ef95d1%3A0xc62222378f4a22c6!2sOiso%20Korean%20Restaurant%20-%20PJ33!5e0!3m2!1sen!2smy!4v1711380000000!5m2!1sen!2smy',
     oisoBranches: [
-        { name: 'Petaling Jaya 33', loc: 'Petaling Jaya', tel: '019-2076649' },
-        { name: 'Cheras Leisure Mall', loc: 'Cheras', tel: '03-91340093' },
-        { name: 'Tropicana City (3 Damansara)', loc: 'Petaling Jaya', tel: '03-77311776' },
-        { name: 'Utropolis', loc: 'Shah Alam', tel: '03-58918723' },
-        { name: 'The Curve', loc: 'Mutiara Damansara', tel: '03-76274645' },
-        { name: 'Damen', loc: 'Subang Jaya', tel: '010-4664795' },
-        { name: 'Damansara City (DC Mall)', loc: 'Damansara', tel: '012-4878910' },
-        { name: 'IOI City Mall', loc: 'Putrajaya', tel: '03-89580540' },
-        { name: 'Bangsar (The Sphere)', loc: 'Bangsar South', tel: '03-27142832' },
-        { name: 'Seremban Gateway', loc: 'Seremban', tel: '014-3247904' },
-        { name: 'Aman Central', loc: 'Alor Setar', tel: '04-7309635' },
-        { name: 'Kuantan ECM', loc: 'Kuantan', tel: '012-4878910' },
-        { name: 'Ipoh Parade', loc: 'Ipoh', tel: '05-2411668' },
-        { name: 'KLCC (Permata Sapura)', loc: 'KLCC', tel: '012-7898850' },
-        { name: 'KTCC Mall', loc: 'Terengganu', tel: '09-6221372' },
-        { name: 'Aeon Tebrau City Mall', loc: 'Johor Bahru', tel: '016-3804116' },
-        { name: 'Alamanda', loc: 'Putrajaya', tel: '018-2239536' },
-        { name: 'Aeon Kota Bharu Store', loc: 'Kota Bharu', tel: '012-4878910' },
-        { name: 'KL Eco City Mall', loc: 'The HUB', tel: '017-3572788' },
-        { name: 'AEON Mall Bandar Dato Onn', loc: 'Johor Bahru', tel: '014-2302232' },
-        { name: 'Nu Empire Mall', loc: 'Subang Jaya', tel: '-' },
-        { name: 'Paradigm Mall', loc: 'Johor Bahru', tel: '-' }
+        { name: 'PJ 33', addr: 'PG-01C2, PJ33 Jaya 33, Jalan Professor Khoo Kay Kim, 46200 Petaling Jaya', map: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3983.8735!2d101.6358!3d3.1285!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31cc492576ef95d1%3A0xc62222378f4a22c6!2sOiso%20Korean%20Restaurant%20-%20PJ33!5e0!3m2!1sen!2smy!4v1711380000000' },
+        { name: 'Cheras Leisure Mall', addr: 'L2-23, Cheras Leisure Mall, Jalan Manis 6, Taman Segar, 56100 Kuala Lumpur' },
+        { name: '3 Damansara', addr: 'G-13, Ground Floor, 3 Damansara, 3, Jalan SS 20/27, 47400 Petaling Jaya' },
+        { name: 'The Curve', addr: 'Lot 1.54, Level 1, The Curve, Mutiara Damansara, 47810 Petaling Jaya' },
+        { name: 'Damen Mall', addr: 'LG-07, Lower Ground Floor, Da Men Mall, USJ 1, 47600 Subang Jaya' },
+        { name: 'IOI City Mall', addr: 'Lot L1-72, Level 1, IOI City Mall, IOI Resort, 62502 Sepang' },
+        { name: 'The Sphere', addr: 'Unit UG-9, Upper Ground, The Sphere, Bangsar South, 59200 Kuala Lumpur' },
+        { name: 'KLCC', addr: 'Lot C-04, Level Concourse, Permata Sapura, 50088 Kuala Lumpur' },
+        { name: 'DC Mall', addr: 'Damansara City Mall, Jalan Damanlela, 50490 Kuala Lumpur' },
+        { name: 'Utropolis', addr: 'Marketplace, Persiaran Kerjaya, Seksyen U1, 40150 Shah Alam' },
+        { name: 'KL Eco City', addr: 'Lot LG-20, KL Eco City Mall, Jalan Bangsar, 59200 Kuala Lumpur' },
+        { name: 'Aman Central', addr: 'Lot 4-01, Aman Central, Lebuhraya Darul Aman, 05100 Alor Setar' },
+        { name: 'East Coast Mall', addr: 'L2-15, East Coast Mall, Jalan Putra Square 6, 25300 Kuantan' },
+        { name: 'Ipoh Parade', addr: 'Lot F21, First Floor, Ipoh Parade, Jalan Sultan Abdul Jalil, 30350 Ipoh' },
+        { name: 'KTCC Mall', addr: 'Lot LG-01, KTCC Mall, Muara Selatan, 20000 Kuala Terengganu' },
+        { name: 'AEON Tebrau City', addr: 'Lot S115, 2nd Floor, AEON Mall Tebrau City, 81100 Johor Bahru' },
+        { name: 'AEON Bandar Dato Onn', addr: 'Lot GB01, AEON Mall Bandar Dato Onn, 81100 Johor Bahru' },
+        { name: 'Paradigm Mall JB', addr: 'Lot 3F-16, Paradigm Mall Johor Bahru, 81200 Johor Bahru' },
+        { name: 'Alamanda', addr: 'Jalan Alamanda, Precint 1, 62000 Putrajaya' },
+        { name: 'Seremban Gateway', addr: 'Jalan Sungai Ujong, 70200 Seremban, Negeri Sembilan' },
+        { name: 'AEON Kota Bharu', addr: 'Lembah Sireh, 15050 Kota Bharu, Kelantan' },
+        { name: 'Nu Empire', addr: 'Jalan SS 16/1, Subang Jaya, 47500 Selangor' }
     ]
 }" x-cloak>
 
 <header class="bg-[#f9f9f7]/80 backdrop-blur-md fixed top-0 z-50 w-full border-b border-stone-200/50 h-20">
     <nav class="flex justify-between items-center w-full px-6 md:px-12 py-5 max-w-screen-2xl mx-auto">
         <div class="text-xl font-extrabold tracking-tighter text-primary uppercase font-headline">KFood Solution</div>
-        <div class="hidden md:flex gap-10 items-center">
-            <a class="text-stone-500 hover:text-primary transition-colors font-headline font-bold text-sm" href="index.html">Home</a>
-            <a class="text-primary border-b-2 border-primary pb-1 font-headline font-bold text-sm" href="locations.html">Brands</a>
+        <div class="flex gap-8 items-center font-headline font-bold text-sm">
+            <a class="text-stone-500 hover:text-primary transition-colors" href="index.html">Home</a>
+            <a class="text-primary border-b-2 border-primary pb-1" href="locations.html">Brands</a>
         </div>
     </nav>
 </header>
@@ -83,87 +77,53 @@
         <div class="max-w-7xl mx-auto">
             <h1 class="font-serif text-4xl md:text-5xl text-primary mb-8 tracking-tighter">Find Your Nearest Taste</h1>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <button @click="selectedBrand = 'Oiso'" 
-                        :class="selectedBrand === 'Oiso' ? 'bg-primary text-white' : 'bg-white text-primary'"
-                        class="border border-stone-200 aspect-[4/1] flex items-center justify-center p-4 transition-all font-serif text-xl">
-                    Oiso
-                </button>
-                <button @click="selectedBrand = 'Neulbom Garden'" 
-                        :class="selectedBrand === 'Neulbom Garden' ? 'bg-primary text-white' : 'bg-white text-primary'"
-                        class="border border-stone-200 aspect-[4/1] flex items-center justify-center p-4 transition-all font-serif text-xl">
-                    Neulbom Garden
-                </button>
-                <button @click="selectedBrand = 'MiMi Guksu'" 
-                        :class="selectedBrand === 'MiMi Guksu' ? 'bg-primary text-white' : 'bg-white text-primary'"
-                        class="border border-stone-200 aspect-[4/1] flex items-center justify-center p-4 transition-all font-serif text-xl">
-                    MiMi Guksu
-                </button>
+                <button @click="selectedBrand = 'Oiso'" :class="selectedBrand === 'Oiso' ? 'bg-primary text-white' : 'bg-white text-primary'" class="border border-stone-200 aspect-[4/1] flex items-center justify-center p-4 transition-all font-serif text-xl shadow-sm">Oiso</button>
+                <button @click="selectedBrand = 'Neulbom Garden'" :class="selectedBrand === 'Neulbom Garden' ? 'bg-primary text-white' : 'bg-white text-primary'" class="border border-stone-200 aspect-[4/1] flex items-center justify-center p-4 transition-all font-serif text-xl shadow-sm">Neulbom Garden</button>
+                <button @click="selectedBrand = 'MiMi Guksu'" :class="selectedBrand === 'MiMi Guksu' ? 'bg-primary text-white' : 'bg-white text-primary'" class="border border-stone-200 aspect-[4/1] flex items-center justify-center p-4 transition-all font-serif text-xl shadow-sm">MiMi Guksu</button>
             </div>
         </div>
     </section>
 
     <section class="flex flex-col md:flex-row viewport-height overflow-hidden">
-        
         <div class="w-full md:w-[450px] bg-white overflow-y-auto border-r border-stone-200 custom-scroll">
-            <div class="p-6 border-b border-stone-100 bg-white sticky top-0 z-20 flex justify-between items-center">
-                <span class="text-[10px] font-headline font-extrabold tracking-widest uppercase text-stone-400" x-text="selectedBrand"></span>
-                <span class="text-[10px] font-headline font-extrabold text-primary uppercase" 
-                      x-text="selectedBrand === 'Oiso' ? '22 Branches' : '1 Branch'"></span>
+            <div class="p-6 border-b border-stone-100 sticky top-0 bg-white z-20 flex justify-between items-center">
+                <span class="text-[10px] font-headline font-black uppercase tracking-widest text-stone-400" x-text="selectedBrand"></span>
+                <span class="text-[10px] font-headline font-black text-primary uppercase" x-text="selectedBrand === 'Oiso' ? '22 Branches' : '1 Store'"></span>
             </div>
             
             <div class="divide-y divide-stone-100">
                 <template x-if="selectedBrand === 'Oiso'">
                     <template x-for="branch in oisoBranches" :key="branch.name">
-                        <div class="p-6 hover:bg-stone-50 transition-colors cursor-pointer group border-l-4 border-transparent hover:border-secondary">
-                            <div class="flex justify-between items-start mb-2">
-                                <h3 class="font-serif text-xl text-[#2d3432]" x-text="branch.name"></h3>
-                                <span class="text-[9px] bg-stone-100 px-2 py-0.5 rounded uppercase font-bold tracking-tighter text-stone-500" x-text="branch.loc"></span>
-                            </div>
-                            <div class="space-y-1 text-[13px] text-stone-500 font-body">
-                                <p class="flex items-center gap-2"><span class="material-symbols-outlined text-[16px]">call</span> <span x-text="branch.tel"></span></p>
-                            </div>
+                        <div class="p-6 hover:bg-stone-50 transition-all border-l-4 border-transparent hover:border-secondary group">
+                            <h3 class="font-serif text-xl text-[#2d3432] mb-2" x-text="branch.name"></h3>
+                            <p class="text-sm text-stone-500 font-body leading-relaxed flex gap-2"><span class="material-symbols-outlined text-[16px] text-stone-400">location_on</span> <span x-text="branch.addr"></span></p>
                         </div>
                     </template>
                 </template>
 
                 <template x-if="selectedBrand === 'Neulbom Garden'">
                     <div class="p-8 border-l-4 border-secondary bg-stone-50">
-                        <h3 class="font-serif text-2xl mb-4 text-[#2d3432]">Sentul West</h3>
-                        <p class="text-sm text-stone-500 leading-relaxed">268 Jalan Strachan, Off Jalan Ipoh, Sentul West, 51100 Kuala Lumpur</p>
+                        <h3 class="font-serif text-2xl mb-4">Sentul West</h3>
+                        <p class="font-body text-sm text-stone-500 leading-relaxed">268 Jalan Strachan, Off Jalan Ipoh, Sentul West, 51100 Kuala Lumpur</p>
                     </div>
                 </template>
 
                 <template x-if="selectedBrand === 'MiMi Guksu'">
                     <div class="p-8 border-l-4 border-secondary bg-stone-50">
-                        <h3 class="font-serif text-2xl mb-4 text-[#2d3432]">Subang Parade</h3>
-                        <p class="text-sm text-stone-500 leading-relaxed">LG15, Subang Parade Mall, SS16, 47500 Subang Jaya, Selangor</p>
+                        <h3 class="font-serif text-2xl mb-4">Subang Parade</h3>
+                        <p class="font-body text-sm text-stone-500 leading-relaxed">LG15, Subang Parade Mall, SS16, 47500 Subang Jaya, Selangor</p>
                     </div>
                 </template>
             </div>
         </div>
 
-        <div class="flex-1 bg-stone-200 relative min-h-[400px]">
-            <div class="absolute inset-0 bg-[#e2e8f0] flex items-center justify-center grayscale opacity-40">
-                <p class="font-headline font-bold uppercase tracking-widest text-[10px] text-stone-500">Regional Map View</p>
-            </div>
-            
-            <div x-show="selectedBrand === 'Oiso'" class="absolute top-[50%] left-[45%] flex flex-col items-center">
-                <div class="bg-secondary text-white px-2 py-1 text-[9px] font-bold uppercase mb-1 shadow-md">Oiso Hub</div>
-                <div class="w-4 h-4 bg-secondary rounded-full border-2 border-white shadow-xl animate-pulse"></div>
-            </div>
-
-            <div x-show="selectedBrand === 'Neulbom Garden'" class="absolute top-[40%] left-[55%] flex flex-col items-center">
-                <div class="bg-primary text-white px-2 py-1 text-[9px] font-bold uppercase mb-1 shadow-md">Sentul West</div>
-                <div class="w-4 h-4 bg-primary rounded-full border-2 border-white shadow-xl"></div>
-            </div>
-
-            <div x-show="selectedBrand === 'MiMi Guksu'" class="absolute top-[65%] left-[30%] flex flex-col items-center">
-                <div class="bg-orange-600 text-white px-2 py-1 text-[9px] font-bold uppercase mb-1 shadow-md">Subang Parade</div>
-                <div class="w-4 h-4 bg-orange-600 rounded-full border-2 border-white shadow-xl"></div>
-            </div>
+        <div class="flex-1 bg-stone-200">
+            <iframe class="w-full h-full border-0 grayscale opacity-90" 
+                    :src="currentMap" 
+                    allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
         </div>
     </section>
 </main>
-
 </body>
 </html>
