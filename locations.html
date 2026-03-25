@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html class="light" lang="en" x-data="{ selectedBrand: 'Oiso' }">
+<html class="light" lang="en">
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <title>KFood Solution | Store Locator</title>
+    
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
     
@@ -20,29 +21,37 @@
                         "surface": "#f9f9f7",
                     },
                     fontFamily: {
-                        "headline": ["Manrope"],
-                        "body": ["Public Sans"],
-                        "serif": ["Noto Serif KR"]
+                        // Matching your exact homepage utility classes
+                        "headline": ["Manrope", "sans-serif"],
+                        "body": ["Public Sans", "sans-serif"],
+                        "serif": ["Noto Serif KR", "serif"]
                     },
                 },
             },
         }
     </script>
     <style>
-        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24; }
-        .viewport-height { height: calc(100vh - 80px); }
         [x-cloak] { display: none !important; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24; }
+        
+        /* Ensuring the map and list fill the screen like a professional app */
+        .main-container { height: calc(100vh - 80px); min-height: 500px; }
+        
+        /* Smooth transition for markers */
+        .marker-transition { transition: all 0.3s ease-in-out; }
     </style>
 </head>
-<body class="bg-surface font-body text-on-surface antialiased">
+
+<body class="bg-surface font-body text-on-surface antialiased" x-data="{ selectedBrand: 'Oiso' }">
 
 <header class="bg-[#f9f9f7]/80 backdrop-blur-md fixed top-0 z-50 w-full border-b border-stone-200/50 h-20">
     <nav class="flex justify-between items-center w-full px-6 md:px-12 py-5 max-w-screen-2xl mx-auto">
-        <div class="text-xl font-extrabold tracking-tighter text-primary uppercase font-headline">KFood Solution</div>
+        <div class="text-xl font-extrabold tracking-tighter text-primary uppercase font-headline">
+            KFood Solution
+        </div>
         <div class="hidden md:flex gap-10 items-center">
-            <a class="text-primary border-b-2 border-primary pb-1 font-headline font-bold text-sm" href="#">Brands</a>
-            <a class="text-stone-500 hover:text-primary transition-colors font-headline font-bold text-sm" href="#">Franchise</a>
-            <a class="text-stone-500 hover:text-primary transition-colors font-headline font-bold text-sm" href="#">Contact</a>
+            <a class="text-stone-500 hover:text-primary transition-colors font-headline font-bold text-sm" href="index.html">Home</a>
+            <a class="text-primary border-b-2 border-primary pb-1 font-headline font-bold text-sm" href="locations.html">Brands</a>
         </div>
     </nav>
 </header>
@@ -50,90 +59,97 @@
 <main class="pt-20">
     <section class="bg-[#f8f8f8] px-8 py-10 border-b border-stone-200">
         <div class="max-w-7xl mx-auto">
-            <h1 class="font-serif text-4xl text-primary mb-8 tracking-tighter">Find Your Nearest Taste</h1>
+            <h1 class="font-serif text-4xl md:text-5xl text-primary mb-8 tracking-tighter">Find Your Nearest Taste</h1>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <button @click="selectedBrand = 'Oiso'" 
-                        :class="selectedBrand === 'Oiso' ? 'bg-primary text-white border-primary' : 'bg-white text-primary border-stone-200'"
-                        class="group relative aspect-[4/1] border flex items-center justify-center p-4 transition-all duration-300">
-                    <span class="font-serif text-xl">Oiso</span>
+                        :class="selectedBrand === 'Oiso' ? 'bg-primary text-white' : 'bg-white text-primary'"
+                        class="border border-stone-200 aspect-[4/1] flex items-center justify-center p-4 transition-all font-serif text-xl">
+                    Oiso
                 </button>
                 <button @click="selectedBrand = 'Neulbom Garden'" 
-                        :class="selectedBrand === 'Neulbom Garden' ? 'bg-primary text-white border-primary' : 'bg-white text-primary border-stone-200'"
-                        class="group relative aspect-[4/1] border flex items-center justify-center p-4 transition-all duration-300">
-                    <span class="font-serif text-xl">Neulbom Garden</span>
+                        :class="selectedBrand === 'Neulbom Garden' ? 'bg-primary text-white' : 'bg-white text-primary'"
+                        class="border border-stone-200 aspect-[4/1] flex items-center justify-center p-4 transition-all font-serif text-xl">
+                    Neulbom Garden
                 </button>
                 <button @click="selectedBrand = 'MiMi Guksu'" 
-                        :class="selectedBrand === 'MiMi Guksu' ? 'bg-primary text-white border-primary' : 'bg-white text-primary border-stone-200'"
-                        class="group relative aspect-[4/1] border flex items-center justify-center p-4 transition-all duration-300">
-                    <span class="font-serif text-xl">MiMi Guksu</span>
+                        :class="selectedBrand === 'MiMi Guksu' ? 'bg-primary text-white' : 'bg-white text-primary'"
+                        class="border border-stone-200 aspect-[4/1] flex items-center justify-center p-4 transition-all font-serif text-xl">
+                    MiMi Guksu
                 </button>
             </div>
         </div>
     </section>
 
-    <section class="flex flex-col md:flex-row viewport-height overflow-hidden">
+    <section class="flex flex-col md:flex-row main-container overflow-hidden">
         
-        <div class="w-full md:w-[450px] bg-white overflow-y-auto border-r border-stone-200">
-            <div class="p-6 border-b border-stone-100 bg-white sticky top-0 z-20">
-                <span class="text-[10px] font-headline font-extrabold tracking-widest uppercase text-stone-400" x-text="selectedBrand"></span>
+        <div class="w-full md:w-[450px] bg-white overflow-y-auto border-r border-stone-200 shadow-sm">
+            <div class="p-6 border-b border-stone-100 sticky top-0 bg-white z-10 flex justify-between items-center">
+                <span class="text-[10px] font-headline font-black uppercase tracking-widest text-stone-400" x-text="selectedBrand"></span>
+                <span class="text-[10px] font-headline font-black text-primary uppercase">1 Branch Found</span>
             </div>
             
             <div class="divide-y divide-stone-100">
-                <template x-if="selectedBrand === 'Oiso'">
-                    <div class="p-8 border-l-4 border-secondary bg-stone-50">
-                        <h3 class="font-serif text-2xl mb-4">Petaling Jaya 33</h3>
-                        <div class="space-y-2 text-sm text-stone-500 leading-relaxed">
-                            <p class="flex items-start gap-3"><span class="material-symbols-outlined text-sm mt-1">map</span> Petaling Jaya 33, PJ</p>
-                            <p class="flex items-center gap-3"><span class="material-symbols-outlined text-sm">call</span> 019-2076649</p>
-                        </div>
+                <div x-show="selectedBrand === 'Oiso'" x-cloak class="p-8 border-l-4 border-secondary bg-stone-50">
+                    <h3 class="font-serif text-2xl mb-4 text-[#2d3432]">Petaling Jaya 33</h3>
+                    <div class="space-y-3 text-sm text-stone-500 font-body">
+                        <p class="flex items-start gap-3"><span class="material-symbols-outlined text-sm mt-0.5">map</span> Petaling Jaya 33, PJ</p>
+                        <p class="flex items-center gap-3"><span class="material-symbols-outlined text-sm">call</span> 019-2076649</p>
                     </div>
-                </template>
+                </div>
 
-                <template x-if="selectedBrand === 'Neulbom Garden'">
-                    <div class="p-8 border-l-4 border-secondary bg-stone-50">
-                        <h3 class="font-serif text-2xl mb-4">Sentul West</h3>
-                        <div class="space-y-2 text-sm text-stone-500 leading-relaxed">
-                            <p class="flex items-start gap-3"><span class="material-symbols-outlined text-sm mt-1">map</span> 268 Jalan Strachan, Off Jalan Ipoh, Sentul West, 51100 Kuala Lumpur</p>
-                        </div>
-                        <div class="mt-6">
-                            <button class="w-full py-3 text-[10px] font-bold uppercase tracking-widest bg-primary text-white">Reserve Now</button>
-                        </div>
+                <div x-show="selectedBrand === 'Neulbom Garden'" x-cloak class="p-8 border-l-4 border-secondary bg-stone-50">
+                    <h3 class="font-serif text-2xl mb-4 text-[#2d3432]">Sentul West</h3>
+                    <div class="space-y-3 text-sm text-stone-500 font-body leading-relaxed">
+                        <p class="flex items-start gap-3"><span class="material-symbols-outlined text-sm mt-0.5">map</span> 268 Jalan Strachan, Off Jalan Ipoh, Sentul West, 51100 Kuala Lumpur, Malaysia</p>
                     </div>
-                </template>
+                </div>
 
-                <template x-if="selectedBrand === 'MiMi Guksu'">
-                    <div class="p-8 border-l-4 border-secondary bg-stone-50">
-                        <h3 class="font-serif text-2xl mb-4">Subang Parade</h3>
-                        <div class="space-y-2 text-sm text-stone-500 leading-relaxed">
-                            <p class="flex items-start gap-3"><span class="material-symbols-outlined text-sm mt-1">map</span> LG15, Subang Parade Mall, SS16, 47500 Subang Jaya, Selangor</p>
-                        </div>
+                <div x-show="selectedBrand === 'MiMi Guksu'" x-cloak class="p-8 border-l-4 border-secondary bg-stone-50">
+                    <h3 class="font-serif text-2xl mb-4 text-[#2d3432]">Subang Parade</h3>
+                    <div class="space-y-3 text-sm text-stone-500 font-body leading-relaxed">
+                        <p class="flex items-start gap-3"><span class="material-symbols-outlined text-sm mt-0.5">map</span> LG15, Subang Parade Mall, SS16, 47500 Subang Jaya, Selangor, Malaysia</p>
                     </div>
-                </template>
+                </div>
             </div>
         </div>
 
-        <div class="flex-1 bg-stone-200 relative">
-            <div class="absolute inset-0 bg-[#e5e7eb] flex items-center justify-center grayscale opacity-40">
-                <p class="font-headline font-bold uppercase tracking-widest text-[10px]">Interactive Kuala Lumpur Map</p>
+        <div class="flex-1 bg-[#e2e8f0] relative min-h-[400px]">
+            <div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(#496455 0.5px, transparent 0.5px); background-size: 20px 20px;"></div>
+            
+            <div class="absolute inset-0 flex items-center justify-center">
+                <span class="font-headline font-bold text-[10px] tracking-[0.2em] text-stone-400 uppercase">Kuala Lumpur Region Map</span>
             </div>
             
-            <div x-show="selectedBrand === 'Oiso'" x-transition class="absolute top-[60%] left-[40%] flex flex-col items-center">
-                <div class="bg-secondary text-white px-3 py-1 text-[10px] font-bold uppercase mb-2">Oiso PJ 33</div>
-                <div class="w-6 h-6 bg-secondary rounded-full border-4 border-white shadow-xl"></div>
+            <div x-show="selectedBrand === 'Oiso'" x-cloak class="absolute top-[55%] left-[45%] marker-transition">
+                <div class="flex flex-col items-center">
+                    <div class="bg-secondary text-white px-2 py-1 text-[9px] font-headline font-black uppercase mb-1 shadow-md">PJ 33</div>
+                    <div class="w-4 h-4 bg-secondary rounded-full border-2 border-white shadow-lg"></div>
+                </div>
             </div>
-
-            <div x-show="selectedBrand === 'Neulbom Garden'" x-transition class="absolute top-[40%] left-[50%] flex flex-col items-center">
-                <div class="bg-primary text-white px-3 py-1 text-[10px] font-bold uppercase mb-2">Neulbom Sentul</div>
-                <div class="w-6 h-6 bg-primary rounded-full border-4 border-white shadow-xl"></div>
+            
+            <div x-show="selectedBrand === 'Neulbom Garden'" x-cloak class="absolute top-[40%] left-[55%] marker-transition">
+                <div class="flex flex-col items-center">
+                    <div class="bg-primary text-white px-2 py-1 text-[9px] font-headline font-black uppercase mb-1 shadow-md">Sentul</div>
+                    <div class="w-4 h-4 bg-primary rounded-full border-2 border-white shadow-lg"></div>
+                </div>
             </div>
-
-            <div x-show="selectedBrand === 'MiMi Guksu'" x-transition class="absolute top-[70%] left-[25%] flex flex-col items-center">
-                <div class="bg-orange-600 text-white px-3 py-1 text-[10px] font-bold uppercase mb-2">MiMi Subang</div>
-                <div class="w-6 h-6 bg-orange-600 rounded-full border-4 border-white shadow-xl"></div>
+            
+            <div x-show="selectedBrand === 'MiMi Guksu'" x-cloak class="absolute top-[65%] left-[30%] marker-transition">
+                <div class="flex flex-col items-center">
+                    <div class="bg-orange-600 text-white px-2 py-1 text-[9px] font-headline font-black uppercase mb-1 shadow-md">Subang</div>
+                    <div class="w-4 h-4 bg-orange-600 rounded-full border-2 border-white shadow-lg"></div>
+                </div>
             </div>
         </div>
     </section>
 </main>
+
+<footer class="bg-[#f2f4f2] py-12 px-12 border-t border-stone-200">
+    <div class="max-w-screen-2xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+        <div class="font-headline font-black text-primary uppercase text-sm tracking-tighter">KFood Solution</div>
+        <p class="font-body text-[10px] text-stone-400 uppercase tracking-widest">© 2026 KFood Solution. All Rights Reserved.</p>
+    </div>
+</footer>
 
 </body>
 </html>
