@@ -35,33 +35,35 @@
 <body class="bg-surface antialiased" x-data="{ 
     selectedBrand: 'Oiso',
     currentMap: '',
-    updateMap(address) {
-        // Updated logic: Added &z=19 to force a close-up zoom, making the pin very visible
-        this.currentMap = `https://www.google.com/maps?q=${encodeURIComponent(address)}&output=embed&z=19`;
+    updateMap(address, storeName = '') {
+        // We use q for the pin and iwloc=A to force the marker info window to pop up
+        // This makes the 'pin' experience much more visible and reliable.
+        const query = storeName ? `${storeName} ${address}` : address;
+        this.currentMap = `https://maps.google.com/maps?q=${encodeURIComponent(query)}&t=&z=17&ie=UTF8&iwloc=A&output=embed`;
     },
     oisoBranches: [
-        { name: 'PJ 33', addr: 'PG-01C2, PJ33 Jaya 33, Jalan Professor Khoo Kay Kim, 46200 Petaling Jaya' },
-        { name: 'Cheras Leisure Mall', addr: 'L2-23, Cheras Leisure Mall, Jalan Manis 6, Taman Segar, 56100 Kuala Lumpur' },
-        { name: '3 Damansara', addr: 'G-13, Ground Floor, 3 Damansara, 3, Jalan SS 20/27, 47400 Petaling Jaya' },
-        { name: 'The Curve', addr: 'Lot 1.54, Level 1, The Curve, Mutiara Damansara, 47810 Petaling Jaya' },
-        { name: 'Damen Mall', addr: 'LG-07, Lower Ground Floor, Da Men Mall, USJ 1, 47600 Subang Jaya' },
-        { name: 'IOI City Mall', addr: 'Lot L1-72, Level 1, IOI City Mall, IOI Resort, 62502 Sepang' },
-        { name: 'The Sphere', addr: 'Unit UG-9, Upper Ground, The Sphere, Bangsar South, 59200 Kuala Lumpur' },
-        { name: 'KLCC', addr: 'Lot C-04, Level Concourse, Permata Sapura, 50088 Kuala Lumpur' },
-        { name: 'DC Mall', addr: 'Damansara City Mall, Jalan Damanlela, 50490 Kuala Lumpur' },
-        { name: 'Utropolis', addr: 'Marketplace, Persiaran Kerjaya, Seksyen U1, 40150 Shah Alam' },
-        { name: 'KL Eco City', addr: 'Lot LG-20, KL Eco City Mall, Jalan Bangsar, 59200 Kuala Lumpur' },
-        { name: 'Aman Central', addr: 'Lot 4-01, Aman Central, Lebuhraya Darul Aman, 05100 Alor Setar' },
-        { name: 'East Coast Mall', addr: 'L2-15, East Coast Mall, Jalan Putra Square 6, 25300 Kuantan' },
-        { name: 'Ipoh Parade', addr: 'Lot F21, First Floor, Ipoh Parade, Jalan Sultan Abdul Jalil, 30350 Ipoh' },
-        { name: 'KTCC Mall', addr: 'Lot LG-01, KTCC Mall, Muara Selatan, 20000 Kuala Terengganu' },
-        { name: 'AEON Tebrau City', addr: 'Lot S115, 2nd Floor, AEON Mall Tebrau City, 81100 Johor Bahru' },
-        { name: 'AEON Bandar Dato Onn', addr: 'Lot GB01, AEON Mall Bandar Dato Onn, 81100 Johor Bahru' },
-        { name: 'Paradigm Mall JB', addr: 'Lot 3F-16, Paradigm Mall Johor Bahru, 81200 Johor Bahru' },
-        { name: 'Alamanda', addr: 'Jalan Alamanda, Precint 1, 62000 Putrajaya' },
-        { name: 'Seremban Gateway', addr: 'Jalan Sungai Ujong, 70200 Seremban, Negeri Sembilan' },
-        { name: 'AEON Kota Bharu', addr: 'Lembah Sireh, 15050 Kota Bharu, Kelantan' },
-        { name: 'Nu Empire', addr: 'Jalan SS 16/1, Subang Jaya, 47500 Selangor' }
+        { name: 'Oiso PJ 33', addr: 'PG-01C2, PJ33 Jaya 33, Jalan Professor Khoo Kay Kim, 46200 Petaling Jaya' },
+        { name: 'Oiso Cheras Leisure Mall', addr: 'L2-23, Cheras Leisure Mall, Jalan Manis 6, Taman Segar, 56100 Kuala Lumpur' },
+        { name: 'Oiso 3 Damansara', addr: 'G-13, Ground Floor, 3 Damansara, 3, Jalan SS 20/27, 47400 Petaling Jaya' },
+        { name: 'Oiso The Curve', addr: 'Lot 1.54, Level 1, The Curve, Mutiara Damansara, 47810 Petaling Jaya' },
+        { name: 'Oiso Damen Mall', addr: 'LG-07, Lower Ground Floor, Da Men Mall, USJ 1, 47600 Subang Jaya' },
+        { name: 'Oiso IOI City Mall', addr: 'Lot L1-72, Level 1, IOI City Mall, IOI Resort, 62502 Sepang' },
+        { name: 'Oiso The Sphere', addr: 'Unit UG-9, Upper Ground, The Sphere, Bangsar South, 59200 Kuala Lumpur' },
+        { name: 'Oiso KLCC', addr: 'Lot C-04, Level Concourse, Permata Sapura, 50088 Kuala Lumpur' },
+        { name: 'Oiso DC Mall', addr: 'Damansara City Mall, Jalan Damanlela, 50490 Kuala Lumpur' },
+        { name: 'Oiso Utropolis', addr: 'Marketplace, Persiaran Kerjaya, Seksyen U1, 40150 Shah Alam' },
+        { name: 'Oiso KL Eco City', addr: 'Lot LG-20, KL Eco City Mall, Jalan Bangsar, 59200 Kuala Lumpur' },
+        { name: 'Oiso Aman Central', addr: 'Lot 4-01, Aman Central, Lebuhraya Darul Aman, 05100 Alor Setar' },
+        { name: 'Oiso East Coast Mall', addr: 'L2-15, East Coast Mall, Jalan Putra Square 6, 25300 Kuantan' },
+        { name: 'Oiso Ipoh Parade', addr: 'Lot F21, First Floor, Ipoh Parade, Jalan Sultan Abdul Jalil, 30350 Ipoh' },
+        { name: 'Oiso KTCC Mall', addr: 'Lot LG-01, KTCC Mall, Muara Selatan, 20000 Kuala Terengganu' },
+        { name: 'Oiso AEON Tebrau City', addr: 'Lot S115, 2nd Floor, AEON Mall Tebrau City, 81100 Johor Bahru' },
+        { name: 'Oiso AEON Bandar Dato Onn', addr: 'Lot GB01, AEON Mall Bandar Dato Onn, 81100 Johor Bahru' },
+        { name: 'Oiso Paradigm Mall JB', addr: 'Lot 3F-16, Paradigm Mall Johor Bahru, 81200 Johor Bahru' },
+        { name: 'Oiso Alamanda', addr: 'Jalan Alamanda, Precint 1, 62000 Putrajaya' },
+        { name: 'Oiso Seremban Gateway', addr: 'Jalan Sungai Ujong, 70200 Seremban, Negeri Sembilan' },
+        { name: 'Oiso AEON Kota Bharu', addr: 'Lembah Sireh, 15050 Kota Bharu, Kelantan' },
+        { name: 'Oiso Nu Empire', addr: 'Jalan SS 16/1, Subang Jaya, 47500 Selangor' }
     ]
 }" x-init="updateMap('Kuala Lumpur')" x-cloak>
 
@@ -81,15 +83,14 @@
             <h1 class="text-4xl md:text-5xl font-extrabold text-primary mb-8 tracking-tighter">Find Your Nearest Taste</h1>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <button @click="selectedBrand = 'Oiso'; updateMap('Kuala Lumpur')" :class="selectedBrand === 'Oiso' ? 'bg-primary text-white border-primary' : 'bg-white text-primary border-stone-200'" class="border aspect-[4/1] flex items-center justify-center p-4 transition-all text-xl font-bold uppercase tracking-tight shadow-sm">Oiso</button>
-                <button @click="selectedBrand = 'Neulbom Garden'; updateMap('268 Jalan Strachan, Sentul West')" :class="selectedBrand === 'Neulbom Garden' ? 'bg-primary text-white border-primary' : 'bg-white text-primary border-stone-200'" class="border aspect-[4/1] flex items-center justify-center p-4 transition-all text-xl font-bold uppercase tracking-tight shadow-sm">Neulbom Garden</button>
-                <button @click="selectedBrand = 'MiMi Guksu'; updateMap('Subang Parade Mall')" :class="selectedBrand === 'MiMi Guksu' ? 'bg-primary text-white border-primary' : 'bg-white text-primary border-stone-200'" class="border aspect-[4/1] flex items-center justify-center p-4 transition-all text-xl font-bold uppercase tracking-tight shadow-sm">MiMi Guksu</button>
+                <button @click="selectedBrand = 'Neulbom Garden'; updateMap('268 Jalan Strachan, Sentul West', 'Neulbom Garden')" :class="selectedBrand === 'Neulbom Garden' ? 'bg-primary text-white border-primary' : 'bg-white text-primary border-stone-200'" class="border aspect-[4/1] flex items-center justify-center p-4 transition-all text-xl font-bold uppercase tracking-tight shadow-sm">Neulbom Garden</button>
+                <button @click="selectedBrand = 'MiMi Guksu'; updateMap('Subang Parade Mall', 'MiMi Guksu')" :class="selectedBrand === 'MiMi Guksu' ? 'bg-primary text-white border-primary' : 'bg-white text-primary border-stone-200'" class="border aspect-[4/1] flex items-center justify-center p-4 transition-all text-xl font-bold uppercase tracking-tight shadow-sm">MiMi Guksu</button>
             </div>
         </div>
     </section>
 
     <section class="flex flex-col md:flex-row viewport-height overflow-hidden">
         <div class="w-full md:w-[520px] bg-white overflow-y-auto border-r border-stone-200 custom-scroll">
-            
             <div class="p-8 bg-primary sticky top-0 z-20 flex justify-between items-center shadow-lg">
                 <span class="text-2xl font-extrabold uppercase tracking-tight text-white" x-text="selectedBrand"></span>
                 <span class="text-base font-bold text-white/90 uppercase" x-text="selectedBrand === 'Oiso' ? '22 Branches' : '1 Branch'"></span>
@@ -98,22 +99,22 @@
             <div class="divide-y divide-stone-100">
                 <template x-if="selectedBrand === 'Oiso'">
                     <template x-for="branch in oisoBranches" :key="branch.name">
-                        <div @click="updateMap(branch.addr)" class="p-8 hover:bg-stone-50 transition-all border-l-8 border-transparent hover:border-secondary cursor-pointer active:bg-stone-100">
-                            <h3 class="text-2xl font-extrabold text-[#2d3432] mb-2 uppercase tracking-tight" x-text="branch.name"></h3>
+                        <div @click="updateMap(branch.addr, branch.name)" class="p-8 hover:bg-stone-50 transition-all border-l-8 border-transparent hover:border-secondary cursor-pointer active:bg-stone-100">
+                            <h3 class="text-2xl font-extrabold text-[#2d3432] mb-2 uppercase tracking-tight" x-text="branch.name.replace('Oiso ', '')"></h3>
                             <p class="text-base text-stone-500 font-medium leading-relaxed" x-text="branch.addr"></p>
                         </div>
                     </template>
                 </template>
 
                 <template x-if="selectedBrand === 'Neulbom Garden'">
-                    <div @click="updateMap('268 Jalan Strachan, Sentul West')" class="p-8 hover:bg-stone-50 transition-all border-l-8 border-transparent hover:border-secondary cursor-pointer">
+                    <div @click="updateMap('268 Jalan Strachan, Off Jalan Ipoh, Sentul West, 51100 Kuala Lumpur', 'Neulbom Garden')" class="p-8 hover:bg-stone-50 transition-all border-l-8 border-transparent hover:border-secondary cursor-pointer">
                         <h3 class="text-2xl font-extrabold text-[#2d3432] mb-2 uppercase tracking-tight">Sentul West</h3>
                         <p class="text-base text-stone-500 font-medium leading-relaxed">268 Jalan Strachan, Off Jalan Ipoh, Sentul West, 51100 Kuala Lumpur</p>
                     </div>
                 </template>
 
                 <template x-if="selectedBrand === 'MiMi Guksu'">
-                    <div @click="updateMap('Subang Parade Mall')" class="p-8 hover:bg-stone-50 transition-all border-l-8 border-transparent hover:border-secondary cursor-pointer">
+                    <div @click="updateMap('LG15, Subang Parade Mall, SS16, 47500 Subang Jaya, Selangor', 'MiMi Guksu')" class="p-8 hover:bg-stone-50 transition-all border-l-8 border-transparent hover:border-secondary cursor-pointer">
                         <h3 class="text-2xl font-extrabold text-[#2d3432] mb-2 uppercase tracking-tight">Subang Parade</h3>
                         <p class="text-base text-stone-500 font-medium leading-relaxed">LG15, Subang Parade Mall, SS16, 47500 Subang Jaya, Selangor</p>
                     </div>
