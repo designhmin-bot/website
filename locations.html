@@ -8,7 +8,7 @@
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
     
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Public+Sans:wght@300;400;500&family=Noto+Serif+KR:wght@400;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Public+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
     
     <script id="tailwind-config">
@@ -18,8 +18,7 @@
                     colors: { "primary": "#496455", "secondary": "#9f403d", "surface": "#f9f9f7" },
                     fontFamily: {
                         "headline": ["Manrope", "sans-serif"],
-                        "body": ["Public Sans", "sans-serif"],
-                        "serif": ["Noto Serif KR", "serif"]
+                        "body": ["Public Sans", "sans-serif"]
                     },
                 },
             },
@@ -27,17 +26,23 @@
     </script>
     <style>
         [x-cloak] { display: none !important; }
+        /* Force all text to sans-serif */
+        * { font-family: 'Public Sans', 'Manrope', sans-serif !important; }
         .viewport-height { height: calc(100vh - 80px); min-height: 600px; }
         .custom-scroll::-webkit-scrollbar { width: 4px; }
         .custom-scroll::-webkit-scrollbar-thumb { background: #496455; }
     </style>
 </head>
 
-<body class="bg-surface font-body antialiased" x-data="{ 
+<body class="bg-surface antialiased" x-data="{ 
     selectedBrand: 'Oiso',
-    currentMap: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3983.873587440938!2d101.6358825!3d3.1285493!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31cc492576ef95d1%3A0xc62222378f4a22c6!2sOiso%20Korean%20Restaurant%20-%20PJ33!5e0!3m2!1sen!2smy!4v1711380000000!5m2!1sen!2smy',
+    currentMap: 'https://www.google.com/maps/embed/v1/place?key=YOUR_API_KEY&q=Kuala+Lumpur',
+    updateMap(address) {
+        // This generates a search-based map URL for the iframe
+        this.currentMap = `https://www.google.com/maps?q=${encodeURIComponent(address)}&output=embed`;
+    },
     oisoBranches: [
-        { name: 'PJ 33', addr: 'PG-01C2, PJ33 Jaya 33, Jalan Professor Khoo Kay Kim, 46200 Petaling Jaya', map: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3983.8735!2d101.6358!3d3.1285!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31cc492576ef95d1%3A0xc62222378f4a22c6!2sOiso%20Korean%20Restaurant%20-%20PJ33!5e0!3m2!1sen!2smy!4v1711380000000' },
+        { name: 'PJ 33', addr: 'PG-01C2, PJ33 Jaya 33, Jalan Professor Khoo Kay Kim, 46200 Petaling Jaya' },
         { name: 'Cheras Leisure Mall', addr: 'L2-23, Cheras Leisure Mall, Jalan Manis 6, Taman Segar, 56100 Kuala Lumpur' },
         { name: '3 Damansara', addr: 'G-13, Ground Floor, 3 Damansara, 3, Jalan SS 20/27, 47400 Petaling Jaya' },
         { name: 'The Curve', addr: 'Lot 1.54, Level 1, The Curve, Mutiara Damansara, 47810 Petaling Jaya' },
@@ -60,12 +65,12 @@
         { name: 'AEON Kota Bharu', addr: 'Lembah Sireh, 15050 Kota Bharu, Kelantan' },
         { name: 'Nu Empire', addr: 'Jalan SS 16/1, Subang Jaya, 47500 Selangor' }
     ]
-}" x-cloak>
+}" x-init="updateMap('Kuala Lumpur')" x-cloak>
 
 <header class="bg-[#f9f9f7]/80 backdrop-blur-md fixed top-0 z-50 w-full border-b border-stone-200/50 h-20">
     <nav class="flex justify-between items-center w-full px-6 md:px-12 py-5 max-w-screen-2xl mx-auto">
-        <div class="text-xl font-extrabold tracking-tighter text-primary uppercase font-headline">KFood Solution</div>
-        <div class="flex gap-8 items-center font-headline font-bold text-sm">
+        <div class="text-xl font-extrabold tracking-tighter text-primary uppercase">KFood Solution</div>
+        <div class="flex gap-8 items-center font-bold text-sm">
             <a class="text-stone-500 hover:text-primary transition-colors" href="index.html">Home</a>
             <a class="text-primary border-b-2 border-primary pb-1" href="locations.html">Brands</a>
         </div>
@@ -75,52 +80,55 @@
 <main class="pt-20">
     <section class="bg-[#f8f8f8] px-8 py-10 border-b border-stone-200">
         <div class="max-w-7xl mx-auto">
-            <h1 class="font-serif text-4xl md:text-5xl text-primary mb-8 tracking-tighter">Find Your Nearest Taste</h1>
+            <h1 class="text-4xl md:text-5xl font-extrabold text-primary mb-8 tracking-tighter">Find Your Nearest Taste</h1>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <button @click="selectedBrand = 'Oiso'" :class="selectedBrand === 'Oiso' ? 'bg-primary text-white' : 'bg-white text-primary'" class="border border-stone-200 aspect-[4/1] flex items-center justify-center p-4 transition-all font-serif text-xl shadow-sm">Oiso</button>
-                <button @click="selectedBrand = 'Neulbom Garden'" :class="selectedBrand === 'Neulbom Garden' ? 'bg-primary text-white' : 'bg-white text-primary'" class="border border-stone-200 aspect-[4/1] flex items-center justify-center p-4 transition-all font-serif text-xl shadow-sm">Neulbom Garden</button>
-                <button @click="selectedBrand = 'MiMi Guksu'" :class="selectedBrand === 'MiMi Guksu' ? 'bg-primary text-white' : 'bg-white text-primary'" class="border border-stone-200 aspect-[4/1] flex items-center justify-center p-4 transition-all font-serif text-xl shadow-sm">MiMi Guksu</button>
+                <button @click="selectedBrand = 'Oiso'; updateMap('Kuala Lumpur')" :class="selectedBrand === 'Oiso' ? 'bg-primary text-white border-primary' : 'bg-white text-primary border-stone-200'" class="border aspect-[4/1] flex items-center justify-center p-4 transition-all text-xl font-bold uppercase tracking-tight shadow-sm">Oiso</button>
+                <button @click="selectedBrand = 'Neulbom Garden'; updateMap('268 Jalan Strachan, Sentul West')" :class="selectedBrand === 'Neulbom Garden' ? 'bg-primary text-white border-primary' : 'bg-white text-primary border-stone-200'" class="border aspect-[4/1] flex items-center justify-center p-4 transition-all text-xl font-bold uppercase tracking-tight shadow-sm">Neulbom Garden</button>
+                <button @click="selectedBrand = 'MiMi Guksu'; updateMap('Subang Parade Mall')" :class="selectedBrand === 'MiMi Guksu' ? 'bg-primary text-white border-primary' : 'bg-white text-primary border-stone-200'" class="border aspect-[4/1] flex items-center justify-center p-4 transition-all text-xl font-bold uppercase tracking-tight shadow-sm">MiMi Guksu</button>
             </div>
         </div>
     </section>
 
     <section class="flex flex-col md:flex-row viewport-height overflow-hidden">
         <div class="w-full md:w-[450px] bg-white overflow-y-auto border-r border-stone-200 custom-scroll">
-            <div class="p-6 border-b border-stone-100 sticky top-0 bg-white z-20 flex justify-between items-center">
-                <span class="text-[10px] font-headline font-black uppercase tracking-widest text-stone-400" x-text="selectedBrand"></span>
-                <span class="text-[10px] font-headline font-black text-primary uppercase" x-text="selectedBrand === 'Oiso' ? '22 Branches' : '1 Store'"></span>
+            <div class="p-6 bg-primary sticky top-0 z-20 flex justify-between items-center shadow-md">
+                <span class="text-lg font-extrabold uppercase tracking-tight text-white" x-text="selectedBrand"></span>
+                <span class="text-sm font-bold text-white/80 uppercase" x-text="selectedBrand === 'Oiso' ? '22 Branches' : '1 Store'"></span>
             </div>
             
             <div class="divide-y divide-stone-100">
                 <template x-if="selectedBrand === 'Oiso'">
                     <template x-for="branch in oisoBranches" :key="branch.name">
-                        <div class="p-6 hover:bg-stone-50 transition-all border-l-4 border-transparent hover:border-secondary group">
-                            <h3 class="font-serif text-xl text-[#2d3432] mb-2" x-text="branch.name"></h3>
-                            <p class="text-sm text-stone-500 font-body leading-relaxed flex gap-2"><span class="material-symbols-outlined text-[16px] text-stone-400">location_on</span> <span x-text="branch.addr"></span></p>
+                        <div @click="updateMap(branch.addr)" class="p-6 hover:bg-stone-50 transition-all border-l-4 border-transparent hover:border-secondary cursor-pointer active:bg-stone-100">
+                            <h3 class="text-xl font-bold text-[#2d3432] mb-2 uppercase tracking-tight" x-text="branch.name"></h3>
+                            <p class="text-sm text-stone-500 font-medium leading-relaxed flex gap-2">
+                                <span class="material-symbols-outlined text-[18px] text-primary">location_on</span> 
+                                <span x-text="branch.addr"></span>
+                            </p>
                         </div>
                     </template>
                 </template>
 
                 <template x-if="selectedBrand === 'Neulbom Garden'">
-                    <div class="p-8 border-l-4 border-secondary bg-stone-50">
-                        <h3 class="font-serif text-2xl mb-4">Sentul West</h3>
-                        <p class="font-body text-sm text-stone-500 leading-relaxed">268 Jalan Strachan, Off Jalan Ipoh, Sentul West, 51100 Kuala Lumpur</p>
+                    <div @click="updateMap('268 Jalan Strachan, Sentul West')" class="p-8 border-l-4 border-secondary bg-stone-50 cursor-pointer">
+                        <h3 class="text-2xl font-bold mb-4 uppercase tracking-tight">Sentul West</h3>
+                        <p class="text-sm text-stone-500 font-medium leading-relaxed">268 Jalan Strachan, Off Jalan Ipoh, Sentul West, 51100 Kuala Lumpur</p>
                     </div>
                 </template>
 
                 <template x-if="selectedBrand === 'MiMi Guksu'">
-                    <div class="p-8 border-l-4 border-secondary bg-stone-50">
-                        <h3 class="font-serif text-2xl mb-4">Subang Parade</h3>
-                        <p class="font-body text-sm text-stone-500 leading-relaxed">LG15, Subang Parade Mall, SS16, 47500 Subang Jaya, Selangor</p>
+                    <div @click="updateMap('Subang Parade Mall')" class="p-8 border-l-4 border-secondary bg-stone-50 cursor-pointer">
+                        <h3 class="text-2xl font-bold mb-4 uppercase tracking-tight">Subang Parade</h3>
+                        <p class="text-sm text-stone-500 font-medium leading-relaxed">LG15, Subang Parade Mall, SS16, 47500 Subang Jaya, Selangor</p>
                     </div>
                 </template>
             </div>
         </div>
 
         <div class="flex-1 bg-stone-200">
-            <iframe class="w-full h-full border-0 grayscale opacity-90" 
+            <iframe class="w-full h-full border-0 grayscale hover:grayscale-0 transition-all duration-700" 
                     :src="currentMap" 
-                    allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                    allowfullscreen="" loading="lazy">
             </iframe>
         </div>
     </section>
