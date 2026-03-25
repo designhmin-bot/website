@@ -1,182 +1,156 @@
 <!DOCTYPE html>
-<html class="light" lang="en">
+<html class="light" lang="ko">
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>KFood Solution | Store Locator</title>
-    
+    <title>입점 제안 | KFood Solution</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Public+Sans:wght@300;400;500;700&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-    
-    <script id="tailwind-config">
+    <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
                         "primary": "#496455",
                         "surface": "#f9f9f7",
-                        "on-surface": "#2d3432",
-                        "secondary": "#9f403d"
+                        "outline-variant": "#adb3b0",
                     },
                     fontFamily: {
                         "headline": ["Manrope"],
-                        "body": ["Public Sans"]
+                        "body": ["Public Sans"],
                     }
-                },
-            },
+                }
+            }
         }
     </script>
     <style>
-        [x-cloak] { display: none !important; }
         body { font-family: 'Public Sans', sans-serif; }
-        h1, h2, h3, .font-headline { font-family: 'Manrope', sans-serif; }
-        .viewport-height { height: calc(100vh - 80px); min-height: 600px; }
-        .custom-scroll::-webkit-scrollbar { width: 6px; }
-        .custom-scroll::-webkit-scrollbar-thumb { background: #496455; border-radius: 10px; }
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        h1, .font-headline { font-family: 'Manrope', sans-serif; }
+        
+        /* 본아이에프 스타일 체크박스/라디오 버튼 커스텀 */
+        .brand-btn:checked + span {
+            background-color: #496455;
+            color: white;
+            border-color: #496455;
+        }
+        
+        input[type="text"], input[type="tel"], select {
+            border-radius: 0px !important;
         }
     </style>
 </head>
+<body class="bg-surface text-[#2d3432] antialiased">
 
-<body class="bg-surface text-on-surface antialiased flex flex-col min-h-screen" x-data="{ 
-    selectedBrand: 'Oiso',
-    currentMap: '',
-    updateMap(address, storeName = '') {
-        const query = storeName ? `${storeName} ${address}` : address;
-        this.currentMap = `https://www.google.com/maps?q=${encodeURIComponent(query)}&t=&z=17&ie=UTF8&iwloc=A&output=embed`;
-    },
-    oisoBranches: [
-        { name: 'Oiso PJ 33', addr: 'PG-01C2, PJ33 Jaya 33, Jalan Professor Khoo Kay Kim, 46200 Petaling Jaya' },
-        { name: 'Oiso Cheras Leisure Mall', addr: 'L2-23, Cheras Leisure Mall, Jalan Manis 6, Taman Segar, 56100 Kuala Lumpur' },
-        { name: 'Oiso 3 Damansara', addr: 'G-13, Ground Floor, 3 Damansara, 3, Jalan SS 20/27, 47400 Petaling Jaya' },
-        { name: 'Oiso The Curve', addr: 'Lot 1.54, Level 1, The Curve, Mutiara Damansara, 47810 Petaling Jaya' },
-        { name: 'Oiso Damen Mall', addr: 'LG-07, Lower Ground Floor, Da Men Mall, USJ 1, 47600 Subang Jaya' },
-        { name: 'Oiso IOI City Mall', addr: 'Lot L1-72, Level 1, IOI City Mall, IOI Resort, 62502 Sepang' },
-        { name: 'Oiso The Sphere', addr: 'Unit UG-9, Upper Ground, The Sphere, Bangsar South, 59200 Kuala Lumpur' },
-        { name: 'Oiso KLCC', addr: 'Lot C-04, Level Concourse, Permata Sapura, 50088 Kuala Lumpur' },
-        { name: 'Oiso DC Mall', addr: 'Damansara City Mall, Jalan Damanlela, 50490 Kuala Lumpur' },
-        { name: 'Oiso Utropolis', addr: 'Marketplace, Persiaran Kerjaya, Seksyen U1, 40150 Shah Alam' },
-        { name: 'Oiso KL Eco City', addr: 'Lot LG-20, KL Eco City Mall, Jalan Bangsar, 59200 Kuala Lumpur' },
-        { name: 'Oiso Aman Central', addr: 'Lot 4-01, Aman Central, Lebuhraya Darul Aman, 05100 Alor Setar' },
-        { name: 'Oiso East Coast Mall', addr: 'L2-15, East Coast Mall, Jalan Putra Square 6, 25300 Kuantan' },
-        { name: 'Oiso Ipoh Parade', addr: 'Lot F21, First Floor, Ipoh Parade, Jalan Sultan Abdul Jalil, 30350 Ipoh' },
-        { name: 'Oiso KTCC Mall', addr: 'Lot LG-01, KTCC Mall, Muara Selatan, 20000 Kuala Terengganu' },
-        { name: 'Oiso AEON Tebrau City', addr: 'Lot S115, 2nd Floor, AEON Mall Tebrau City, 81100 Johor Bahru' },
-        { name: 'Oiso AEON Bandar Dato Onn', addr: 'Lot GB01, AEON Mall Bandar Dato Onn, 81100 Johor Bahru' },
-        { name: 'Oiso Paradigm Mall JB', addr: 'Lot 3F-16, Paradigm Mall Johor Bahru, 81200 Johor Bahru' },
-        { name: 'Oiso Alamanda', addr: 'Jalan Alamanda, Precint 1, 62000 Putrajaya' },
-        { name: 'Oiso Seremban Gateway', addr: 'Jalan Sungai Ujong, 70200 Seremban, Negeri Sembilan' },
-        { name: 'Oiso AEON Kota Bharu', addr: 'Lembah Sireh, 15050 Kota Bharu, Kelantan' },
-        { name: 'Oiso Nu Empire', addr: 'Jalan SS 16/1, Subang Jaya, 47500 Selangor' }
-    ]
-}" x-init="updateMap('Kuala Lumpur')" x-cloak>
-
-<header class="bg-[#f9f9f7]/80 backdrop-blur-md fixed top-0 z-50 w-full">
+<header class="bg-[#f9f9f7]/80 backdrop-blur-md fixed top-0 z-50 w-full border-b border-stone-200/50">
     <nav class="flex justify-between items-center w-full px-6 md:px-12 py-6 max-w-screen-2xl mx-auto">
-        <a href="index.html" class="text-xl font-extrabold tracking-tighter text-[#496455] uppercase font-headline hover:opacity-80 transition-opacity">
-            K Food Solution
-        </a>
-        <div class="hidden md:flex gap-10 items-center">
-            <a class="text-primary font-bold" href="locations.html">Brands</a>
-            <a class="text-stone-500 hover:text-[#496455] transition-colors font-headline font-bold tracking-tight" href="#">Franchise</a>
-            <a class="text-stone-500 hover:text-[#496455] transition-colors font-headline font-bold tracking-tight" href="#">Contact</a>
+        <div class="text-xl font-extrabold tracking-tighter text-primary uppercase font-headline">
+            KFood Solution
         </div>
-        <button class="md:hidden text-primary">
-            <span class="material-symbols-outlined">menu</span>
-        </button>
+        <div class="hidden md:flex gap-10 items-center">
+            <a class="text-stone-500 hover:text-primary transition-colors font-headline font-bold tracking-tight" href="index.html">Home</a>
+            <a class="text-stone-500 hover:text-primary transition-colors font-headline font-bold tracking-tight" href="#">Brands</a>
+            <a class="text-primary font-bold font-headline tracking-tight" href="contact.html">Contact</a>
+        </div>
     </nav>
 </header>
 
-<main class="pt-20 flex-grow">
-    <section class="bg-surface px-8 py-12 border-b border-stone-200">
-        <div class="max-w-7xl mx-auto">
-            <h1 class="text-4xl md:text-6xl font-extrabold text-primary mb-10 tracking-tighter font-headline">Find Your Nearest Taste</h1>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <button @click="selectedBrand = 'Oiso'; updateMap('Kuala Lumpur')" :class="selectedBrand === 'Oiso' ? 'bg-primary text-white' : 'bg-white text-primary border-stone-200'" class="border aspect-[4/1.2] flex items-center justify-center p-4 transition-all text-xl font-bold uppercase tracking-tight shadow-sm font-headline">Oiso</button>
-                <button @click="selectedBrand = 'Neulbom Garden'; updateMap('268 Jalan Strachan, Sentul West', 'Neulbom Garden')" :class="selectedBrand === 'Neulbom Garden' ? 'bg-primary text-white' : 'bg-white text-primary border-stone-200'" class="border aspect-[4/1.2] flex items-center justify-center p-4 transition-all text-xl font-bold uppercase tracking-tight shadow-sm font-headline">Neulbom Garden</button>
-                <button @click="selectedBrand = 'MiMi Guksu'; updateMap('Subang Parade Mall', 'MiMi Guksu')" :class="selectedBrand === 'MiMi Guksu' ? 'bg-primary text-white' : 'bg-white text-primary border-stone-200'" class="border aspect-[4/1.2] flex items-center justify-center p-4 transition-all text-xl font-bold uppercase tracking-tight shadow-sm font-headline">MiMi Guksu</button>
-            </div>
+<main class="pt-40 pb-24">
+    <div class="max-w-4xl mx-auto px-6 font-body">
+        
+        <div class="mb-12 border-b-2 border-black pb-6">
+            <h1 class="text-3xl font-extrabold tracking-tighter font-headline uppercase">입점 제안</h1>
+            <p class="text-stone-500 text-sm mt-2">창업 및 입점 관련 제안 내용을 작성해 주세요.</p>
         </div>
-    </section>
 
-    <section class="flex flex-col md:flex-row viewport-height overflow-hidden">
-        <div class="w-full md:w-[520px] bg-white overflow-y-auto border-r border-stone-200 custom-scroll">
-            <div class="p-8 bg-primary sticky top-0 z-20 flex justify-between items-center shadow-lg">
-                <span class="text-2xl font-extrabold uppercase tracking-tight text-white font-headline" x-text="selectedBrand"></span>
-                <span class="text-xs font-bold text-white/90 uppercase tracking-widest" x-text="selectedBrand === 'Oiso' ? '22 Branches' : '1 Branch'"></span>
-            </div>
-            <div class="divide-y divide-stone-100">
-                <template x-if="selectedBrand === 'Oiso'">
-                    <template x-for="branch in oisoBranches" :key="branch.name">
-                        <div @click="updateMap(branch.addr, branch.name)" class="p-8 hover:bg-stone-50 transition-all border-l-8 border-transparent hover:border-secondary cursor-pointer">
-                            <h3 class="text-2xl font-extrabold text-[#2d3432] mb-2 uppercase tracking-tight font-headline" x-text="branch.name.replace('Oiso ', '')"></h3>
-                            <p class="text-sm text-stone-500 leading-relaxed" x-text="branch.addr"></p>
-                        </div>
-                    </template>
-                </template>
-                <template x-if="selectedBrand === 'Neulbom Garden'">
-                    <div @click="updateMap('268 Jalan Strachan, Sentul West', 'Neulbom Garden')" class="p-8 hover:bg-stone-50 border-l-8 border-transparent hover:border-secondary cursor-pointer">
-                        <h3 class="text-2xl font-extrabold text-[#2d3432] mb-2 uppercase tracking-tight font-headline">Sentul West</h3>
-                        <p class="text-sm text-stone-500 leading-relaxed">268 Jalan Strachan, Off Jalan Ipoh, Sentul West, 51100 Kuala Lumpur</p>
-                    </div>
-                </template>
-                <template x-if="selectedBrand === 'MiMi Guksu'">
-                    <div @click="updateMap('Subang Parade Mall', 'MiMi Guksu')" class="p-8 hover:bg-stone-50 border-l-8 border-transparent hover:border-secondary cursor-pointer">
-                        <h3 class="text-2xl font-extrabold text-[#2d3432] mb-2 uppercase tracking-tight font-headline">Subang Parade</h3>
-                        <p class="text-sm text-stone-500 leading-relaxed">LG15, Subang Parade Mall, SS16, 47500 Subang Jaya, Selangor</p>
-                    </div>
-                </template>
-            </div>
-        </div>
-        <div class="flex-1 bg-stone-200 relative">
-            <iframe class="w-full h-full border-0" :src="currentMap" allowfullscreen="" loading="lazy"></iframe>
-        </div>
-    </section>
-</main>
+        <form class="space-y-10">
+            <section>
+                <label class="block text-xs font-bold uppercase tracking-widest mb-4">브랜드 <span class="text-red-600">*</span></label>
+                <div class="flex flex-wrap gap-2">
+                    <label class="cursor-pointer">
+                        <input type="checkbox" name="brand" class="brand-btn hidden" value="Oiso">
+                        <span class="px-6 py-2.5 border border-stone-300 text-xs font-bold transition-all hover:border-primary inline-block">Oiso</span>
+                    </label>
+                    <label class="cursor-pointer">
+                        <input type="checkbox" name="brand" class="brand-btn hidden" value="Neulbom">
+                        <span class="px-6 py-2.5 border border-stone-300 text-xs font-bold transition-all hover:border-primary inline-block">Neulbom Garden</span>
+                    </label>
+                    <label class="cursor-pointer">
+                        <input type="checkbox" name="brand" class="brand-btn hidden" value="MiMi">
+                        <span class="px-6 py-2.5 border border-stone-300 text-xs font-bold transition-all hover:border-primary inline-block">MiMi Guksu</span>
+                    </label>
+                </div>
+            </section>
 
-<footer class="bg-[#f2f4f2] text-[#496455] font-['Public_Sans'] text-sm leading-relaxed border-t border-stone-200/10 py-16 px-12">
-    <div class="max-w-screen-2xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 w-full">
-        <div class="md:col-span-1">
-            <div class="text-lg font-black text-[#2d3432] mb-6 uppercase tracking-tighter font-headline">K Food Solution</div>
-            <p class="text-stone-500 text-xs leading-loose">
-                Headquarters: 45 Sejong-daero, Jung-gu, Seoul<br/>
-                Business License: 202-81-00123<br/>
-                CEO: Kim Jin-soo
-            </p>
-        </div>
-        <div>
-            <h4 class="font-bold text-on-surface mb-6 uppercase tracking-widest text-[10px]">Contact Us</h4>
-            <p class="text-stone-500 text-xs leading-loose">
-                Inquiry: info@kfoodsolution.co.kr<br/>
-                Customer Center: 1588-1234<br/>
-                Franchise: partner@kfoodsolution.co.kr
-            </p>
-        </div>
-        <div>
-            <h4 class="font-bold text-on-surface mb-6 uppercase tracking-widest text-[10px]">Information</h4>
-            <ul class="space-y-4">
-                <li><a class="text-stone-500 hover:text-[#496455] transition-all underline decoration-1 underline-offset-4" href="#">Privacy Policy</a></li>
-                <li><a class="text-stone-500 hover:text-[#496455] transition-all underline decoration-1 underline-offset-4" href="#">Terms of Service</a></li>
-                <li><a class="text-stone-500 hover:text-[#496455] transition-all underline decoration-1 underline-offset-4" href="#">Sustainability Report</a></li>
-            </ul>
-        </div>
-        <div>
-            <h4 class="font-bold text-on-surface mb-6 uppercase tracking-widest text-[10px]">Social</h4>
-            <div class="flex gap-4">
-                <span class="material-symbols-outlined text-stone-400 cursor-pointer hover:text-primary transition-colors">public</span>
-                <span class="material-symbols-outlined text-stone-400 cursor-pointer hover:text-primary transition-colors">rss_feed</span>
-                <span class="material-symbols-outlined text-stone-400 cursor-pointer hover:text-primary transition-colors">share</span>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <section>
+                    <label class="block text-xs font-bold uppercase tracking-widest mb-2">이름 <span class="text-red-600">*</span></label>
+                    <input type="text" placeholder="성함을 입력해 주세요" required 
+                        class="w-full border border-stone-300 bg-white p-3 text-sm focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary">
+                </section>
+                <section>
+                    <label class="block text-xs font-bold uppercase tracking-widest mb-2">연락처 <span class="text-red-600">*</span></label>
+                    <input type="tel" placeholder="010-0000-0000" required 
+                        class="w-full border border-stone-300 bg-white p-3 text-sm focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary">
+                </section>
             </div>
-            <p class="mt-12 text-[10px] text-stone-400 uppercase tracking-widest">
-                © 2026 KFood Solution. All Rights Reserved.
-            </p>
-        </div>
+
+            <section>
+                <label class="block text-xs font-bold uppercase tracking-widest mb-4">점포 유형 <span class="text-red-600">*</span></label>
+                <div class="flex gap-8">
+                    <label class="flex items-center space-x-2 cursor-pointer group">
+                        <input type="radio" name="store_type" class="w-4 h-4 text-primary focus:ring-primary border-stone-300">
+                        <span class="text-sm text-stone-600 group-hover:text-black">본인 상가</span>
+                    </label>
+                    <label class="flex items-center space-x-2 cursor-pointer group">
+                        <input type="radio" name="store_type" class="w-4 h-4 text-primary focus:ring-primary border-stone-300">
+                        <span class="text-sm text-stone-600 group-hover:text-black">중개 법인</span>
+                    </label>
+                    <label class="flex items-center space-x-2 cursor-pointer group">
+                        <input type="radio" name="store_type" class="w-4 h-4 text-primary focus:ring-primary border-stone-300">
+                        <span class="text-sm text-stone-600 group-hover:text-black">기타</span>
+                    </label>
+                </div>
+            </section>
+
+            <section class="space-y-3">
+                <label class="block text-xs font-bold uppercase tracking-widest mb-2">점포 주소 <span class="text-red-600">*</span></label>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                    <select class="border border-stone-300 bg-white p-3 text-sm focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary">
+                        <option>시 / 도 선택</option>
+                        <option>서울특별시</option>
+                        <option>경기도</option>
+                    </select>
+                    <input type="text" placeholder="시/군/구" class="md:col-span-2 border border-stone-300 bg-white p-3 text-sm focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary">
+                </div>
+                <input type="text" placeholder="상세 주소를 입력해 주세요" 
+                    class="w-full border border-stone-300 bg-white p-3 text-sm focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary">
+            </section>
+
+            <section>
+                <label class="block text-xs font-bold uppercase tracking-widest mb-2">상권 정보 / 제안 내용</label>
+                <textarea rows="5" placeholder="제안하시는 상권의 특징이나 상세 내용을 입력해 주세요" 
+                    class="w-full border border-stone-300 bg-white p-3 text-sm focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary"></textarea>
+            </section>
+
+            <section>
+                <label class="block text-xs font-bold uppercase tracking-widest mb-2">파일 첨부</label>
+                <div class="border-2 border-dashed border-stone-300 p-8 text-center bg-white hover:bg-stone-50 transition-all group relative cursor-pointer">
+                    <input type="file" class="absolute inset-0 opacity-0 cursor-pointer" multiple>
+                    <span class="material-symbols-outlined text-stone-400 group-hover:text-primary text-4xl mb-2 transition-colors">upload_file</span>
+                    <p class="text-sm font-medium text-stone-600">파일 찾기 또는 드래그하여 업로드</p>
+                    <p class="text-[10px] text-stone-400 mt-2 tracking-tighter">최대 3개, 총 50MB 이하 (JPG, PNG, PDF, ZIP 등)</p>
+                </div>
+            </section>
+
+            <div class="pt-8">
+                <button type="submit" class="w-full bg-primary text-white py-5 font-bold uppercase tracking-[0.3em] text-xs hover:bg-[#3a5044] transition-all shadow-md">
+                    제안 완료
+                </button>
+            </div>
+        </form>
     </div>
-</footer>
+</main>
 
 </body>
 </html>
