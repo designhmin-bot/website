@@ -1,83 +1,141 @@
-<main class="pt-32 pb-20 bg-surface">
-  <div class="max-w-4xl mx-auto px-6 font-body text-on-surface">
-    <header class="mb-12 text-center reveal-on-scroll">
-      <h1 class="text-4xl font-extrabold tracking-tighter mb-4 uppercase font-headline text-primary">Store Proposal</h1>
-      <p class="text-on-surface-variant text-sm max-w-lg mx-auto">Please provide the details of your proposed store location for our brand expansion.</p>
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Store Proposal | KFood Solution</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Public+Sans:wght@300;400;500;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#496455',
+                        'surface': '#f9f9f7',
+                        'outline-variant': '#adb3b0',
+                    },
+                    fontFamily: {
+                        'headline': ['Manrope', 'sans-serif'],
+                        'body': ['Public Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Public Sans', sans-serif; }
+        h1, .font-headline { font-family: 'Manrope', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24; }
+        
+        /* Custom styles for the brand toggle buttons to match Bonif */
+        .brand-checkbox:checked + span {
+            background-color: #496455;
+            color: white;
+            border-color: #496455;
+        }
+    </style>
+</head>
+<body class="bg-surface text-[#2d3432] antialiased">
+
+    <header class="bg-[#f9f9f7]/80 backdrop-blur-md fixed top-0 z-50 w-full border-b border-gray-100">
+        <nav class="flex justify-between items-center w-full px-6 md:px-12 py-6 max-w-screen-2xl mx-auto">
+            <div class="text-xl font-extrabold tracking-tighter text-primary uppercase font-headline">
+                KFood Solution
+            </div>
+            <div class="hidden md:flex gap-10 items-center">
+                <a class="text-stone-500 hover:text-primary transition-colors font-headline font-bold tracking-tight" href="index.html">Home</a>
+                <a class="text-stone-500 hover:text-primary transition-colors font-headline font-bold tracking-tight" href="#">Brands</a>
+                <a class="text-primary font-bold font-headline tracking-tight" href="contact.html">Contact</a>
+            </div>
+        </nav>
     </header>
 
-    <form class="space-y-10 border-t border-surface-container-highest pt-12 reveal-on-scroll">
-      <section>
-        <label class="block text-[10px] font-bold uppercase tracking-[0.2em] mb-4 text-primary">Brands *</label>
-        <div class="flex flex-wrap gap-3">
-          <label class="cursor-pointer">
-            <input type="checkbox" class="hidden peer" name="brand" value="Oiso">
-            <span class="px-6 py-2 border border-outline-variant text-sm transition-all peer-checked:bg-primary peer-checked:text-white peer-checked:border-primary hover:border-primary inline-block">Oiso</span>
-          </label>
-          <label class="cursor-pointer">
-            <input type="checkbox" class="hidden peer" name="brand" value="Neulbom">
-            <span class="px-6 py-2 border border-outline-variant text-sm transition-all peer-checked:bg-primary peer-checked:text-white peer-checked:border-primary hover:border-primary inline-block">Neulbom Garden</span>
-          </label>
-          <label class="cursor-pointer">
-            <input type="checkbox" class="hidden peer" name="brand" value="MiMi">
-            <span class="px-6 py-2 border border-outline-variant text-sm transition-all peer-checked:bg-primary peer-checked:text-white peer-checked:border-primary hover:border-primary inline-block">MiMi Guksu</span>
-          </label>
+    <main class="pt-40 pb-20">
+        <div class="max-w-3xl mx-auto px-6">
+            <div class="border-b-2 border-black pb-8 mb-12">
+                <h1 class="text-3xl md:text-4xl font-extrabold tracking-tighter uppercase font-headline">Store Proposal</h1>
+                <p class="mt-4 text-stone-500 text-sm tracking-tight">Please provide details regarding your proposed location. Our team will review and contact you.</p>
+            </div>
+
+            <form action="#" class="space-y-12">
+                
+                <div>
+                    <label class="block text-[11px] font-bold uppercase tracking-[0.2em] mb-4">Brand <span class="text-red-500">*</span></label>
+                    <div class="flex flex-wrap gap-2">
+                        <label class="relative cursor-pointer">
+                            <input type="checkbox" class="brand-checkbox hidden" name="brand" value="Oiso">
+                            <span class="px-5 py-2.5 border border-gray-300 text-xs font-bold uppercase tracking-widest transition-all hover:border-primary inline-block">Oiso</span>
+                        </label>
+                        <label class="relative cursor-pointer">
+                            <input type="checkbox" class="brand-checkbox hidden" name="brand" value="Neulbom">
+                            <span class="px-5 py-2.5 border border-gray-300 text-xs font-bold uppercase tracking-widest transition-all hover:border-primary inline-block">Neulbom Garden</span>
+                        </label>
+                        <label class="relative cursor-pointer">
+                            <input type="checkbox" class="brand-checkbox hidden" name="brand" value="MiMi">
+                            <span class="px-5 py-2.5 border border-gray-300 text-xs font-bold uppercase tracking-widest transition-all hover:border-primary inline-block">MiMi Guksu</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-10">
+                    <div>
+                        <label class="block text-[11px] font-bold uppercase tracking-[0.2em] mb-2">Name <span class="text-red-500">*</span></label>
+                        <input type="text" placeholder="Full Name" class="w-full border-0 border-b border-gray-300 bg-transparent py-3 px-0 focus:ring-0 focus:border-black text-sm transition-colors">
+                    </div>
+                    <div>
+                        <label class="block text-[11px] font-bold uppercase tracking-[0.2em] mb-2">Contact Number <span class="text-red-500">*</span></label>
+                        <input type="tel" placeholder="010-0000-0000" class="w-full border-0 border-b border-gray-300 bg-transparent py-3 px-0 focus:ring-0 focus:border-black text-sm transition-colors">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-[11px] font-bold uppercase tracking-[0.2em] mb-4">Store Type <span class="text-red-500">*</span></label>
+                    <div class="flex gap-10">
+                        <label class="flex items-center space-x-3 cursor-pointer group">
+                            <input type="radio" name="store_type" class="w-4 h-4 border-gray-300 text-black focus:ring-black">
+                            <span class="text-sm font-medium text-stone-600 group-hover:text-black transition-colors">Owned Property</span>
+                        </label>
+                        <label class="flex items-center space-x-3 cursor-pointer group">
+                            <input type="radio" name="store_type" class="w-4 h-4 border-gray-300 text-black focus:ring-black">
+                            <span class="text-sm font-medium text-stone-600 group-hover:text-black transition-colors">Leased Property</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="space-y-4">
+                    <label class="block text-[11px] font-bold uppercase tracking-[0.2em] mb-2">Store Location <span class="text-red-500">*</span></label>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <select class="border-0 border-b border-gray-300 bg-transparent py-3 px-0 focus:ring-0 focus:border-black text-sm">
+                            <option>Select Province</option>
+                            <option>Seoul</option>
+                            <option>Gyeonggi</option>
+                        </select>
+                        <input type="text" placeholder="Street Address" class="md:col-span-2 border-0 border-b border-gray-300 bg-transparent py-3 px-0 focus:ring-0 focus:border-black text-sm">
+                    </div>
+                    <input type="text" placeholder="Detailed Address (Building, Unit)" class="w-full border-0 border-b border-gray-300 bg-transparent py-3 px-0 focus:ring-0 focus:border-black text-sm">
+                </div>
+
+                <div>
+                    <label class="block text-[11px] font-bold uppercase tracking-[0.2em] mb-4 text-primary">Attachments</label>
+                    <div class="border border-gray-200 p-10 text-center bg-white hover:bg-stone-50 transition-colors cursor-pointer relative">
+                        <input type="file" class="absolute inset-0 opacity-0 cursor-pointer">
+                        <span class="material-symbols-outlined text-primary text-4xl mb-2">cloud_upload</span>
+                        <p class="text-sm font-medium">Click to upload files or drag and drop</p>
+                        <p class="text-[10px] text-stone-400 mt-2 uppercase tracking-widest text-center">JPG, PNG, PDF (Max 50MB)</p>
+                    </div>
+                </div>
+
+                <div class="pt-6">
+                    <button type="submit" class="w-full bg-black text-white py-5 font-bold uppercase tracking-[0.4em] text-xs hover:bg-primary transition-all duration-500 shadow-xl">
+                        Submit Proposal
+                    </button>
+                </div>
+
+            </form>
         </div>
-      </section>
+    </main>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-        <section>
-          <label class="block text-[10px] font-bold uppercase tracking-[0.2em] mb-2 text-primary">Full Name *</label>
-          <input type="text" required class="w-full bg-transparent border-b border-outline-variant py-2 focus:outline-none focus:border-primary transition-colors text-sm" placeholder="e.g. Jin-soo Kim">
-        </section>
-        <section>
-          <label class="block text-[10px] font-bold uppercase tracking-[0.2em] mb-2 text-primary">Contact Number *</label>
-          <input type="tel" required class="w-full bg-transparent border-b border-outline-variant py-2 focus:outline-none focus:border-primary transition-colors text-sm" placeholder="010-0000-0000">
-        </section>
-      </div>
-
-      <section>
-        <label class="block text-[10px] font-bold uppercase tracking-[0.2em] mb-4 text-primary">Store Type *</label>
-        <div class="flex flex-wrap gap-8">
-          <label class="flex items-center space-x-3 cursor-pointer group">
-            <input type="radio" name="storeType" class="w-4 h-4 border-outline-variant text-primary focus:ring-primary">
-            <span class="text-sm text-on-surface-variant group-hover:text-primary transition-colors">Owned Property</span>
-          </label>
-          <label class="flex items-center space-x-3 cursor-pointer group">
-            <input type="radio" name="storeType" class="w-4 h-4 border-outline-variant text-primary focus:ring-primary">
-            <span class="text-sm text-on-surface-variant group-hover:text-primary transition-colors">Leased Property</span>
-          </label>
-        </div>
-      </section>
-
-      <section class="space-y-6">
-        <label class="block text-[10px] font-bold uppercase tracking-[0.2em] mb-2 text-primary">Store Location *</label>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <select class="bg-transparent border-b border-outline-variant py-2 focus:outline-none focus:border-primary text-sm">
-            <option>Select Province</option>
-            <option>Seoul</option>
-            <option>Gyeonggi</option>
-            <option>Busan</option>
-          </select>
-          <input type="text" placeholder="Street Address" class="md:col-span-2 bg-transparent border-b border-outline-variant py-2 focus:outline-none focus:border-primary text-sm">
-        </div>
-        <input type="text" placeholder="Detailed Address / Unit Number" class="w-full bg-transparent border-b border-outline-variant py-2 focus:outline-none focus:border-primary text-sm">
-      </section>
-
-      <section>
-        <label class="block text-[10px] font-bold uppercase tracking-[0.2em] mb-2 text-primary">Attachments (Store Photos/Plans)</label>
-        <div class="mt-2 border-2 border-dashed border-outline-variant hover:border-primary transition-all p-12 text-center group cursor-pointer relative">
-          <input type="file" class="absolute inset-0 opacity-0 cursor-pointer" multiple>
-          <span class="material-symbols-outlined text-4xl text-outline-variant group-hover:text-primary mb-2 transition-colors">cloud_upload</span>
-          <p class="text-sm text-on-surface-variant">Click or drag files to upload</p>
-          <p class="text-[10px] text-outline mt-1 uppercase tracking-widest">Max 50MB (JPG, PNG, PDF)</p>
-        </div>
-      </section>
-
-      <div class="pt-10">
-        <button type="submit" class="w-full bg-primary text-white py-5 uppercase tracking-[0.3em] text-xs font-bold hover:bg-primary-dim transition-all shadow-lg">
-          Submit Proposal
-        </button>
-      </div>
-    </form>
-  </div>
-</main>
+</body>
+</html>
