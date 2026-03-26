@@ -3,9 +3,9 @@
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>Brand Intro | KFood Solution</title>
+    <title>Menji | KFood Solution</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Public+Sans:wght@300;400;500;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@700&family=Manrope:wght@400;600;700;800&family=Public+Sans:wght@300;400;500;700&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
     <script id="tailwind-config">
         tailwind.config = {
@@ -17,12 +17,12 @@
                         "surface": "#f9f9f7",
                         "on-surface": "#2d3432",
                         "tertiary": "#9b452b",
-                        "outline": "#767c79"
                     },
                     fontFamily: {
                         "headline": ["Manrope"],
-                        "body": ["Public Sans"]
-                    }
+                        "body": ["Public Sans"],
+                        "serif-kr": ["Noto Serif KR"]
+                    },
                 },
             },
         }
@@ -30,20 +30,24 @@
     <style>
         body { font-family: 'Public Sans', sans-serif; }
         h1, h2, h3, .font-headline { font-family: 'Manrope', sans-serif; }
-        .reveal-on-scroll {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 1.2s cubic-bezier(0.22, 1, 0.36, 1), transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+        .font-serif { font-family: 'Noto Serif KR', serif; }
+        
+        @keyframes fadeUpFloating {
+            0% { opacity: 0; transform: translateY(40px); }
+            100% { opacity: 1; transform: translateY(0); }
         }
-        .reveal-on-scroll.is-visible {
-            opacity: 1;
-            transform: translateY(0);
+        .animate-fade-up-floating {
+            animation: fadeUpFloating 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        .carousel-track {
+            display: flex;
+            transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
         }
     </style>
 </head>
 <body class="bg-surface text-on-surface antialiased">
 
-<header class="bg-[#f9f9f7]/80 backdrop-blur-md fixed top-0 z-50 w-full border-b border-stone-200/20">
+<header class="bg-[#f9f9f7]/80 backdrop-blur-md fixed top-0 z-50 w-full">
     <nav class="flex justify-between items-center w-full px-6 md:px-12 py-6 max-w-screen-2xl mx-auto">
         <div class="text-xl font-extrabold tracking-tighter text-[#496455] uppercase font-headline">
             KFood Solution
@@ -60,87 +64,69 @@
 </header>
 
 <main class="pt-24">
-    <section class="relative h-[60vh] flex flex-col items-center justify-center bg-white border-b border-stone-100">
-        <div class="text-center px-4 reveal-on-scroll">
-            <span class="text-[10px] tracking-[0.4em] text-stone-400 uppercase mb-4 block font-bold">Brand Philosophy</span>
-            <h1 class="text-4xl md:text-6xl font-extrabold tracking-tighter leading-tight text-primary mb-8">
-                가장 속 편한 행복, <br/> 
-                <span class="text-tertiary">KFood Solution</span>
-            </h1>
-            <p class="text-base md:text-lg text-stone-500 max-w-2xl mx-auto font-light leading-relaxed">
-                자연의 신선한 재료에 정성을 담는다는 원칙. <br />
-                행복과 건강은 기본에서 시작하기에 한식의 '본'(本)을 지킵니다.
-            </p>
-        </div>
-    </section>
-
-    <section class="py-32 px-6 max-w-7xl mx-auto">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-16 text-center">
-            <div class="reveal-on-scroll" style="transition-delay: 100ms;">
-                <div class="text-tertiary text-[10px] font-black tracking-[0.3em] uppercase mb-8">Division 01</div>
-                <h3 class="text-2xl font-bold font-headline mb-6 tracking-tight">매일 아침 짓는 정성</h3>
-                <div class="w-10 h-[1px] bg-stone-200 mx-auto mb-8"></div>
-                <p class="text-stone-500 text-sm leading-loose font-light">
-                    오늘 쓸 만큼의 신선한 재료를 <br> 깨끗이 손질하고 정성을 다해 준비합니다.
-                </p>
-            </div>
-            <div class="reveal-on-scroll" style="transition-delay: 300ms;">
-                <div class="text-tertiary text-[10px] font-black tracking-[0.3em] uppercase mb-8">Division 02</div>
-                <h3 class="text-2xl font-bold font-headline mb-6 tracking-tight">자연의 신선한 재료</h3>
-                <div class="w-10 h-[1px] bg-stone-200 mx-auto mb-8"></div>
-                <p class="text-stone-500 text-sm leading-loose font-light">
-                    몸과 마음, 속 깊은 곳까지 <br> 온기가 닿을 수 있는 재료만을 엄선합니다.
-                </p>
-            </div>
-            <div class="reveal-on-scroll" style="transition-delay: 500ms;">
-                <div class="text-tertiary text-[10px] font-black tracking-[0.3em] uppercase mb-8">Division 03</div>
-                <h3 class="text-2xl font-bold font-headline mb-6 tracking-tight">Pork-Free 원칙</h3>
-                <div class="w-10 h-[1px] bg-stone-200 mx-auto mb-8"></div>
-                <p class="text-stone-500 text-sm leading-loose font-light">
-                    누구나 안심하고 즐길 수 있도록 <br> 엄격한 기준으로 맛의 본질을 지킵니다.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <section class="bg-[#f2f4f2]/50 py-32 px-6 border-y border-stone-200/20">
-        <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-20">
-            <div class="flex-1 reveal-on-scroll">
-                <h2 class="text-4xl font-extrabold tracking-tighter mb-12 leading-tight">
-                    한 사람만을 위한, <br><span class="text-primary border-b-2 border-tertiary/30">진심 어린 정성</span>
-                </h2>
-                <ul class="space-y-10">
-                    <li class="flex items-start gap-6">
-                        <span class="text-tertiary font-black text-xl font-headline">01</span>
-                        <div>
-                            <h4 class="font-bold text-on-surface text-lg font-headline">맞춤형 조리 원칙</h4>
-                            <p class="text-stone-500 text-sm mt-2 leading-relaxed">고객의 니즈에 맞춰 염도와 당도를 조절하여 최상의 식사 경험을 제공합니다.</p>
-                        </div>
-                    </li>
-                    <li class="flex items-start gap-6">
-                        <span class="text-tertiary font-black text-xl font-headline">02</span>
-                        <div>
-                            <h4 class="font-bold text-on-surface text-lg font-headline">철저한 위생 관리</h4>
-                            <p class="text-stone-500 text-sm mt-2 leading-relaxed">모든 조리 과정은 투명하고 정직하게 관리되어 신뢰를 더합니다.</p>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-            <div class="flex-1 w-full bg-white aspect-square shadow-sm border border-stone-100 flex items-center justify-center p-12 reveal-on-scroll">
-                <div class="text-center">
-                    <span class="material-symbols-outlined text-6xl text-stone-200 mb-4">restaurant</span>
-                    <p class="text-[10px] tracking-[0.3em] text-stone-300 uppercase font-bold">Brand Visual Area</p>
+    <section class="relative px-8 md:px-24 mb-32">
+        <div class="aspect-[9/10] w-full max-w-[900px] mx-auto bg-[#f9f9f7] overflow-hidden relative flex flex-col items-center pt-16 md:pt-24 shadow-sm border border-stone-100">
+            <div class="z-10 text-center mb-12">
+                <div class="mb-8 flex justify-center">
+                    <img alt="Menji Brand Logo" class="h-16 md:h-20 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/ADBb0uhlTUNMUOuZG0iu8I6DdHVAM-5jVo78-QgkzbSlwE8BNqfVSpVVenvtvR68jHAajGiOAJGjv6J10VJlgV-aXKXZi9GbZf4uRe5UIXpF830m4ue2RmceS83oZJgkZwDGOiMF3SBEJVABieXKo4snZXN-mS1CXdsCgiif6HiOB8kZf-FBx3KGD5xvx3OjVYrDK6_1iMGzgTkZAcPXFl3aMMV5OpsPokOgdsCUjMFkPj6GRIlYQ0wgmnPAWsk_00QjJdcfB7Tsi9JGEJY"/>
+                </div>
+                <p class="text-lg md:text-xl font-medium text-[#2d3432] mb-1">가장 속 편한 행복</p>
+                <h1 class="text-6xl md:text-7xl font-serif font-bold text-[#9f403d] mb-10 tracking-tight">멘지</h1>
+                <div class="space-y-1 text-[#2d3432]/80 text-sm md:text-base font-medium leading-relaxed max-w-xl mx-auto mb-6">
+                    <p>자연의 신선한 재료에 <span class="text-[#9f403d]">정성을 담는다는 원칙.</span></p>
+                    <p>행복과 건강은 기본에서 시작하기에</p>
+                    <p>‘본’(本)을 지키고 키워가는 라멘을 만듭니다.</p>
                 </div>
             </div>
+            <div class="relative w-full flex-grow flex items-start justify-center">
+                <img alt="Menji Tori Paitan Ramen" class="w-[80%] md:w-[65%] object-contain drop-shadow-2xl opacity-0 animate-fade-up-floating" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkNGObL3O-eiybRcbNosvVDrXfxmh2mRSHEDgguyILhu5uaHWUZrcNU402yEI4Y-6nqWnejeO9TD-m3S1_2xmfQzbYY2yI-d2Y1K7eaMAEjnsNBKw-k1baxEzeNGnwpceA8XBi11B5oBUYq7vDC7e3-VSmMryANlHe6ZHIAHWFzQJqFFudb39fNYYPpjhhEgFgXli7dXx9jCTeJIeZwm5FMmi_jxCSOn5ZN9UN42itetq_IrujUcv6GD221619cOLqCdYRMQlS6W5f"/>
+            </div>
+        </div>
+    </section>
+
+    <section class="grid grid-cols-1 md:grid-cols-3 w-full">
+        <div class="relative overflow-hidden group aspect-[3/6.4] md:aspect-[2/4.8]">
+            <img alt="Noodle Craft" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_6-Kh2lFI1C1kaqtaZajYrCmG5eT44CFqn240pY5F6LIlpVo4wsZHusiRzDEIk3ePYplU2or1AdeTjiK-EEH-v9MoDejHp8zblLjgHS86w3wNS475Ih9OClIZRRvemCJUp9b1z1aneC-yhxdcqdU32CjtdTr4iZLrjX6AKVpFgkrbYQV-Ne5rw3DJKz1658wKLjCftjt7__rdN5DSllR-4nB8iaIg8yEQKEEf0Wc1Y3aShdovuQ2Mgz3DljDfHL-Madx9NSDKbS3x"/>
+            <div class="absolute inset-0 bg-black/30 group-hover:bg-[#E2A127]/60 transition-colors duration-700 flex flex-col items-center justify-center text-center p-8">
+                <h3 class="text-white text-3xl md:text-5xl font-extrabold font-headline mb-1">면 [麵]</h3>
+                <p class="text-white text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500 mt-4">8번 압연하고 숙성한 자가제면 생면</p>
+            </div>
+        </div>
+        <div class="relative overflow-hidden group aspect-[3/6.4] md:aspect-[2/4.8]">
+            <img alt="Broth" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuApSYhot2OYN47UQfO7dIpS0nIA5pkrZaAgG1jHdMw6LksNr3htNiPjn75VFmzEz_tVaZn8fsROgBf1XwlN5SeIB76oIgztgXNL4d7QrBPG_zyMZ6TQHSCQMfmPWIIzatVFz76QLfKRSyNV_EKxT6lPMrLqBzIY0oyoFBYqafCRxS7NTJAQ9rWYA7rX59cSY2TEBCyZRsgLTR1BY3Ps0j8y_22eEra0VLJnScIhTRD57U5Q6yOwgGizlLRxIbckCQkqNlcfMZVXx-kC"/>
+            <div class="absolute inset-0 bg-black/30 group-hover:bg-[#496455]/70 transition-colors duration-700 flex flex-col items-center justify-center text-center p-8">
+                <h3 class="text-white text-3xl md:text-5xl font-extrabold font-headline mb-1">육수</h3>
+                <p class="text-white text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500 mt-4">6시간 이상 진하게 우려낸 닭 육수</p>
+            </div>
+        </div>
+        <div class="relative overflow-hidden group aspect-[3/6.4] md:aspect-[2/4.8]">
+            <img alt="Chashu" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuALDOPYb8-X_qDBvo2igAPXCT6yrfB4mKTUVBzZtIyKLNw584A3hGcmcgTBVEgY9-3RxSGjBC6J0PpzHTquFQCB7A-8xr2x09rtXBBDif2-DFKiTSmBsGOaCoQKZgIdxRx34F3BkiOXUX4bJEGCUcTyyBjenkfXwEBoKEiFFKf5aoPnFi3vISvLO9jTOKclvTEmRxlxTFvbiRDgacXbQ8Ph1PSrjXVtaFj6PoRyXCjwtvc1IOClg6UazjDmZzpQz1jOBfVUfdHmdGEI"/>
+            <div class="absolute inset-0 bg-black/30 group-hover:bg-[#2a2826]/80 transition-colors duration-700 flex flex-col items-center justify-center text-center p-8">
+                <h3 class="text-white text-3xl md:text-5xl font-extrabold font-headline mb-1">차슈</h3>
+                <p class="text-white text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500 mt-4">부드러운 목살과 수비드 닭가슴살</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="relative w-full overflow-hidden bg-surface" id="brand-carousel">
+        <div class="carousel-track h-[500px] md:h-[700px]" id="carouselTrack">
+            <div class="min-w-full h-full"><img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/ADBb0ui6LIQO9BK4ON2ls5mg9hSZsvjyIAQ9FalKCV_Y1P25SYioIbzXaEVj0Kj2Ei4-pxTBqPdCWq2ikRU_MFujqkMOgmiqFhVRdqGAXCYMHEXnFBPpcB2XDEsAJOjpBkSsuEznz3hdeBk_wc62t9pz6TK1msvZCkfuOKHD3f-nXWP5EpljHi2t8XdrzqfJm3CRj5l3bIHpRGZ3MaSO_W3Mf735TNeg9yHc-632HH-KgdKMXnNYN2SE1pU3vwM5qgy-XC7KjUQCxPMQQz0"/></div>
+            <div class="min-w-full h-full"><img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/ADBb0uj7Kw_dCNl3FEfeDj1t1ANO18EDpd6xKiOtoTCj1AngI5RyB5CLb64DryANoCMqrN3BEjSRjQBBdvcLdN2Q5RtJDPraL5Um5FTlSKkoehiUz24O9HS-SCNwio8caUBTQ9ZRe_pjED64gurXXBjr7FSuVsToHLo1JhvcotChg8NUIE_xwQDb2AZx6Y1Au7EyfVZWOWjtESw7qWsno1_HVPjUaQ59ORwW9ZgiYPoTn9ZKJ_I5p21gzClCxjlKWnVwc18GdnwknXHOAg"/></div>
+            <div class="min-w-full h-full"><img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCX2lHAR78OZ_aeaswFUI8sjDQhKHoO-adzJ6XnXHpAelebEf2WC6gNlRVCLlzYJy2oBgCdP3tJLgGSF-olKL8mI9z_UlWFUh76cidUKlavFMpbT0v6N83EpcJDpR55vJ-KD6KpGsijzr0ajjuYhZ0003SeZTKwuXI4DRc0PjfQUT4W_wHo5IWI9jsFKwPPn4kp-2Ur-vVzcOFNgtQD_977Ojoh-Yg4RXAaR2Ufx2uAK2zTnkKaelP_4KqZ_xrrwbcwLmiWNjInEBCp"/></div>
+        </div>
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex space-x-3">
+            <div class="w-12 h-[2px] bg-white"></div>
+            <div class="w-12 h-[2px] bg-white/30"></div>
+            <div class="w-12 h-[2px] bg-white/30"></div>
         </div>
     </section>
 </main>
 
-<footer class="bg-[#f2f4f2] text-[#496455] text-sm leading-relaxed border-t border-stone-200/10 py-20 px-12">
+<footer class="bg-[#f2f4f2] text-[#496455] font-['Public_Sans'] text-sm leading-relaxed border-t border-stone-200/10 py-16 px-12">
     <div class="max-w-screen-2xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 w-full">
         <div class="md:col-span-1">
             <div class="text-lg font-black text-[#2d3432] mb-6 uppercase tracking-tighter font-headline">KFood Solution</div>
-            <p class="text-stone-500 text-[11px] leading-loose">
+            <p class="text-stone-500 text-xs leading-loose">
                 Headquarters: 45 Sejong-daero, Jung-gu, Seoul<br/>
                 Business License: 202-81-00123<br/>
                 CEO: Kim Jin-soo
@@ -148,7 +134,7 @@
         </div>
         <div>
             <h4 class="font-bold text-on-surface mb-6 uppercase tracking-widest text-[10px] font-headline">Contact Us</h4>
-            <p class="text-stone-500 text-[11px] leading-loose">
+            <p class="text-stone-500 text-xs leading-loose">
                 Inquiry: info@kfoodsolution.co.kr<br/>
                 Customer Center: 1588-1234<br/>
                 Franchise: partner@kfoodsolution.co.kr
@@ -156,9 +142,9 @@
         </div>
         <div>
             <h4 class="font-bold text-on-surface mb-6 uppercase tracking-widest text-[10px] font-headline">Information</h4>
-            <ul class="space-y-3">
-                <li><a class="text-stone-500 hover:text-[#496455] transition-all text-[11px]" href="#">Privacy Policy</a></li>
-                <li><a class="text-stone-500 hover:text-[#496455] transition-all text-[11px]" href="#">Terms of Service</a></li>
+            <ul class="space-y-4">
+                <li><a class="text-stone-500 hover:text-[#496455] transition-all underline underline-offset-4" href="#">Privacy Policy</a></li>
+                <li><a class="text-stone-500 hover:text-[#496455] transition-all underline underline-offset-4" href="#">Terms of Service</a></li>
             </ul>
         </div>
         <div>
@@ -175,17 +161,12 @@
 </footer>
 
 <script>
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('is-visible');
-            }
-        });
-    }, { threshold: 0.1 });
-
-    document.querySelectorAll('.reveal-on-scroll').forEach((el) => {
-        observer.observe(el);
-    });
+    let currentSlide = 0;
+    const track = document.getElementById('carouselTrack');
+    setInterval(() => {
+        currentSlide = (currentSlide + 1) % 3;
+        if(track) track.style.transform = `translateX(-${currentSlide * 100}%)`;
+    }, 5000);
 </script>
 </body>
 </html>
