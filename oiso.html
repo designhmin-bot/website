@@ -1,130 +1,103 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Oiso | K Food Solution</title>
+    <title>Brand Intro | Replica</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&display=swap');
-        
-        :root {
-            --primary: #1a1a1a;
-            --accent: #E11D48;
-        }
-
-        html { scroll-behavior: smooth; }
-        body { font-family: 'Inter', sans-serif; background-color: #ffffff; color: var(--primary); }
-        h1, h2, h3, .font-serif { font-family: 'Playfair Display', serif; }
-
-        .sticky-nav {
-            backdrop-filter: blur(10px);
-            background-color: rgba(255, 255, 255, 0.9);
-        }
+        body { font-family: 'Noto Sans KR', sans-serif; }
     </style>
 </head>
-<body class="antialiased">
+<body class="bg-white text-gray-900">
 
-    <nav class="fixed w-full z-50 transition-all duration-300 py-4 px-6 md:px-12 flex justify-between items-center sticky-nav border-b border-gray-100">
-        <a href="index.html" class="text-2xl font-bold tracking-tighter uppercase font-serif">
-            K FOOD <span class="text-[#E11D48]">SOLUTION</span>
-        </a>
-        <div class="hidden md:flex space-x-8 items-center font-medium text-sm tracking-widest uppercase">
-            <a href="index.html#philosophy" class="hover:text-[#E11D48] transition-colors">Our Philosophy</a>
-            <a href="index.html#brands" class="hover:text-[#E11D48] transition-colors">Our Brands</a>
-            <a href="mailto:info@kfoodsolution.com" class="bg-black text-white px-6 py-2 rounded-full hover:bg-[#E11D48] transition-colors">Enquire Now</a>
+    <section class="relative h-[60vh] flex flex-col items-center justify-center bg-[#f8f9fa] border-b border-gray-100">
+        <div class="text-center px-4">
+            <span class="text-xs tracking-[0.2em] text-gray-400 uppercase mb-4 block font-medium">BRAND PHILOSOPHY</span>
+            <h1 class="text-4xl md:text-5xl font-light leading-tight mb-6">
+                가장 속 편한 행복, <br /> 
+                <span class="font-semibold text-[#634230]">본죽</span>
+            </h1>
+            <p class="text-lg text-gray-500 max-w-2xl mx-auto font-light leading-relaxed">
+                자연의 신선한 재료에 정성을 담는다는 원칙. <br />
+                행복과 건강은 기본에서 시작하기에 '본'(本)을 지키고 키워갑니다.
+            </p>
         </div>
-    </nav>
+    </section>
 
-    <header class="relative h-[60vh] flex items-center justify-center overflow-hidden">
-        <div class="absolute inset-0 z-0">
-            <img src="https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?auto=format&fit=crop&q=80&w=2000" 
-                 alt="Oiso Premium BBQ" class="w-full h-full object-cover">
-            <div class="absolute inset-0 bg-black opacity-50"></div>
-        </div>
-        <div class="relative z-10 text-center text-white px-4 mt-20">
-            <div class="bg-[#E11D48] text-[10px] font-bold uppercase tracking-[0.3em] px-4 py-2 inline-block mb-6 rounded">Premium BBQ Concept</div>
-            <h1 class="text-5xl md:text-7xl font-serif italic mb-4">Oiso</h1>
-            <p class="text-lg font-light tracking-widest uppercase">The Pinnacle of Pork-Free Grilling</p>
-        </div>
-    </header>
-
-    <section class="py-24 px-6 md:px-12">
-        <div class="max-w-5xl mx-auto">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
-                <div>
-                    <h2 class="text-3xl font-serif mb-6">Excellence in <span class="text-[#E11D48]">Every Cut</span></h2>
-                    <p class="text-gray-600 mb-6 leading-relaxed">
-                        Oiso is the group’s flagship BBQ destination, where the art of the Korean grill meets world-class beef selection. We have meticulously crafted a menu that celebrates the rich, smoky flavors of authentic BBQ without the use of pork, utilizing high-grade Wagyu and Black Angus cuts.
-                    </p>
-                    <div class="space-y-4">
-                        <div class="flex items-center gap-4">
-                            <div class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-[#E11D48]">
-                                <i class="fas fa-fire-burner"></i>
-                            </div>
-                            <span class="font-medium">Table-side Professional Grilling</span>
-                        </div>
-                        <div class="flex items-center gap-4">
-                            <div class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-[#E11D48]">
-                                <i class="fas fa-award"></i>
-                            </div>
-                            <span class="font-medium">Halal-Sourced Premium Beef</span>
-                        </div>
-                        <div class="flex items-center gap-4">
-                            <div class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-[#E11D48]">
-                                <i class="fas fa-gem"></i>
-                            </div>
-                            <span class="font-medium">Luxury Flagship Dining Experience</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="bg-gray-50 p-8 rounded-2xl border border-gray-100">
-                    <h3 class="text-xl font-serif mb-6 italic">Franchise Specs</h3>
-                    <ul class="space-y-6 text-sm uppercase tracking-wider">
-                        <li class="flex justify-between border-b pb-2"><span>Format</span> <span class="font-bold">Premium Dining</span></li>
-                        <li class="flex justify-between border-b pb-2"><span>Space Required</span> <span class="font-bold">1,800 - 3,000 sqft</span></li>
-                        <li class="flex justify-between border-b pb-2"><span>Ideal Location</span> <span class="font-bold text-right">Luxury Malls / Flagships</span></li>
-                        <li class="flex justify-between"><span>Investment Tier</span> <span class="font-bold">Tier A</span></li>
-                    </ul>
-                    <a href="mailto:info@kfoodsolution.com?subject=Inquiry: Oiso" class="block w-full text-center bg-black text-white mt-8 py-4 rounded-lg hover:bg-[#E11D48] transition-all uppercase text-xs font-bold tracking-widest">Request Pitch Deck</a>
-                </div>
+    <section class="py-24 px-6 max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-16 text-center">
+            <div class="group">
+                <div class="text-[#634230] text-xs font-bold tracking-widest uppercase mb-6 opacity-60">DIVISION 01</div>
+                <h3 class="text-2xl font-medium mb-4">매일 아침 짓는 죽밥</h3>
+                <div class="w-8 h-[1px] bg-gray-300 mx-auto mb-6"></div>
+                <p class="text-gray-500 text-sm leading-relaxed font-light">
+                    오늘 쓸 만큼의 재료를 깨끗이 손질하고 <br> 정성을 다해 준비합니다.
+                </p>
+            </div>
+            <div class="group">
+                <div class="text-[#634230] text-xs font-bold tracking-widest uppercase mb-6 opacity-60">DIVISION 02</div>
+                <h3 class="text-2xl font-medium mb-4">자연의 신선한 재료</h3>
+                <div class="w-8 h-[1px] bg-gray-300 mx-auto mb-6"></div>
+                <p class="text-gray-500 text-sm leading-relaxed font-light">
+                    몸과 마음, 속 깊은 곳까지 <br> 온기가 닿을 수 있는 재료를 엄선합니다.
+                </p>
+            </div>
+            <div class="group">
+                <div class="text-[#634230] text-xs font-bold tracking-widest uppercase mb-6 opacity-60">DIVISION 03</div>
+                <h3 class="text-2xl font-medium mb-4">한 그릇의 정성</h3>
+                <div class="w-8 h-[1px] bg-gray-300 mx-auto mb-6"></div>
+                <p class="text-gray-500 text-sm leading-relaxed font-light">
+                    일상 속 순간하나하나 어루만져줄 수 있도록 <br> 뭉근히 끓여냅니다.
+                </p>
             </div>
         </div>
     </section>
 
-    <footer class="py-16 px-6 md:px-12 border-t border-gray-100 bg-white">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 text-sm">
-            <div>
-                <div class="text-xl font-bold tracking-tighter uppercase font-serif mb-6">K FOOD <span class="text-[#E11D48]">SOLUTION</span></div>
-                <p class="text-gray-400">Authentic. Inclusive. Pork-Free.</p>
-            </div>
-            <div>
-                <h4 class="font-bold uppercase tracking-widest mb-6 text-xs">Explore</h4>
-                <ul class="text-gray-500 space-y-4">
-                    <li><a href="index.html#philosophy">Our Philosophy</a></li>
-                    <li><a href="index.html#brands">Brands</a></li>
+    <section class="bg-[#fcfaf7] py-24 px-6 border-y border-gray-100">
+        <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-20">
+            <div class="flex-1">
+                <h2 class="text-3xl font-light mb-10 leading-snug">
+                    한 사람만을 위한, <br><span class="font-bold border-b-2 border-[#634230]">정성</span>
+                </h2>
+                <ul class="space-y-8">
+                    <li class="flex items-start gap-5">
+                        <span class="text-[#634230] font-bold text-lg">01</span>
+                        <div>
+                            <h4 class="font-medium text-gray-800">포장용기 선택</h4>
+                            <p class="text-gray-500 text-sm mt-1">양이 많을 땐 먹기 좋게 나눠서 보관하세요.</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start gap-5">
+                        <span class="text-[#634230] font-bold text-lg">02</span>
+                        <div>
+                            <h4 class="font-medium text-gray-800">갈기정도 선택</h4>
+                            <p class="text-gray-500 text-sm mt-1">씹기 힘들 땐 부드럽게 갈아서 소화하기 편하게.</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start gap-5">
+                        <span class="text-[#634230] font-bold text-lg">03</span>
+                        <div>
+                            <h4 class="font-medium text-gray-800">염도·당도 선택</h4>
+                            <p class="text-gray-500 text-sm mt-1">건강관리가 필요할 땐 입맛에 맞춰 조절 가능합니다.</p>
+                        </div>
+                    </li>
                 </ul>
             </div>
+            <div class="flex-1 w-full bg-white p-20 shadow-sm border border-gray-100 flex items-center justify-center italic text-gray-300 tracking-widest">
+                VISUAL PLACEHOLDER
+            </div>
         </div>
-        <div class="max-w-7xl mx-auto mt-12 pt-8 border-t border-gray-50 text-gray-400 text-xs text-center">
-            &copy; 2026 K Food Solution Group. All rights reserved.
+    </section>
+
+    <footer class="py-24 text-center">
+        <p class="text-sm text-gray-400 mb-8 tracking-widest uppercase">Explore More</p>
+        <div class="flex flex-col sm:flex-row justify-center gap-4 px-6">
+            <a href="#" class="px-12 py-4 border border-gray-200 text-xs font-bold tracking-widest hover:bg-gray-50 transition-all uppercase">Menu Introduction</a>
+            <a href="#" class="px-12 py-4 bg-[#634230] text-white text-xs font-bold tracking-widest hover:bg-[#4a3124] transition-all uppercase">Find a Store</a>
         </div>
     </footer>
-
-    <script>
-        window.addEventListener('scroll', function() {
-            const nav = document.querySelector('nav');
-            if (window.scrollY > 50) {
-                nav.classList.add('py-2', 'shadow-md');
-                nav.classList.remove('py-4');
-            } else {
-                nav.classList.remove('py-2', 'shadow-md');
-                nav.classList.add('py-4');
-            }
-        });
-    </script>
 
 </body>
 </html>
