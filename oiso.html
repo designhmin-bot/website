@@ -31,6 +31,9 @@
     
     .mengi_main_btn { transition: all 0.3s ease; }
     .mengi_main_btn:hover { background: #002D5E; color: white; border-color: #002D5E; }
+
+    /* Slider Specific Transitions */
+    #main-slider-track { transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1); }
   </style>
 </head>
 <body class="bg-white text-gray-900 antialiased">
@@ -112,42 +115,6 @@
         </div>
     </section>
 
-    <section class="flex justify-center bg-[#F9F9F7] py-12">
-        <div style="width: 1280px; position: relative; background: #F9F9F7; overflow: hidden; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex">
-          <div style="width: 5120px; height: 700px; justify-content: flex-start; align-items: flex-start; display: inline-flex">
-            <div style="align-self: stretch; min-width: 1280px; position: relative; flex-direction: column; justify-content: center; align-items: flex-start; display: inline-flex">
-              <div style="align-self: stretch; flex: 1 1 0; position: relative"></div>
-              <div style="width: 1280px; height: 700px; left: 0px; top: 0px; position: absolute; background: rgba(0, 0, 0, 0.10)"></div>
-            </div>
-            <div style="width: 1280px; align-self: stretch; min-width: 1280px; position: relative"></div>
-            <div style="width: 1280px; align-self: stretch; min-width: 1280px; position: relative"></div>
-            <div style="width: 1280px; align-self: stretch; min-width: 1280px; position: relative"></div>
-          </div>
-          <div style="width: 48px; height: 48px; left: 32px; top: 326px; position: absolute; border-radius: 9999px; outline: 1px rgba(255, 255, 255, 0.40) solid; outline-offset: -1px; backdrop-filter: blur(6px); justify-content: center; align-items: center; display: inline-flex">
-            <div style="flex-direction: column; justify-content: flex-start; align-items: center; display: inline-flex">
-              <div style="width: 6.71px; height: 11.31px; background: white"></div>
-            </div>
-          </div>
-          <div style="width: 48px; height: 48px; left: 1200px; top: 326px; position: absolute; border-radius: 9999px; outline: 1px rgba(255, 255, 255, 0.40) solid; outline-offset: -1px; backdrop-filter: blur(6px); justify-content: center; align-items: center; display: inline-flex">
-            <div style="flex-direction: column; justify-content: flex-start; align-items: center; display: inline-flex">
-              <div style="width: 6.71px; height: 11.31px; background: white"></div>
-            </div>
-          </div>
-          <div style="width: 228px; left: 526px; top: 666px; position: absolute; justify-content: flex-start; align-items: flex-start; display: inline-flex">
-            <div style="width: 48px; height: 2px; background: white"></div>
-            <div style="width: 60px; height: 2px; padding-left: 12px; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex">
-              <div style="width: 48px; height: 2px; background: rgba(255, 255, 255, 0.30)"></div>
-            </div>
-            <div style="width: 60px; height: 2px; padding-left: 12px; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex">
-              <div style="width: 48px; height: 2px; background: rgba(255, 255, 255, 0.30)"></div>
-            </div>
-            <div style="width: 60px; height: 2px; padding-left: 12px; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex">
-              <div style="width: 48px; height: 2px; background: rgba(255, 255, 255, 0.30)"></div>
-            </div>
-          </div>
-        </div>
-    </section>
-
     <section class="w-full bg-white">
         <div class="grid grid-cols-1 md:grid-cols-3 w-full h-auto">
             <div class="relative h-[450px] md:h-[600px] overflow-hidden group">
@@ -180,6 +147,45 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <section class="w-full bg-[#F9F9F7] flex justify-center overflow-hidden">
+        <div style="width: 100%; position: relative; background: #F9F9F7; overflow: hidden; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: flex">
+          <div id="main-slider-track" style="width: 400%; height: 700px; justify-content: flex-start; align-items: flex-start; display: flex">
+            <div style="width: 25%; align-self: stretch; position: relative; background-image: url('https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&q=80&w=2000'); background-size: cover; background-position: center;">
+              <div style="width: 100%; height: 700px; left: 0px; top: 0px; position: absolute; background: rgba(0, 0, 0, 0.20)"></div>
+            </div>
+            <div style="width: 25%; align-self: stretch; position: relative; background-image: url('https://images.unsplash.com/photo-1541529086526-db283c563270?auto=format&fit=crop&q=80&w=2000'); background-size: cover; background-position: center;">
+              <div style="width: 100%; height: 700px; left: 0px; top: 0px; position: absolute; background: rgba(0, 0, 0, 0.20)"></div>
+            </div>
+            <div style="width: 25%; align-self: stretch; position: relative; background-image: url('https://images.unsplash.com/photo-1464306208223-e0b4495a5553?auto=format&fit=crop&q=80&w=2000'); background-size: cover; background-position: center;">
+              <div style="width: 100%; height: 700px; left: 0px; top: 0px; position: absolute; background: rgba(0, 0, 0, 0.20)"></div>
+            </div>
+            <div style="width: 25%; align-self: stretch; position: relative; background-image: url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&q=80&w=2000'); background-size: cover; background-position: center;">
+              <div style="width: 100%; height: 700px; left: 0px; top: 0px; position: absolute; background: rgba(0, 0, 0, 0.20)"></div>
+            </div>
+          </div>
+          
+          <div id="prev-btn" style="cursor: pointer; width: 48px; height: 48px; left: 32px; top: 326px; position: absolute; border-radius: 9999px; outline: 1px rgba(255, 255, 255, 0.40) solid; outline-offset: -1px; backdrop-filter: blur(6px); justify-content: center; align-items: center; display: flex">
+            <i class="fa-solid fa-chevron-left text-white text-sm"></i>
+          </div>
+          <div id="next-btn" style="cursor: pointer; width: 48px; height: 48px; right: 32px; top: 326px; position: absolute; border-radius: 9999px; outline: 1px rgba(255, 255, 255, 0.40) solid; outline-offset: -1px; backdrop-filter: blur(6px); justify-content: center; align-items: center; display: flex">
+            <i class="fa-solid fa-chevron-right text-white text-sm"></i>
+          </div>
+
+          <div style="width: 228px; left: 50%; transform: translateX(-50%); top: 666px; position: absolute; justify-content: flex-start; align-items: flex-start; display: inline-flex">
+            <div id="dot-1" class="slider-dot" style="width: 48px; height: 2px; background: white; transition: background 0.3s;"></div>
+            <div style="width: 60px; height: 2px; padding-left: 12px; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: flex">
+              <div id="dot-2" class="slider-dot" style="width: 48px; height: 2px; background: rgba(255, 255, 255, 0.30); transition: background 0.3s;"></div>
+            </div>
+            <div style="width: 60px; height: 2px; padding-left: 12px; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: flex">
+              <div id="dot-3" class="slider-dot" style="width: 48px; height: 2px; background: rgba(255, 255, 255, 0.30); transition: background 0.3s;"></div>
+            </div>
+            <div style="width: 60px; height: 2px; padding-left: 12px; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: flex">
+              <div id="dot-4" class="slider-dot" style="width: 48px; height: 2px; background: rgba(255, 255, 255, 0.30); transition: background 0.3s;"></div>
+            </div>
+          </div>
         </div>
     </section>
 
@@ -249,8 +255,8 @@
 
   </main>
 
-  <footer class="bg-white py-16 border-t border-gray-100">
-    <div class="max-w-7xl mx-auto px-6 text-[10px] text-gray-300 tracking-[0.3em] uppercase flex justify-between">
+  <footer class="bg-white py-16 border-t border-gray-100 text-[10px] text-gray-300 tracking-[0.3em] uppercase">
+    <div class="max-w-7xl mx-auto px-6 flex justify-between">
       <p>© 2026 BONIF CO. LTD. ALL RIGHTS RESERVED.</p>
       <div class="space-x-8 flex">
         <a href="#" class="hover:text-black transition-colors">Privacy Policy</a>
@@ -258,6 +264,29 @@
       </div>
     </div>
   </footer>
+
+  <script>
+    const track = document.getElementById('main-slider-track');
+    const dots = document.querySelectorAll('.slider-dot');
+    let currentSlide = 0;
+
+    function updateSlider() {
+      track.style.transform = `translateX(-${currentSlide * 25}%)`;
+      dots.forEach((dot, index) => {
+        dot.style.background = index === currentSlide ? 'white' : 'rgba(255, 255, 255, 0.30)';
+      });
+    }
+
+    document.getElementById('next-btn').addEventListener('click', () => {
+      currentSlide = (currentSlide + 1) % 4;
+      updateSlider();
+    });
+
+    document.getElementById('prev-btn').addEventListener('click', () => {
+      currentSlide = (currentSlide - 1 + 4) % 4;
+      updateSlider();
+    });
+  </script>
 
 </body>
 </html>
