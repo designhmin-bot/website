@@ -2,125 +2,119 @@
 <html lang="ko">
 <head>
   <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <meta name="description" content="본아이에프 - 본죽&비빔밥">
-  <title>본죽&amp;비빔밥</title>
-
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="본아이에프">
-  <meta property="og:description" content="본아이에프">
-  <meta property="og:image" content="https://www.bonif.co.kr/static/assets/images/common/bi/p/ci.png">
-  <meta property="og:url" content="https://www.bonif.co.kr">
-
-  <link rel="icon" href="/static/assets/favicon.ico">
-  <link rel="stylesheet" href="/assets/web/front/assets/css/font.css">
-  <link rel="stylesheet" href="/assets/web/front/assets/css/nice-select.css">
-  <link rel="stylesheet" href="/assets/web/front/assets/css/swiper.min.css">
-  <link rel="stylesheet" href="/assets/web/front/assets/css/common.css?v=20260327">
-  <link rel="stylesheet" href="/assets/web/front/assets/css/aos.css">
-
-  <script src="/static/js/jquery.min.js"></script>
-  <script src="/static/js/jquery.cookie.js"></script>
-  <script src="/assets/web/front/assets/js/swiper-bundle.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-
-  <script type="text/javascript">
-    var API_DOMAIN = "https://api.bonif.co.kr";
-    var ASSETS_PATH = "/assets";
-    var LANG = "ko";
-    var USER_AUTH_INFO = null;
-    var S3_URL = "https://cdn.bonif.co.kr";
-
-    $(document).ready(function() {
-      if (typeof header !== 'undefined') {
-        header.initHeader();
-      }
-    });
-  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>본죽&amp;비빔밥 | Premium Korean Cuisine</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap');
+    body { font-family: 'Noto+Sans+KR', sans-serif; }
+    .nav-underline::after {
+      content: '';
+      display: block;
+      width: 0;
+      height: 2px;
+      background: #002D5E;
+      transition: width .3s;
+    }
+    .nav-underline:hover::after { width: 100%; }
+  </style>
 </head>
+<body class="bg-white text-gray-900 antialiased">
 
-<body data-aos-easing="ease" data-aos-duration="400" data-aos-delay="0">
+  <header class="fixed top-0 w-full z-50 bg-white/90 backdrop-blur-md border-b border-gray-100">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+      
+      <div class="flex-shrink-0">
+        <a href="/" class="flex items-center space-x-2">
+          <div class="w-8 h-8 bg-[#002D5E] rounded-sm"></div>
+          <span class="text-xl font-bold tracking-tighter text-[#002D5E]">본아이에프</span>
+        </a>
+      </div>
 
-  <header id="header" class="header nav-up">
-    <div class="header-cont">
-      <div class="inner-wrap">
-        <div class="logo-area">
-          <a href="/">
-            <h1>
-              <i class="icon-logo2"></i>
-              <span class="hidden">본아이에프</span>
-            </h1>
-          </a>
-        </div>
+      <nav class="hidden md:flex items-center space-x-10 text-[15px] font-medium uppercase tracking-widest">
+        <a href="#" class="nav-underline py-2">Brand</a>
+        <a href="#" class="nav-underline py-2 text-gray-400">Founding</a>
+        <a href="#" class="nav-underline py-2 text-gray-400">Event</a>
+        <a href="#" class="nav-underline py-2 text-gray-400">Service</a>
+      </nav>
 
-        <div class="menu-area">
-          <ul class="list-depth1">
-            <li>
-              <a href="/brand/intro"><span id="headerBrand" class="active">브랜드</span></a>
-              <div class="menu-box">
-                <ul class="list-depth2">
-                  <li><a href="/brand/intro">전체</a></li>
-                  <li><a href="/brand/intro?brdCd=BF102">본죽&amp;비빔밥</a></li>
-                  <li><a href="/brand/intro?brdCd=BF101">본죽</a></li>
-                  <li><a href="/brand/intro?brdCd=BF104">본도시락</a></li>
-                </ul>
-              </div>
-            </li>
-            <li><a href="/founding/info"><span id="headerFounding">창업</span></a></li>
-            <li><a href="/event/list"><span id="headerEvent">이벤트</span></a></li>
-          </ul>
-        </div>
-
-        <div class="btn-area">
-          <ul class="my-area">
-            <li><a href="/customer/index">고객센터</a></li>
-            <li><a href="/login">로그인</a></li>
-          </ul>
-          <button type="button" class="btn-menu">
-            <i class="icon-menu"></i>
-          </button>
-        </div>
+      <div class="flex items-center space-x-6 text-sm">
+        <a href="#" class="hidden sm:block text-gray-400 hover:text-black">Customer</a>
+        <a href="#" class="px-5 py-2 border border-gray-200 hover:bg-black hover:text-white transition-all duration-300">Login</a>
+        <button class="md:hidden text-2xl"><i class="fa-solid fa-bars-staggered"></i></button>
       </div>
     </div>
 
-    <div class="sub-header nav-up">
-      <div class="sub-header-cont" id="subHeaderBrand">
-        <ul class="list-depth1">
-          <li id="tabAll"><a href="/brand/intro">전체</a></li>
-          <li id="tabBF102" class="active"><a>본죽&amp;비빔밥</a></li>
-          <li id="tabBF101"><a>본죽</a></li>
-        </ul>
+    <div class="bg-gray-50/50 border-t border-gray-100">
+      <div class="max-w-7xl mx-auto px-6 overflow-x-auto">
+        <div class="flex space-x-12 py-4 text-[13px] font-semibold tracking-tight whitespace-nowrap">
+          <a href="#" class="text-gray-400 hover:text-black transition">ALL</a>
+          <a href="#" class="text-[#002D5E] border-b-2 border-[#002D5E] pb-1">본죽&비빔밥</a>
+          <a href="#" class="text-gray-400 hover:text-black transition">본죽</a>
+          <a href="#" class="text-gray-400 hover:text-black transition">본도시락</a>
+          <a href="#" class="text-gray-400 hover:text-black transition">본설렁탕</a>
+        </div>
       </div>
     </div>
   </header>
 
-  <main class="main brand_bonbibim">
-    <section class="main_slide">
-      <div class="swiper bonbibim">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide">
-            <div class="video-wrap">
-              <div class="main_video">
-                <iframe id="bonbibim-video" width="100%" height="100%" src="https://www.youtube.com/embed/fcSSLPPHjjE?autoplay=1&mute=1&loop=1" frameborder="0" allowfullscreen></iframe>
-              </div>
-            </div>
-          </div>
+  <main class="pt-36">
+    <section class="relative w-full aspect-video md:h-[70vh] bg-black overflow-hidden group">
+      <div class="absolute inset-0 opacity-70">
+        <img src="http://googleusercontent.com/image_collection/image_retrieval/13341840049574713427_0" alt="Hero Background" class="w-full h-full object-cover">
+      </div>
+      
+      <div class="absolute inset-0 flex items-center justify-center p-4 md:p-20">
+        <iframe 
+          class="w-full h-full max-w-5xl rounded-lg shadow-2xl"
+          src="https://www.youtube.com/embed/fcSSLPPHjjE?autoplay=1&mute=1&loop=1&playlist=fcSSLPPHjjE&controls=0&modestbranding=1" 
+          frameborder="0" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+          allowfullscreen>
+        </iframe>
+      </div>
+
+      <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center animate-bounce">
+        <div class="w-[1px] h-12 bg-white/50 mb-2"></div>
+        <span class="text-[10px] text-white tracking-[0.3em] uppercase">Scroll</span>
+      </div>
+    </section>
+
+    <section class="max-w-7xl mx-auto px-6 py-24 grid md:grid-cols-2 gap-16 items-center">
+      <div class="space-y-6">
+        <span class="text-[#002D5E] font-bold tracking-widest text-sm uppercase">Philosophy</span>
+        <h2 class="text-4xl md:text-5xl font-light leading-tight">
+          한식의 정성을 담다,<br> 
+          <span class="font-semibold text-gray-900">본죽&비빔밥</span>
+        </h2>
+        <p class="text-gray-500 leading-relaxed max-w-md">
+          우리는 단순히 음식을 제공하는 것을 넘어, 건강한 식재료와 정통 조리법을 통해 한식의 새로운 가치를 창출합니다.
+        </p>
+        <div class="pt-4">
+          <a href="#" class="inline-flex items-center space-x-4 group">
+            <span class="text-sm font-bold border-b border-black pb-1">View Details</span>
+            <i class="fa-solid fa-arrow-right-long group-hover:translate-x-2 transition-transform"></i>
+          </a>
         </div>
+      </div>
+      <div class="grid grid-cols-2 gap-4">
+        <img src="http://googleusercontent.com/image_collection/image_retrieval/13776984129835491533_0" alt="Restaurant Interior" class="w-full aspect-[3/4] object-cover rounded-sm shadow-sm grayscale hover:grayscale-0 transition duration-700">
+        <img src="http://googleusercontent.com/image_collection/image_retrieval/13341840049574713427_0" alt="Food Detail" class="w-full aspect-[3/4] object-cover rounded-sm shadow-sm mt-12 grayscale hover:grayscale-0 transition duration-700">
       </div>
     </section>
   </main>
 
-  <script type="text/javascript">
-    function navigateWithAuth(url) {
-      if (USER_AUTH_INFO) {
-        location.href = url;
-      } else {
-        alert('서비스 이용을 위해 로그인이 필요합니다.');
-        location.href = '/login';
-      }
-    }
-  </script>
+  <footer class="bg-gray-50 py-12 border-t border-gray-100">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center text-[11px] text-gray-400 uppercase tracking-widest">
+      <p>© 2026 BONIF CO. LTD. ALL RIGHTS RESERVED.</p>
+      <div class="flex space-x-8 mt-4 md:mt-0">
+        <a href="#" class="hover:text-black">Privacy Policy</a>
+        <a href="#" class="hover:text-black">Terms of Use</a>
+        <a href="#" class="hover:text-black">Social Media</a>
+      </div>
+    </div>
+  </footer>
+
 </body>
 </html>
