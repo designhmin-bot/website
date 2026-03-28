@@ -1,51 +1,193 @@
 <!DOCTYPE html>
-<div style="width: 1280px; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex">
-  <div style="align-self: stretch; position: relative; overflow: hidden; flex-direction: column; justify-content: center; align-items: flex-start; display: inline-flex">
-    <img style="align-self: stretch; height: 1023.97px; position: relative" src="https://placehold.co/427x1024" />
-    <div style="width: 426.66px; height: 1023.97px; padding: 32px; left: 0px; top: 0px; position: absolute; background: rgba(0, 0, 0, 0.30); flex-direction: column; justify-content: center; align-items: center; display: flex">
-      <div style="flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: flex">
-        <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: center; display: flex">
-          <div style="width: 45.61px; height: 48px; text-align: center; justify-content: center; display: flex; flex-direction: column; color: white; font-size: 48px; font-family: WenQuanYi Zen Hei; font-weight: 800; line-height: 48px; word-wrap: break-word">면</div>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Menji | KFood Solution</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&family=Public+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#496455",
+                        "surface": "#f9f9f7",
+                        "on-surface": "#2d3432",
+                        "menji-gold": "#E2A127",
+                        "menji-dark": "#3e3c3a",
+                        "tertiary": "#fa8e6e",
+                    },
+                    fontFamily: {
+                        "headline": ["Manrope", "sans-serif"],
+                        "body": ["Public Sans", "sans-serif"],
+                        "serif": ["Noto Serif KR", "serif"],
+                    },
+                    borderRadius: { "DEFAULT": "0px", "lg": "0px", "xl": "0px", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24; }
+        body { font-family: 'Public Sans', sans-serif; background-color: #f9f9f7; color: #2d3432; }
+        .carousel-track { display: flex; transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1); }
+        @keyframes fadeUpFloating { 0% { opacity: 0; transform: translateY(40px); } 100% { opacity: 1; transform: translateY(0); } }
+        .animate-fade-up-floating { animation: fadeUpFloating 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+    </style>
+</head>
+
+<body class="antialiased">
+
+    <header class="bg-[#f9f9f7]/80 backdrop-blur-md fixed top-0 z-50 w-full border-b border-stone-100">
+        <nav class="flex justify-between items-center w-full px-6 md:px-12 py-6 max-w-screen-2xl mx-auto font-headline">
+            <div class="text-xl font-extrabold tracking-tighter text-primary uppercase">KFood Solution</div>
+            <div class="hidden md:flex gap-10 items-center">
+                <a class="text-primary font-bold border-b-2 border-primary pb-1" href="#">Brands</a>
+                <a class="text-stone-500 hover:text-primary transition-colors font-bold" href="#">Franchise</a>
+                <a class="text-stone-500 hover:text-primary transition-colors font-bold" href="#">Contact</a>
+            </div>
+            <div class="flex items-center space-x-4">
+                <button class="flex items-center space-x-1 text-sm font-bold text-stone-500">
+                    <span class="material-symbols-outlined text-xl">language</span>
+                    <span>KR | EN</span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="pt-24">
+        <section class="relative px-8 md:px-24 mb-32">
+            <div class="aspect-[9/10] w-full max-w-[900px] mx-auto bg-surface overflow-hidden relative flex flex-col items-center pt-16 md:pt-24 shadow-sm border border-stone-100">
+                <div class="z-10 text-center mb-12 px-6">
+                    <img alt="Logo" class="h-16 md:h-20 w-auto mx-auto mb-8" src="https://lh3.googleusercontent.com/aida/ADBb0uhlTUNMUOuZG0iu8I6DdHVAM-5jVo78-QgkzbSlwE8BNqfVSpVVenvtvR68jHAajGiOAJGjv6J10VJlgV-aXKXZi9GbZf4uRe5UIXpF830m4ue2RmceS83oZJgkZwDGOiMF3SBEJVABieXKo4snZXN-mS1CXdsCgiif6HiOB8kZf-FBx3KGD5xvx3OjVYrDK6_1iMGzgTkZAcPXFl3aMMV5OpsPokOgdsCUjMFkPj6GRIlYQ0wgmnPAWsk_00QjJdcfB7Tsi9JGEJY" />
+                    <p class="text-lg md:text-xl font-medium mb-1">가장 속 편한 행복</p>
+                    <h1 class="text-6xl md:text-7xl font-serif font-bold text-[#9f403d] mb-10 tracking-tight">멘지</h1>
+                    <div class="space-y-1 text-sm md:text-base font-medium leading-relaxed text-[#2d3432]/80">
+                        <p>자연의 신선한 재료에 <span class="text-[#9f403d]">정성을 담는다는 원칙.</span></p>
+                        <p>행복과 건강은 기본에서 시작하기에 ‘본’(本)을 지키고 키워가는 죽을 만듭니다.</p>
+                    </div>
+                </div>
+                <div class="relative w-full flex-grow flex items-start justify-center">
+                    <img alt="Ramen" class="w-[80%] md:w-[65%] object-contain drop-shadow-2xl opacity-0 animate-fade-up-floating" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkNGObL3O-eiybRcbNosvVDrXfxmh2mRSHEDgguyILhu5uaHWUZrcNU402yEI4Y-6nqWnejeO9TD-m3S1_2xmfQzbYY2yI-d2Y1K7eaMAEjnsNBKw-k1baxEzeNGnwpceA8XBi11B5oBUYq7vDC7e3-VSmMryANlHe6ZHIAHWFzQJqFFudb39fNYYPpjhhEgFgXli7dXx9jCTeJIeZwm5FMmi_jxCSOn5ZN9UN42itetq_IrujUcv6GD221619cOLqCdYRMQlS6W5f" />
+                </div>
+            </div>
+        </section>
+
+        <section class="bg-surface py-32 px-8 md:px-24 text-center">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight text-on-surface mb-12">
+                    멘지, <span class="text-menji-gold">토리파이탄</span>
+                </h2>
+                <div class="space-y-6 text-stone-600 text-lg md:text-xl font-medium leading-relaxed">
+                    <p>2000년대 일본 도쿄를 중심으로 유행하기 시작한<br/>닭 육수 라멘, 토리파이탄.</p>
+                    <p>닭 뼈 속 진미까지 우려내어 잡내 없이 깔끔한 감칠맛이 일품인 라멘입니다.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="grid grid-cols-1 md:grid-cols-3 w-full">
+            <div class="relative overflow-hidden group aspect-[3/6.4] md:aspect-[2/4.8]">
+                <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_6-Kh2lFI1C1kaqtaZajYrCmG5eT44CFqn240pY5F6LIlpVo4wsZHusiRzDEIk3ePYplU2or1AdeTjiK-EEH-v9MoDejHp8zblLjgHS86w3wNS475Ih9OClIZRRvemCJUp9b1z1aneC-yhxdcqdU32CjtdTr4iZLrjX6AKVpFgkrbYQV-Ne5rw3DJKz1658wKLjCftjt7__rdN5DSllR-4nB8iaIg8yEQKEEf0Wc1Y3aShdovuQ2Mgz3DljDfHL-Madx9NSDKbS3x" />
+                <div class="absolute inset-0 bg-black/30 group-hover:bg-menji-gold/60 transition-colors flex flex-col items-center justify-center text-white text-center p-8">
+                    <h3 class="text-3xl md:text-5xl font-extrabold mb-1">면 [麵]</h3>
+                    <p class="opacity-0 group-hover:opacity-100 transition-opacity text-sm">탄탄한 식감의 자가제면 생면</p>
+                </div>
+            </div>
+            <div class="relative overflow-hidden group aspect-[3/6.4] md:aspect-[2/4.8]">
+                <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuApSYhot2OYN47UQfO7dIpS0nIA5pkrZaAgG1jHdMw6LksNr3htNiPjn75VFmzEz_tVaZn8fsROgBf1XwlN5SeIB76oIgztgXNL4d7QrBPG_zyMZ6TQHSCQMfmPWIIzatVFz76QLfKRSyNV_EKxT6lPMrLqBzIY0oyoFBYqafCRxS7NTJAQ9rWYA7rX59cSY2TEBCyZRsgLTR1BY3Ps0j8y_22eEra0VLJnScIhTRD57U5Q6yOwgGizlLRxIbckCQkqNlcfMZVXx-kC" />
+                <div class="absolute inset-0 bg-black/30 group-hover:bg-[#ecefec]/70 transition-colors flex flex-col items-center justify-center text-center p-8">
+                    <h3 class="text-3xl md:text-5xl font-extrabold mb-1 text-white group-hover:text-primary">육수</h3>
+                    <p class="opacity-0 group-hover:opacity-100 transition-opacity text-sm text-white group-hover:text-primary">6시간 이상 끓여낸 진한 닭 육수</p>
+                </div>
+            </div>
+            <div class="relative overflow-hidden group aspect-[3/6.4] md:aspect-[2/4.8]">
+                <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuALDOPYb8-X_qDBvo2igAPXCT6yrfB4mKTUVBzZtIyKLNw584A3hGcmcgTBVEgY9-3RxSGjBC6J0PpzHTquFQCB7A-8xr2x09rtXBBDif2-DFKiTSmBsGOaCoQKZgIdxRx34F3BkiOXUX4bJEGCUcTyyBjenkfXwEBoKEiFFKf5aoPnFi3vISvLO9jTOKclvTEmRxlxTFvbiRDgacXbQ8Ph1PSrjXVtaFj6PoRyXCjwtvc1IOClg6UazjDmZzpQz1jOBfVUfdHmdGEI" />
+                <div class="absolute inset-0 bg-black/30 group-hover:bg-[#2a2826]/80 transition-colors flex flex-col items-center justify-center text-white text-center p-8">
+                    <h3 class="text-3xl md:text-5xl font-extrabold mb-1">차슈</h3>
+                    <p class="opacity-0 group-hover:opacity-100 transition-opacity text-sm">부드러운 목살과 수비드 닭가슴살</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="bg-menji-dark py-32 px-8">
+            <div class="max-w-3xl mx-auto text-center space-y-8">
+                <h2 class="text-4xl font-extrabold text-white">멘지의 진심</h2>
+                <div class="space-y-6 text-white/90 text-lg font-light leading-relaxed">
+                    <p>탄탄한 식감의 <span class="text-tertiary font-bold">자가제면기법의 생면</span></p>
+                    <p>뼛속의 깊은 진미까지 뽑아낸 <span class="text-tertiary font-bold">닭 육수</span></p>
+                    <p>수비드 기법의 <span class="text-tertiary font-bold">목살 차슈</span>와 부드러운 닭가슴살</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="bg-menji-gold py-28 px-8 text-center text-white">
+            <div class="max-w-4xl mx-auto space-y-8">
+                <h2 class="text-4xl md:text-5xl font-extrabold tracking-tighter">오감이 즐거운 미식여행</h2>
+                <p class="text-base md:text-lg leading-relaxed opacity-95">
+                    들어설 때부터 마치 일본에 여행 온 듯한 기분이 드는 인테리어와<br class="hidden md:block"/>
+                    본연의 맛과 새로운 맛을 동시에 즐기는 아지헨 미식 문화까지.<br class="hidden md:block"/>
+                    함께한 모든 순간이 당신의 오감으로 오래 기억되도록 진심을 다합니다.
+                </p>
+            </div>
+        </section>
+
+        <section class="py-24 px-8 md:px-24 bg-white">
+            <div class="max-w-[1920px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-[#f8f8f8] flex flex-col justify-between overflow-hidden">
+                    <div class="p-10 pb-0">
+                        <h3 class="text-2xl font-bold mb-6">메뉴 소개</h3>
+                        <p class="text-stone-500 text-sm leading-relaxed mb-10">일본 도쿄 정통 방식의 토리파이탄으로 미식 여행을 떠나보세요!</p>
+                        <button class="bg-[#1a1c1b] text-white text-sm font-bold py-3 px-8 rounded-full mb-16">바로가기 ></button>
+                    </div>
+                    <img class="w-full h-64 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkNGObL3O-eiybRcbNosvVDrXfxmh2mRSHEDgguyILhu5uaHWUZrcNU402yEI4Y-6nqWnejeO9TD-m3S1_2xmfQzbYY2yI-d2Y1K7eaMAEjnsNBKw-k1baxEzeNGnwpceA8XBi11B5oBUYq7vDC7e3-VSmMryANlHe6ZHIAHWFzQJqFFudb39fNYYPpjhhEgFgXli7dXx9jCTeJIeZwm5FMmi_jxCSOn5ZN9UN42itetq_IrujUcv6GD221619cOLqCdYRMQlS6W5f" />
+                </div>
+                <div class="bg-[#f8f8f8] flex flex-col justify-between overflow-hidden">
+                    <div class="p-10 pb-0">
+                        <h3 class="text-2xl font-bold mb-6">매장 찾기</h3>
+                        <p class="text-stone-500 text-sm leading-relaxed mb-10">일본에 여행 온 듯한 기분을 만끽할 수 있는 내 주변의 매장을 찾아보세요!</p>
+                        <button class="bg-[#1a1c1b] text-white text-sm font-bold py-3 px-8 rounded-full mb-16">바로가기 ></button>
+                    </div>
+                    <img class="w-full h-64 object-cover" src="https://lh3.googleusercontent.com/aida/ADBb0ui6LIQO9BK4ON2ls5mg9hSZsvjyIAQ9FalKCV_Y1P25SYioIbzXaEVj0Kj2Ei4-pxTBqPdCWq2ikRU_MFujqkMOgmiqFhVRdqGAXCYMHEXnFBPpcB2XDEsAJOjpBkSsuEznz3hdeBk_wc62t9pz6TK1msvZCkfuOKHD3f-nXWP5EpljHi2t8XdrzqfJm3CRj5l3bIHpRGZ3MaSO_W3Mf735TNeg9yHc-632HH-KgdKMXnNYN2SE1pU3vwM5qgy-XC7KjUQCxPMQQz0" />
+                </div>
+                <div class="bg-[#f8f8f8] flex flex-col justify-between overflow-hidden">
+                    <div class="p-10 pb-0">
+                        <h3 class="text-2xl font-bold mb-6">창업 성공 스토리</h3>
+                        <p class="text-stone-500 text-sm leading-relaxed mb-10">새로운 성공스토리의 주인공이 되어주세요!</p>
+                        <button class="bg-[#1a1c1b] text-white text-sm font-bold py-3 px-8 rounded-full mb-16">바로가기 ></button>
+                    </div>
+                    <img class="w-full h-64 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCGQbL29iYtf59RN4rRJsv1Q69mVfi-UDxC7AaxOEqibGdum10Fj2vdDntexFKeO8fwqsnBOpQt1w7P-pxg7gIGQ_E906SQe5JJ9L9q2CfIH56lHGg-j2kpq0sATCeElF8Qw1B39mqloq_GsNWlzQgKiOYpsFCPDUFKdQC5Gx3_skNteMrtWwsx7jjSxoT0gophUHtEhC7iGMvFHJnuWlzSOv-sPoy0ry6ZBZvLusIPbu4x9By9UHNPGl7FB7h4MGXD2TaelVEvtxJ1" />
+                </div>
+            </div>
+        </section>
+
+        <section class="relative aspect-[2992/1190] flex items-center justify-center overflow-hidden">
+            <img class="absolute inset-0 w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/ADBb0uisAdzGW53Lerwa1GvYZN8tIHjcUi2D8GoOxbNPr6se_1fTuikJzqA_bYFQKxqlbk-ozVIsxXFZWRcN5DHYaYHU9RJqoR4QmbQRi993zURYwTH4h7rEo60ptzSvhNa_FrW4_RRCD7wqltsFhzPTe5Bhq0qqy2wlFHMX4Xu4EUtF6aYTHR3spNpYfzvufI-oVucdjk1GZqAwF58p77mfwcXUShaX7BIuna20qRxFIkFcsB86o-8B3L6jeSND0wJAhrsPhhar9WowKg" />
+            <div class="absolute inset-0 bg-black/40 flex flex-col items-center justify-center text-center p-8">
+                <p class="text-white/80 text-sm tracking-[0.3em] font-medium uppercase mb-2">Menji</p>
+                <h2 class="text-white text-2xl md:text-3xl font-bold">TORI PAITAN RAMEN NO.1 MENJI</h2>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-[#f2f4f2] py-16 px-8 md:px-24">
+        <div class="max-w-screen-2xl mx-auto flex flex-col md:flex-row justify-between items-center gap-12">
+            <div class="text-center md:text-left">
+                <div class="text-lg font-bold mb-2">Menji KFood Solution</div>
+                <p class="text-stone-500 text-xs">Redefining Korean culinary excellence through archival research.</p>
+            </div>
+            <div class="flex flex-col items-center md:items-end gap-6">
+                <nav class="flex gap-8 text-xs font-bold text-stone-500">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Contact</a>
+                </nav>
+                <div class="text-stone-400 text-[10px] uppercase tracking-widest">© 2026 Menji KFood Solution. All rights reserved.</div>
+            </div>
         </div>
-        <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: center; display: flex">
-          <div style="width: 39.44px; height: 32px; text-align: center; justify-content: center; display: flex; flex-direction: column; color: white; font-size: 24px; font-family: Public Sans; font-weight: 700; line-height: 32px; word-wrap: break-word">[麵]</div>
-        </div>
-        <div style="width: 100%; max-width: 280px; padding-top: 20px; opacity: 0; flex-direction: column; justify-content: flex-start; align-items: center; display: flex">
-          <div style="width: 265.70px; height: 72px; text-align: center; justify-content: center; display: flex; flex-direction: column; color: white; font-size: 16px; font-family: WenQuanYi Zen Hei; font-weight: 500; line-height: 24px; word-wrap: break-word">건강한 통밀가루를 8번 압연하고 숙성<br/>한<br/>탄탄한 식감의 자가제면 생면</div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div style="align-self: stretch; position: relative; overflow: hidden; flex-direction: column; justify-content: center; align-items: flex-start; display: inline-flex">
-    <img style="align-self: stretch; height: 1024px; position: relative" src="https://placehold.co/427x1024" />
-    <div style="width: 426.67px; height: 1024px; padding: 32px; left: 0px; top: 0px; position: absolute; background: rgba(0, 0, 0, 0.30); flex-direction: column; justify-content: center; align-items: center; display: flex">
-      <div style="flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: flex">
-        <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: center; display: flex">
-          <div style="width: 144px; height: 48px; text-align: center; justify-content: center; display: flex; flex-direction: column; color: white; font-size: 48px; font-family: WenQuanYi Zen Hei; font-weight: 800; line-height: 48px; word-wrap: break-word">닭 육수</div>
-        </div>
-        <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: center; display: flex">
-          <div style="width: 162.81px; height: 32px; text-align: center; justify-content: center; display: flex; flex-direction: column; color: white; font-size: 24px; font-family: WenQuanYi Zen Hei; font-weight: 700; line-height: 32px; word-wrap: break-word">[トリパイタン]</div>
-        </div>
-        <div style="width: 100%; max-width: 280px; padding-top: 20px; opacity: 0; flex-direction: column; justify-content: flex-start; align-items: center; display: flex">
-          <div style="width: 276.80px; height: 72px; text-align: center; justify-content: center; display: flex; flex-direction: column; color: white; font-size: 16px; font-family: WenQuanYi Zen Hei; font-weight: 500; line-height: 24px; word-wrap: break-word">센 불에 6시간 이상 끓여 뼛속의 깊은 진<br/>미까지 뽑아내 진하면서도 잡내 없이 깔<br/>끔 담백한 닭 육수</div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div style="align-self: stretch; position: relative; overflow: hidden; flex-direction: column; justify-content: center; align-items: flex-start; display: inline-flex">
-    <img style="align-self: stretch; height: 1023.97px; position: relative" src="https://placehold.co/427x1024" />
-    <div style="width: 426.66px; height: 1023.97px; padding: 32px; left: 0px; top: 0px; position: absolute; background: rgba(0, 0, 0, 0.30); flex-direction: column; justify-content: center; align-items: center; display: flex">
-      <div style="flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: flex">
-        <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: center; display: flex">
-          <div style="width: 91.20px; height: 48px; text-align: center; justify-content: center; display: flex; flex-direction: column; color: white; font-size: 48px; font-family: WenQuanYi Zen Hei; font-weight: 800; line-height: 48px; word-wrap: break-word">차슈</div>
-        </div>
-        <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: center; display: flex">
-          <div style="width: 161.69px; height: 32px; text-align: center; justify-content: center; display: flex; flex-direction: column; color: white; font-size: 24px; font-family: WenQuanYi Zen Hei; font-weight: 700; line-height: 32px; word-wrap: break-word">[チャーシュー]</div>
-        </div>
-        <div style="width: 100%; max-width: 280px; padding-top: 20px; opacity: 0; flex-direction: column; justify-content: flex-start; align-items: center; display: flex">
-          <div style="width: 267.44px; height: 72px; text-align: center; justify-content: center; display: flex; flex-direction: column; color: white; font-size: 16px; font-family: WenQuanYi Zen Hei; font-weight: 500; line-height: 24px; word-wrap: break-word">듀록 생고기로 만든 목살 차슈와<br/>카스텔라처럼 부드러운 수비드 닭가슴<br/>살</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+    </footer>
+</body>
+</html>
