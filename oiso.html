@@ -34,20 +34,19 @@
 
     #main-slider-track { transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1); }
 
-    /* Custom Styles for the new Description Section */
     .bg_beige2 { background-color: #F9F9F7; }
     .menu_description { padding: 100px 24px; text-align: center; }
     .heading-h2 { font-size: 2.5rem; font-weight: 700; color: #002D5E; margin-bottom: 2rem; letter-spacing: -0.05em; }
     .text-description { font-size: 1.125rem; font-weight: 300; color: #666; line-height: 1.8; margin-bottom: 1.5rem; }
     .text-description span { font-weight: 700; color: #333; }
 
-    /* Styles for the newly added bottom_slide bibim section */
-    .bottom_slide.bibim { position: relative; width: 100%; background: #002D5E; padding: 100px 0; color: white; text-align: center; }
-    .bottom_slide_top .logo-txt { font-size: 14px; letter-spacing: 0.4em; margin-bottom: 20px; opacity: 0.8; }
-    .bottom_slide_top h1 img { margin: 0 auto 30px; max-width: 200px; }
-    .bottom_slide_top p { font-size: 18px; font-weight: 300; line-height: 1.6; margin-bottom: 40px; }
-    .bottom_slide_top .icons ul { display: flex; justify-content: center; gap: 20px; list-style: none; padding: 0; }
-    .bottom_slide_top .icons img { width: 40px; height: 40px; }
+    /* Custom CSS for the injected bibim section */
+    .bottom_slide.bibim { position: relative; width: 100%; }
+    .bottom_slide_top { background-color: #002D5E; padding: 100px 0; position: relative; }
+    .bottom_slide .text { text-align: center; color: white; }
+    .bottom_slide .logo-txt { font-size: 14px; letter-spacing: 0.4em; margin-bottom: 1rem; }
+    .bottom_slide h1 img { margin: 0 auto 2rem; }
+    .bottom_slide .icons ul { display: flex; justify-content: center; gap: 20px; list-style: none; padding-top: 2rem; }
   </style>
 </head>
 <body class="bg-white text-gray-900 antialiased">
@@ -225,32 +224,32 @@
     </section>
 
     <section class="max-w-7xl mx-auto px-6 py-24">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="bento-card bg-white border border-gray-100 rounded-sm p-8 flex flex-col justify-between group h-[450px]">
-                    <div class="space-y-4">
-                        <h4 class="text-xl font-bold">메뉴 소개</h4>
-                        <p class="text-gray-400 text-sm font-light">자연의 맛과 영양을 살린 본죽&비빔밥의 건강 한 상.</p>
-                        <button class="mengi_main_btn border border-gray-200 px-5 py-2 rounded-full text-[10px] font-bold tracking-widest uppercase">More</button>
-                    </div>
-                    <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&q=80&w=600" class="w-full h-32 object-cover rounded-sm grayscale group-hover:grayscale-0 transition duration-500">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bento-card bg-white border border-gray-100 rounded-sm p-8 flex flex-col justify-between group h-[450px]">
+                <div class="space-y-4">
+                    <h4 class="text-xl font-bold">메뉴 소개</h4>
+                    <p class="text-gray-400 text-sm font-light">자연의 맛과 영양을 살린 본죽&비빔밥의 건강 한 상.</p>
+                    <button class="mengi_main_btn border border-gray-200 px-5 py-2 rounded-full text-[10px] font-bold tracking-widest uppercase">More</button>
                 </div>
-                <div class="bento-card bg-white border border-gray-100 rounded-sm p-8 flex flex-col justify-between group h-[450px]">
-                    <div class="space-y-4">
-                        <h4 class="text-xl font-bold">매장 찾기</h4>
-                        <p class="text-gray-400 text-sm font-light">정성을 다해 만드는 가까운 매장을 찾아보세요.</p>
-                        <button class="mengi_main_btn border border-gray-200 px-5 py-2 rounded-full text-[10px] font-bold tracking-widest uppercase">Find</button>
-                    </div>
-                    <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&q=80&w=600" class="w-full h-32 object-cover rounded-sm grayscale group-hover:grayscale-0 transition duration-500">
-                </div>
-                <div class="bento-card bg-white border border-gray-100 rounded-sm p-8 flex flex-col justify-between group h-[450px]">
-                    <div class="space-y-4">
-                        <h4 class="text-xl font-bold">창업 성공 스토리</h4>
-                        <p class="text-gray-400 text-sm font-light">새로운 성공스토리의 주인공이 되어주세요!</p>
-                        <button class="mengi_main_btn border border-gray-200 px-5 py-2 rounded-full text-[10px] font-bold tracking-widest uppercase">Story</button>
-                    </div>
-                    <img src="https://images.unsplash.com/photo-1600880210836-8f8ef9e09b55?auto=format&fit=crop&q=80&w=600" class="w-full h-32 object-cover rounded-sm grayscale group-hover:grayscale-0 transition duration-500">
-                </div>
+                <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&q=80&w=600" class="w-full h-32 object-cover rounded-sm grayscale group-hover:grayscale-0 transition duration-500">
             </div>
+            <div class="bento-card bg-white border border-gray-100 rounded-sm p-8 flex flex-col justify-between group h-[450px]">
+                <div class="space-y-4">
+                    <h4 class="text-xl font-bold">매장 찾기</h4>
+                    <p class="text-gray-400 text-sm font-light">정성을 다해 만드는 가까운 매장을 찾아보세요.</p>
+                    <button class="mengi_main_btn border border-gray-200 px-5 py-2 rounded-full text-[10px] font-bold tracking-widest uppercase">Find</button>
+                </div>
+                <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&q=80&w=600" class="w-full h-32 object-cover rounded-sm grayscale group-hover:grayscale-0 transition duration-500">
+            </div>
+            <div class="bento-card bg-white border border-gray-100 rounded-sm p-8 flex flex-col justify-between group h-[450px]">
+                <div class="space-y-4">
+                    <h4 class="text-xl font-bold">창업 성공 스토리</h4>
+                    <p class="text-gray-400 text-sm font-light">새로운 성공스토리의 주인공이 되어주세요!</p>
+                    <button class="mengi_main_btn border border-gray-200 px-5 py-2 rounded-full text-[10px] font-bold tracking-widest uppercase">Story</button>
+                </div>
+                <img src="https://images.unsplash.com/photo-1600880210836-8f8ef9e09b55?auto=format&fit=crop&q=80&w=600" class="w-full h-32 object-cover rounded-sm grayscale group-hover:grayscale-0 transition duration-500">
+            </div>
+        </div>
     </section>
 
     <div class="bottom_slide bibim">
@@ -284,11 +283,10 @@
             </div>
         </div>
     </div>
-
-  </main>
+    </main>
 
   <footer class="bg-white py-16 border-t border-gray-100 text-[10px] text-gray-300 tracking-[0.3em] uppercase">
-    <div class="max-w-7xl mx-auto px-6 flex justify-between">
+    <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
       <p>© 2026 BONIF CO. LTD. ALL RIGHTS RESERVED.</p>
       <div class="space-x-8 flex">
         <a href="#" class="hover:text-black transition-colors">Privacy Policy</a>
