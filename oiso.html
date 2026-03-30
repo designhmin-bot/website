@@ -1,425 +1,280 @@
- <!DOCTYPE html> 
-<html lang="ko"> 
-<head> 
-  <meta charset="utf-8"> 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-  <title>본죽&amp;비빔밥 | 정성으로 지은 더 건강 한 상</title> 
-   
-  <script src="https://cdn.tailwindcss.com"></script> 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"> 
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"> 
-   
-  <style> 
-    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap'); 
-     
-    body { font-family: 'Noto Sans KR', sans-serif; word-break: keep-all; overflow-x: hidden; } 
-
-    @keyframes fadeInUp { 
-      from { opacity: 0; transform: translateY(40px); } 
-      to { opacity: 1; transform: translateY(0); } 
-    } 
-    .animate-fade-up { animation: fadeInUp 1.2s ease-out forwards; } 
-
-    .nav-underline::after { 
-      content: ''; display: block; width: 0; height: 2px; 
-      background: #002D5E; transition: width .3s; 
-    } 
-    .nav-underline:hover::after { width: 100%; } 
-    .no-scrollbar::-webkit-scrollbar { display: none; } 
-
-    .bento-card { transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); } 
-    .bento-card:hover { transform: translateY(-8px); border-color: #002D5E; } 
-     
-    .mengi_main_btn { transition: all 0.3s ease; } 
-    .mengi_main_btn:hover { background: #002D5E; color: white; border-color: #002D5E; } 
-
-    #main-slider-track { transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1); } 
-
-    .bg_beige2 { background-color: #F9F9F7; } 
-    .menu_description { padding: 100px 24px; text-align: center; } 
-    .heading-h2 { font-size: 2.5rem; font-weight: 700; color: #002D5E; margin-bottom: 2rem; letter-spacing: -0.05em; } 
-    .text-description { font-size: 1.125rem; font-weight: 300; color: #666; line-height: 1.8; margin-bottom: 1.5rem; } 
-    .text-description span { font-weight: 700; color: #333; } 
-
-    /* New Banner CSS Integrated */ 
-    .bottom_slide.bibim { 
-        position: relative; 
-        width: 100%; 
-        min-height: 500px; 
-        display: flex; 
-        align-items: center; 
-        justify-content: center; 
-        overflow: hidden; 
-        background-image: url('https://images.unsplash.com/photo-1498654896293-37aacf113fd9?auto=format&fit=crop&q=80&w=2000'); 
-        background-size: cover; 
-        background-position: center; 
-    } 
-    .bottom_slide.bibim .img_wrap_dim { 
-        position: absolute; 
-        top: 0; left: 0; 
-        width: 100%; height: 100%; 
-        background: rgba(0, 0, 0, 0.4);  
-        z-index: 1; 
-    } 
-    .bottom_slide.bibim .img_wrap { 
-        position: relative; 
-        z-index: 2; 
-        text-align: center; 
-        color: #ffffff; 
-    } 
-    .bottom_slide.bibim .logo-txt { 
-        font-size: 16px; 
-        font-weight: 300; 
-        letter-spacing: 0.3em; 
-        margin-bottom: 12px; 
-        opacity: 0.9; 
-    } 
-    .bottom_slide.bibim h1 img { 
-        display: block; 
-        margin: 0 auto 20px; 
-        max-width: 280px; 
-    } 
-    .bottom_slide.bibim .text p { 
-        font-size: 18px; 
-        line-height: 1.6; 
-        font-weight: 300; 
-        margin-bottom: 30px; 
-    } 
-    .bottom_slide.bibim .icons ul { 
-        display: flex; 
-        justify-content: center; 
-        gap: 15px; 
-        list-style: none; 
-        padding: 0; 
-    } 
-    .bottom_slide.bibim .icons img { 
-        width: 32px; 
-        height: 32px; 
-        filter: brightness(0) invert(1); 
-        transition: opacity 0.3s ease; 
-    } 
-    .bottom_slide.bibim .icons a:hover img { 
-        opacity: 0.7; 
-    } 
-  </style> 
-</head> 
-<body class="bg-white text-gray-900 antialiased"> 
-
-  <header class="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-gray-100"> 
-    <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center"> 
-      <div class="flex-shrink-0"> 
-        <a href="#" class="flex items-center space-x-2"> 
-          <div class="w-8 h-8 bg-[#002D5E] rounded-sm"></div> 
-          <span class="text-xl font-bold tracking-tighter text-[#002D5E] uppercase">Bonif</span> 
-        </a> 
-      </div> 
-      <nav class="hidden md:flex items-center space-x-10 text-[13px] font-bold uppercase tracking-[0.2em]"> 
-        <a href="#" class="nav-underline py-2 text-[#002D5E]">Brand</a> 
-        <a href="#" class="nav-underline py-2 text-gray-400 hover:text-black">Founding</a> 
-        <a href="#" class="nav-underline py-2 text-gray-400 hover:text-black">Event</a> 
-        <a href="#" class="nav-underline py-2 text-gray-400 hover:text-black">Service</a> 
-      </nav> 
-      <div class="flex items-center space-x-6 text-[11px] font-bold tracking-widest uppercase"> 
-        <a href="#" class="px-6 py-2 border border-gray-200 hover:bg-black hover:text-white transition-all">Login</a> 
-      </div> 
-    </div> 
-    <div class="bg-gray-50/80 border-t border-gray-100"> 
-      <div class="max-w-7xl mx-auto px-6 overflow-x-auto no-scrollbar"> 
-        <div class="flex space-x-12 py-4 text-[12px] font-bold tracking-tight whitespace-nowrap">
-          <a href="#" class="text-[#002D5E] border-b-2 border-[#002D5E] pb-1">Oiso</a> 
-          <a href="#" class="text-gray-400">Neulbom Garden</a> 
-          <a href="#" class="text-gray-400">Mi Mi Guk Su</a> 
-        </div> 
-      </div> 
-    </div> 
-  </header> 
-
-  <main class="pt-[136px]"> 
-     
-    <section class="bg-white py-20 md:py-32"> 
-        <div class="max-w-6xl mx-auto px-6"> 
-            <div class="content_1_wrap flex flex-col items-center"> 
-                <div class="box_top w-full text-center space-y-12 animate-fade-up"> 
-                    <div class="logo_title space-y-4"> 
-                        <p class="text-sm md:text-base font-light tracking-[0.4em] text-gray-400 uppercase">정성으로 지은 더 건강 한 상</p> 
-                        <h1 class="flex justify-center"> 
-                            <span class="text-4xl md:text-6xl font-bold tracking-tighter text-[#002D5E] border-b-4 border-[#002D5E] pb-2 uppercase">본죽&비빔밥</span> 
-                        </h1> 
-                    </div> 
-                    <div class="text max-w-2xl mx-auto"> 
-                        <ul class="text_btm_box space-y-6 text-base md:text-lg text-gray-500 font-light leading-relaxed"> 
-                            <li class="font-medium text-gray-900 text-xl">한식은 참 손이 많이 가는 음식입니다.</li> 
-                            <li>까다로운 재료 선별부터 자연의 맛과 영양을 살린 조리법, 정갈한 상차림까지</li> 
-                            <li class="pt-4"> 
-                                <span class="text-[#002D5E] font-bold block bg-blue-50 py-4 px-6 rounded-sm">본죽&비빔밥은 오늘도 당신만을 위한 건강 한 상을 준비합니다.</span> 
-                            </li> 
-                        </ul> 
-                    </div> 
-                </div> 
-                <div class="box_btm mt-20 w-full animate-fade-up" style="animation-delay: 0.3s;"> 
-                    <img src="https://images.unsplash.com/photo-1553163147-622820be2931?auto=format&fit=crop&q=80&w=2000" class="w-full h-[400px] md:h-[600px] object-cover rounded-sm shadow-2xl"> 
-                </div> 
-            </div> 
-        </div> 
-    </section> 
-
-    <section class="relative w-full h-[600px] md:h-[800px] overflow-hidden group"> 
-        <img src="big-imgcont1.png" class="w-full h-full object-cover transition-transform duration-[5000ms] group-hover:scale-105"> 
-        <div class="absolute inset-0 bg-gradient-to-r from-black/70 via-black/20 to-transparent"></div> 
-        <div class="absolute bottom-12 left-6 md:bottom-24 md:left-24 text-left text-white max-w-2xl animate-fade-up"> 
-            <h1 class="text-3xl md:text-5xl font-light mb-6">가장 속 편한 행복, <span class="font-bold border-b-2 border-white pb-1">본죽</span></h1> 
-            <p class="text-sm md:text-lg font-light leading-loose opacity-90">매일 아침 손수 죽밥을 짓고 재료를 깨끗이 손질하여 몸과 마음까지 온기가 닿을 수 있도록 뭉근히 끓여냅니다.</p> 
-        </div> 
-    </section> 
-
-    <section class="relative w-full h-[600px] md:h-[800px] overflow-hidden group"> 
-        <img src="big-imgcont1-1.png" class="w-full h-full object-cover transition-transform duration-[5000ms] group-hover:scale-105"> 
-        <div class="absolute inset-0 bg-gradient-to-l from-black/70 via-black/20 to-transparent"></div> 
-        <div class="absolute bottom-12 right-6 md:bottom-24 md:right-24 text-right text-white max-w-2xl animate-fade-up"> 
-            <h1 class="text-3xl md:text-5xl font-light mb-6">자연의 맛과 영양 살린, <span class="font-bold border-b-2 border-white pb-1">비빔밥</span></h1> 
-            <p class="text-sm md:text-lg font-light leading-loose opacity-90">재료 본연의 식감을 살려 볶아내고 정성스런 장을 준비하여 자연의 맛을 잘 지은 밥 위에 정갈하게 올려냅니다.</p> 
-        </div> 
-    </section> 
-
-<section class="grid grid-cols-1 md:grid-cols-3 w-full">
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>본죽&비빔밥 | 정성으로 지은 더 건강 한 상</title>
   
-  <div class="relative overflow-hidden group aspect-[3/6.4] md:aspect-[2/4.8] cursor-default">
-    <img alt="Noodle Craft" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_6-Kh2lFI1C1kaqtaZajYrCmG5eT44CFqn240pY5F6LIlpVo4wsZHusiRzDEIk3ePYplU2or1AdeTjiK-EEH-v9MoDejHp8zblLjgHS86w3wNS475Ih9OClIZRRvemCJUp9b1z1aneC-yhxdcqdU32CjtdTr4iZLrjX6AKVpFgkrbYQV-Ne5rw3DJKz1658wKLjCftjt7__rdN5DSllR-4nB8iaIg8yEQKEEf0Wc1Y3aShdovuQ2Mgz3DljDfHL-Madx9NSDKbS3x" class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"/>
-    <div class="absolute inset-0 bg-black/30 group-hover:bg-[#E2A127]/60 transition-colors duration-700 ease-in-out flex flex-col items-center justify-center text-center p-8">
-      <div class="transform transition-all duration-700">
-        <h3 class="text-white text-3xl md:text-5xl font-extrabold tracking-tighter mb-1">면</h3>
-        <p class="text-white text-xl md:text-2xl font-bold mb-6">[麵]</p>
-        <div class="opacity-0 group-hover:opacity-100 transition-opacity duration-700 delay-100">
-          <p class="text-white text-sm md:text-base font-medium leading-relaxed max-w-[280px]">건강한 통밀가루를 8번 압연하고 숙성한<br/>탄탄한 식감의 자가제면 생면</p>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+    
+    body { font-family: 'Noto Sans KR', sans-serif; word-break: keep-all; overflow-x: hidden; }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fade-up { animation: fadeInUp 1.2s ease-out forwards; }
+
+    .nav-underline::after {
+      content: ''; display: block; width: 0; height: 2px;
+      background: #002D5E; transition: width .3s;
+    }
+    .nav-underline:hover::after { width: 100%; }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+
+    .bento-card { transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
+    .bento-card:hover { transform: translateY(-8px); border-color: #002D5E; }
+
+    #main-slider-track { transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1); }
+
+    .bg_beige2 { background-color: #F9F9F7; }
+    .menu_description { padding: 120px 24px; text-align: center; }
+    .heading-h2 { font-size: 2.5rem; font-weight: 700; color: #002D5E; margin-bottom: 2.5rem; letter-spacing: -0.05em; }
+    .text-description { font-size: 1.125rem; font-weight: 300; color: #666; line-height: 2; margin-bottom: 1.5rem; }
+    .text-description span { font-weight: 700; color: #333; }
+
+    .bottom_slide.bibim {
+        position: relative; width: 100%; min-height: 500px;
+        display: flex; align-items: center; justify-content: center;
+        overflow: hidden;
+        background-image: url('https://images.unsplash.com/photo-1498654896293-37aacf113fd9?auto=format&fit=crop&q=80&w=2000');
+        background-size: cover; background-position: center;
+    }
+    .bottom_slide.bibim .img_wrap_dim {
+        position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+        background: rgba(0, 0, 0, 0.4); z-index: 1;
+    }
+    .bottom_slide.bibim .img_wrap { position: relative; z-index: 2; text-align: center; color: #ffffff; }
+    .bottom_slide.bibim .logo-txt { font-size: 16px; font-weight: 300; letter-spacing: 0.3em; margin-bottom: 12px; opacity: 0.9; }
+    .bottom_slide.bibim h1 img { display: block; margin: 0 auto 20px; max-width: 280px; }
+  </style>
+</head>
+<body class="bg-white text-gray-900 antialiased">
+
+  <header class="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-gray-100">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+      <div class="flex-shrink-0">
+        <a href="#" class="flex items-center space-x-2">
+          <div class="w-8 h-8 bg-[#002D5E] rounded-sm"></div>
+          <span class="text-xl font-bold tracking-tighter text-[#002D5E] uppercase">Bonif</span>
+        </a>
+      </div>
+      <nav class="hidden md:flex items-center space-x-10 text-[13px] font-bold uppercase tracking-[0.2em]">
+        <a href="#" class="nav-underline py-2 text-[#002D5E]">Brand</a>
+        <a href="#" class="nav-underline py-2 text-gray-400 hover:text-black transition-colors">Founding</a>
+        <a href="#" class="nav-underline py-2 text-gray-400 hover:text-black transition-colors">Event</a>
+        <a href="#" class="nav-underline py-2 text-gray-400 hover:text-black transition-colors">Service</a>
+      </nav>
+      <div class="flex items-center space-x-6 text-[11px] font-bold tracking-widest uppercase">
+        <a href="#" class="px-6 py-2 border border-gray-200 hover:bg-black hover:text-white transition-all">Login</a>
+      </div>
+    </div>
+    <div class="bg-gray-50/80 border-t border-gray-100">
+      <div class="max-w-7xl mx-auto px-6 overflow-x-auto no-scrollbar">
+        <div class="flex space-x-12 py-4 text-[12px] font-bold tracking-tight whitespace-nowrap">
+          <a href="#" class="text-[#002D5E] border-b-2 border-[#002D5E] pb-1">Oiso</a>
+          <a href="#" class="text-gray-400 hover:text-gray-600 transition-colors">Neulbom Garden</a>
+          <a href="#" class="text-gray-400 hover:text-gray-600 transition-colors">Mi Mi Guk Su</a>
         </div>
       </div>
     </div>
-  </div>
+  </header>
 
-  <div class="relative overflow-hidden group aspect-[3/6.4] md:aspect-[2/4.8] cursor-default">
-    <img alt="Broth Pouring" src="https://lh3.googleusercontent.com/aida-public/AB6AXuApSYhot2OYN47UQfO7dIpS0nIA5pkrZaAgG1jHdMw6LksNr3htNiPjn75VFmzEz_tVaZn8fsROgBf1XwlN5SeIB76oIgztgXNL4d7QrBPG_zyMZ6TQHSCQMfmPWIIzatVFz76QLfKRSyNV_EKxT6lPMrLqBzIY0oyoFBYqafCRxS7NTJAQ9rWYA7rX59cSY2TEBCyZRsgLTR1BY3Ps0j8y_22eEra0VLJnScIhTRD57U5Q6yOwgGizlLRxIbckCQkqNlcfMZVXx-kC" class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"/>
-    <div class="absolute inset-0 bg-black/30 group-hover:bg-[#ecefec]/90 transition-colors duration-700 ease-in-out flex flex-col items-center justify-center text-center p-8">
-      <div class="transform transition-all duration-700 text-white group-hover:text-slate-900">
-        <h3 class="text-3xl md:text-5xl font-extrabold tracking-tighter mb-1">닭 육수</h3>
-        <p class="text-xl md:text-2xl font-bold mb-6">[トリパイタン]</p>
-        <div class="opacity-0 group-hover:opacity-100 transition-opacity duration-700 delay-100">
-          <p class="text-sm md:text-base font-medium leading-relaxed max-w-[280px]">센 불에 6시간 이상 끓여 뼛속의 깊은 진미까지 뽑아내 진하면서도 잡내 없이 깔끔 담백한 닭 육수</p>
+  <main class="pt-[136px]">
+    <section class="bg-white py-20 md:py-32">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="content_1_wrap flex flex-col items-center">
+          <div class="box_top w-full text-center space-y-12 animate-fade-up">
+            <div class="logo_title space-y-4">
+              <p class="text-sm md:text-base font-light tracking-[0.4em] text-gray-400 uppercase">정성으로 지은 더 건강 한 상</p>
+              <h1 class="flex justify-center">
+                <span class="text-4xl md:text-6xl font-bold tracking-tighter text-[#002D5E] border-b-4 border-[#002D5E] pb-2 uppercase">본죽&비빔밥</span>
+              </h1>
+            </div>
+            <div class="text max-w-2xl mx-auto">
+              <ul class="text_btm_box space-y-6 text-base md:text-lg text-gray-500 font-light leading-relaxed">
+                <li class="font-medium text-gray-900 text-xl">한식은 참 손이 많이 가는 음식입니다.</li>
+                <li>까다로운 재료 선별부터 자연의 맛과 영양을 살린 조리법, 정갈한 상차림까지</li>
+                <li class="pt-4">
+                  <span class="text-[#002D5E] font-bold block bg-blue-50 py-4 px-6 rounded-sm">본죽&비빔밥은 오늘도 당신만을 위한 건강 한 상을 준비합니다.</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="box_btm mt-20 w-full animate-fade-up" style="animation-delay: 0.3s;">
+            <img src="https://images.unsplash.com/photo-1553163147-622820be2931?auto=format&fit=crop&q=80&w=2000" class="w-full h-[400px] md:h-[600px] object-cover rounded-sm shadow-2xl">
+          </div>
         </div>
       </div>
-    </div>
-  </div>
+    </section>
 
-  <div class="relative overflow-hidden group aspect-[3/6.4] md:aspect-[2/4.8] cursor-default">
-    <img alt="Chashu Preparation" src="https://lh3.googleusercontent.com/aida-public/AB6AXuALDOPYb8-X_qDBvo2igAPXCT6yrfB4mKTUVBzZtIyKLNw584A3hGcmcgTBVEgY9-3RxSGjBC6J0PpzHTquFQCB7A-8xr2x09rtXBBDif2-DFKiTSmBsGOaCoQKZgIdxRx34F3BkiOXUX4bJEGCUcTyyBjenkfXwEBoKEiFFKf5aoPnFi3vISvLO9jTOKclvTEmRxlxTFvbiRDgacXbQ8Ph1PSrjXVtaFj6PoRyXCjwtvc1IOClg6UazjDmZzpQz1jOBfVUfdHmdGEI" class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"/>
-    <div class="absolute inset-0 bg-black/30 group-hover:bg-[#2a2826]/80 transition-colors duration-700 ease-in-out flex flex-col items-center justify-center text-center p-8">
-      <div class="transform transition-all duration-700">
-        <h3 class="text-white text-3xl md:text-5xl font-extrabold tracking-tighter mb-1">차슈</h3>
-        <p class="text-white text-xl md:text-2xl font-bold mb-6">[チャーシュー]</p>
-        <div class="opacity-0 group-hover:opacity-100 transition-opacity duration-700 delay-100">
-          <p class="text-white text-sm md:text-base font-medium leading-relaxed max-w-[280px]">듀록 생고기로 만든 목살 차슈와<br/>카스텔라처럼 부드러운 수비드 닭가슴살</p>
+    <section class="relative w-full h-[600px] md:h-[800px] overflow-hidden group">
+        <img src="big-imgcont1.png" class="w-full h-full object-cover transition-transform duration-[5000ms] group-hover:scale-105">
+        <div class="absolute inset-0 bg-gradient-to-r from-black/70 via-black/20 to-transparent"></div>
+        <div class="absolute bottom-12 left-6 md:bottom-24 md:left-24 text-left text-white max-w-2xl animate-fade-up">
+            <h1 class="text-3xl md:text-5xl font-light mb-6">가장 속 편한 행복, <span class="font-bold border-b-2 border-white pb-1">본죽</span></h1>
+            <p class="text-sm md:text-lg font-light leading-loose opacity-90">매일 아침 손수 죽밥을 짓고 재료를 깨끗이 손질하여 몸과 마음까지 온기가 닿을 수 있도록 뭉근히 끓여냅니다.</p>
         </div>
-      </div>
-    </div>
-  </div>
+    </section>
 
-</section>
+    <section class="relative w-full h-[600px] md:h-[800px] overflow-hidden group">
+        <img src="big-imgcont1-1.png" class="w-full h-full object-cover transition-transform duration-[5000ms] group-hover:scale-105">
+        <div class="absolute inset-0 bg-gradient-to-l from-black/70 via-black/20 to-transparent"></div>
+        <div class="absolute bottom-12 right-6 md:bottom-24 md:right-24 text-right text-white max-w-2xl animate-fade-up">
+            <h1 class="text-3xl md:text-5xl font-light mb-6">자연의 맛과 영양 살린, <span class="font-bold border-b-2 border-white pb-1">비빔밥</span></h1>
+            <p class="text-sm md:text-lg font-light leading-loose opacity-90">재료 본연의 식감을 살려 볶아내고 정성스런 장을 준비하여 자연의 맛을 잘 지은 밥 위에 정갈하게 올려냅니다.</p>
+        </div>
+    </section>
+
+    <section class="grid grid-cols-1 md:grid-cols-3 w-full border-t border-gray-100"> 
+      <div class="relative overflow-hidden group aspect-[3/4] md:aspect-[2/3] cursor-default"> 
+        <img alt="Noodle Craft" src="https://images.unsplash.com/photo-1585032226651-759b368d7246?auto=format&fit=crop&q=80&w=1000" class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"/> 
+        <div class="absolute inset-0 bg-black/30 group-hover:bg-[#E2A127]/60 transition-colors duration-700 ease-in-out flex flex-col items-center justify-center text-center p-8"> 
+          <h3 class="text-white text-3xl md:text-5xl font-extrabold tracking-tighter mb-1">면</h3> 
+          <p class="text-white text-xl md:text-2xl font-bold mb-6">[麵]</p> 
+          <div class="opacity-0 group-hover:opacity-100 transition-opacity duration-700 delay-100"> 
+            <p class="text-white text-sm md:text-base font-medium leading-relaxed max-w-[280px]">건강한 통밀가루를 8번 압연하고 숙성한<br/>탄탄한 식감의 자가제면 생면</p> 
+          </div> 
+        </div> 
+      </div> 
+      <div class="relative overflow-hidden group aspect-[3/4] md:aspect-[2/3] cursor-default"> 
+        <img alt="Broth" src="https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&q=80&w=1000" class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"/> 
+        <div class="absolute inset-0 bg-black/30 group-hover:bg-[#ecefec]/90 transition-colors duration-700 ease-in-out flex flex-col items-center justify-center text-center p-8"> 
+          <div class="text-white group-hover:text-slate-900 transition-colors duration-700">
+            <h3 class="text-3xl md:text-5xl font-extrabold tracking-tighter mb-1">닭 육수</h3> 
+            <p class="text-xl md:text-2xl font-bold mb-6">[トリパイタン]</p> 
+            <div class="opacity-0 group-hover:opacity-100 transition-opacity duration-700 delay-100"> 
+              <p class="text-sm md:text-base font-medium leading-relaxed max-w-[280px]">센 불에 6시간 이상 끓여 뼛속의 깊은 진미까지 뽑아내 진하면서도 잡내 없이 깔끔 담백한 닭 육수</p> 
+            </div> 
+          </div>
+        </div> 
+      </div> 
+      <div class="relative overflow-hidden group aspect-[3/4] md:aspect-[2/3] cursor-default"> 
+        <img alt="Meat" src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&q=80&w=1000" class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"/> 
+        <div class="absolute inset-0 bg-black/30 group-hover:bg-[#2a2826]/80 transition-colors duration-700 ease-in-out flex flex-col items-center justify-center text-center p-8"> 
+          <h3 class="text-white text-3xl md:text-5xl font-extrabold tracking-tighter mb-1">차슈</h3> 
+          <p class="text-white text-xl md:text-2xl font-bold mb-6">[チャーシュー]</p> 
+          <div class="opacity-0 group-hover:opacity-100 transition-opacity duration-700 delay-100"> 
+            <p class="text-white text-sm md:text-base font-medium leading-relaxed max-w-[280px]">듀록 생고기로 만든 목살 차슈와<br/>카스텔라처럼 부드러운 수비드 닭가슴살</p> 
+          </div> 
+        </div> 
+      </div> 
+    </section>
 
     <section class="menu_description bg_beige2"> 
-        <h2 id="text-title" class="heading-h2 animate-fade-up">다채롭고 신선한, 즐거움</h2> 
-        <p class="text-description animate-fade-up"> 
-            매일 따뜻하게 김이 모락모락 나는<br> 
-            백미밥과 귀리보리밥을 지어내고, 
-        </p> 
-        <p class="text-description animate-fade-up"> 
-            색과 맛이 다채로운 채소들을<br> 
-            흐르는 물에 깨끗이 씻고 물기 탈탈 털어내어,<br> 
-            한 상에 담아낼 준비를 합니다. 
-        </p> 
-        <p class="text-description animate-fade-up"> 
-            전통 빛깔 담은 오색 나물과<br> 
-            본죽&amp;비빔밥의 고집과 정성을 담은 비법장을 더해 
-        </p> 
-        <p class="text-description animate-fade-up"> 
-            <span>한 그릇 안에 모든 재료가 어우러져<br> 
-            다채로운 즐거움을 드립니다.</span> 
-        </p> 
+        <h2 class="heading-h2 animate-fade-up">다채롭고 신선한, 즐거움</h2> 
+        <div class="space-y-4">
+            <p class="text-description animate-fade-up">매일 따뜻하게 김이 모락모락 나는<br>백미밥과 귀리보리밥을 지어내고,</p> 
+            <p class="text-description animate-fade-up">색과 맛이 다채로운 채소들을<br>흐르는 물에 깨끗이 씻고 물기 탈탈 털어내어,<br>한 상에 담아낼 준비를 합니다.</p> 
+            <p class="text-description animate-fade-up">전통 빛깔 담은 오색 나물과<br>본죽&비빔밥의 고집과 정성을 담은 비법장을 더해</p> 
+            <p class="text-description animate-fade-up"><span>한 그릇 안에 모든 재료가 어우러져<br>다채로운 즐거움을 드립니다.</span></p> 
+        </div>
     </section> 
 
-    <section class="w-full bg-[#F9F9F7] flex justify-center overflow-hidden"> 
-        <div style="width: 100%; position: relative; background: #F9F9F7; overflow: hidden; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: flex"> 
-          <div id="main-slider-track" style="width: 400%; height: 700px; justify-content: flex-start; align-items: flex-start; display: flex"> 
-            <div style="width: 25%; align-self: stretch; position: relative; background-image: url('https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&q=80&w=2000'); background-size: cover; background-position: center;"> 
-              <div style="width: 100%; height: 700px; position: absolute; background: rgba(0, 0, 0, 0.20)"></div> 
-            </div> 
-            <div style="width: 25%; align-self: stretch; position: relative; background-image: url('https://images.unsplash.com/photo-1541529086526-db283c563270?auto=format&fit=crop&q=80&w=2000'); background-size: cover; background-position: center;"> 
-              <div style="width: 100%; height: 700px; position: absolute; background: rgba(0, 0, 0, 0.20)"></div> 
-            </div> 
-            <div style="width: 25%; align-self: stretch; position: relative; background-image: url('https://images.unsplash.com/photo-1464306208223-e0b4495a5553?auto=format&fit=crop&q=80&w=2000'); background-size: cover; background-position: center;"> 
-              <div style="width: 100%; height: 700px; position: absolute; background: rgba(0, 0, 0, 0.20)"></div> 
-            </div> 
-            <div style="width: 25%; align-self: stretch; position: relative; background-image: url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&q=80&w=2000'); background-size: cover; background-position: center;"> 
-              <div style="width: 100%; height: 700px; position: absolute; background: rgba(0, 0, 0, 0.20)"></div> 
-            </div> 
-          </div> 
-           
-          <div id="prev-btn" style="cursor: pointer; width: 48px; height: 48px; left: 32px; top: 326px; position: absolute; border-radius: 9999px; outline: 1px rgba(255, 255, 255, 0.40) solid; backdrop-filter: blur(6px); justify-content: center; align-items: center; display: flex"> 
-            <i class="fa-solid fa-chevron-left text-white text-sm"></i> 
-          </div> 
-          <div id="next-btn" style="cursor: pointer; width: 48px; height: 48px; right: 32px; top: 326px; position: absolute; border-radius: 9999px; outline: 1px rgba(255, 255, 255, 0.40) solid; backdrop-filter: blur(6px); justify-content: center; align-items: center; display: flex"> 
-            <i class="fa-solid fa-chevron-right text-white text-sm"></i> 
-          </div> 
+    <section class="w-full bg-[#F9F9F7] overflow-hidden relative"> 
+      <div id="main-slider-track" class="flex w-[400%] h-[600px] md:h-[700px]"> 
+        <div class="w-1/4 h-full bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&q=80&w=2000');"><div class="w-full h-full bg-black/20"></div></div> 
+        <div class="w-1/4 h-full bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1541529086526-db283c563270?auto=format&fit=crop&q=80&w=2000');"><div class="w-full h-full bg-black/20"></div></div> 
+        <div class="w-1/4 h-full bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1464306208223-e0b4495a5553?auto=format&fit=crop&q=80&w=2000');"><div class="w-full h-full bg-black/20"></div></div> 
+        <div class="w-1/4 h-full bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&q=80&w=2000');"><div class="w-full h-full bg-black/20"></div></div> 
+      </div> 
+      
+      <div id="prev-btn" class="cursor-pointer absolute w-12 h-12 left-8 top-1/2 -translate-y-1/2 rounded-full border border-white/40 backdrop-blur-md flex items-center justify-center text-white hover:bg-white hover:text-black transition-all"> 
+        <i class="fa-solid fa-chevron-left"></i> 
+      </div> 
+      <div id="next-btn" class="cursor-pointer absolute w-12 h-12 right-8 top-1/2 -translate-y-1/2 rounded-full border border-white/40 backdrop-blur-md flex items-center justify-center text-white hover:bg-white hover:text-black transition-all"> 
+        <i class="fa-solid fa-chevron-right"></i> 
+      </div> 
 
-          <div style="width: 228px; left: 50%; transform: translateX(-50%); top: 666px; position: absolute; justify-content: flex-start; align-items: flex-start; display: inline-flex"> 
-            <div id="dot-1" class="slider-dot" style="width: 48px; height: 2px; background: white;"></div> 
-            <div style="width: 60px; height: 2px; padding-left: 12px; display: flex"> 
-              <div id="dot-2" class="slider-dot" style="width: 48px; height: 2px; background: rgba(255, 255, 255, 0.30);"></div> 
-            </div> 
-            <div style="width: 60px; height: 2px; padding-left: 12px; display: flex"> 
-              <div id="dot-3" class="slider-dot" style="width: 48px; height: 2px; background: rgba(255, 255, 255, 0.30);"></div> 
-            </div> 
-            <div style="width: 60px; height: 2px; padding-left: 12px; display: flex"> 
-              <div id="dot-4" class="slider-dot" style="width: 48px; height: 2px; background: rgba(255, 255, 255, 0.30);"></div> 
-            </div> 
+      <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex space-x-3"> 
+        <div id="dot-1" class="slider-dot w-12 h-[2px] bg-white"></div> 
+        <div id="dot-2" class="slider-dot w-12 h-[2px] bg-white/30"></div> 
+        <div id="dot-3" class="slider-dot w-12 h-[2px] bg-white/30"></div> 
+        <div id="dot-4" class="slider-dot w-12 h-[2px] bg-white/30"></div> 
+      </div> 
+    </section> 
+
+    <section class="py-24 px-6 md:px-24 bg-white"> 
+      <div class="max-w-[1920px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-8"> 
+        <div class="bg-[#f8f8f8] flex flex-col justify-between overflow-hidden group"> 
+          <div class="p-10"> 
+            <h3 class="text-2xl font-bold text-[#2d3432] mb-4">메뉴 소개</h3> 
+            <p class="text-[#2d3432]/70 leading-relaxed mb-8">도쿄 정통 방식으로 만든<br/>닭 육수 라멘 '토리파이탄'으로<br/>미식 여행을 떠나보세요!</p> 
+            <button class="bg-[#1a1c1b] text-white text-xs font-bold py-3 px-8 rounded-full hover:bg-[#002D5E] transition-colors">바로가기 &gt;</button> 
           </div> 
+          <img alt="Menu" class="w-full h-64 object-cover grayscale group-hover:grayscale-0 transition-all duration-700" src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&q=80&w=1000"/> 
         </div> 
+        <div class="bg-[#f8f8f8] flex flex-col justify-between overflow-hidden group"> 
+          <div class="p-10"> 
+            <h3 class="text-2xl font-bold text-[#2d3432] mb-4">매장 찾기</h3> 
+            <p class="text-[#2d3432]/70 leading-relaxed mb-8">전국 어디서나 정성 가득한<br/>한 상을 만나보실 수 있는<br/>가까운 매장을 찾아보세요.</p> 
+            <button class="bg-[#1a1c1b] text-white text-xs font-bold py-3 px-8 rounded-full hover:bg-[#002D5E] transition-colors">바로가기 &gt;</button> 
+          </div> 
+          <img alt="Store" class="w-full h-64 object-cover grayscale group-hover:grayscale-0 transition-all duration-700" src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&q=80&w=1000"/> 
+        </div> 
+        <div class="bg-[#f8f8f8] flex flex-col justify-between overflow-hidden group"> 
+          <div class="p-10"> 
+            <h3 class="text-2xl font-bold text-[#2d3432] mb-4">창업 성공 스토리</h3> 
+            <p class="text-[#2d3432]/70 leading-relaxed mb-8">새로운 성공스토리의<br/>주인공이 되어주세요!<br/>전문가가 끝까지 함께합니다.</p> 
+            <button class="bg-[#1a1c1b] text-white text-xs font-bold py-3 px-8 rounded-full hover:bg-[#002D5E] transition-colors">바로가기 &gt;</button> 
+          </div> 
+          <img alt="Success" class="w-full h-64 object-cover grayscale group-hover:grayscale-0 transition-all duration-700" src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=1000"/> 
+        </div> 
+      </div> 
     </section> 
-
-<!-- Brand Info Section (New) -->
-<section class="py-24 px-8 md:px-24 bg-white">
-<div class="max-w-[1920px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
-<!-- Menu Intro -->
-<div class="bg-[#f8f8f8] flex flex-col justify-between overflow-hidden">
-<div class="p-10 pb-0">
-<h3 class="text-2xl font-bold tracking-tight text-[#2d3432] mb-6">메뉴 소개</h3>
-<p class="text-[#2d3432]/70 leading-relaxed mb-10">
-                    일본 도쿄 정통 방식으로 만든<br/>
-                    닭 육수 라멘 '토리파이탄'으로<br/>
-                    미식 여행을 떠나 온 듯한 설렘을 느껴보세요!
-                </p>
-<button class="bg-[#1a1c1b] text-white text-sm font-bold py-3 px-8 rounded-full flex items-center space-x-2 hover:opacity-90 transition-opacity mb-16">
-<span>바로가기</span>
-<span class="text-[10px] mt-0.5">&gt;</span>
-</button>
-</div>
-<div class="w-full">
-<img alt="Menu Preview" class="w-full h-64 object-cover object-center translate-y-4 scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkNGObL3O-eiybRcbNosvVDrXfxmh2mRSHEDgguyILhu5uaHWUZrcNU402yEI4Y-6nqWnejeO9TD-m3S1_2xmfQzbYY2yI-d2Y1K7eaMAEjnsNBKw-k1baxEzeNGnwpceA8XBi11B5oBUYq7vDC7e3-VSmMryANlHe6ZHIAHWFzQJqFFudb39fNYYPpjhhEgFgXli7dXx9jCTeJIeZwm5FMmi_jxCSOn5ZN9UN42itetq_IrujUcv6GD221619cOLqCdYRMQlS6W5f"/>
-</div>
-</div>
-<!-- Find Store -->
-<div class="bg-[#f8f8f8] flex flex-col justify-between overflow-hidden">
-<div class="p-10 pb-0">
-<h3 class="text-2xl font-bold tracking-tight text-[#2d3432] mb-6">매장 찾기</h3>
-<p class="text-[#2d3432]/70 leading-relaxed mb-10">
-                    일본에 여행 온 듯한<br/>
-                    기분을 만끽할 수 있는<br/>
-                    내 주변의 멘지 매장을 찾아보세요!
-                </p>
-<button class="bg-[#1a1c1b] text-white text-sm font-bold py-3 px-8 rounded-full flex items-center space-x-2 hover:opacity-90 transition-opacity mb-16">
-<span>바로가기</span>
-<span class="text-[10px] mt-0.5">&gt;</span>
-</button>
-</div>
-<div class="w-full">
-<img alt="Store Preview" class="w-full h-64 object-cover object-center" src="https://lh3.googleusercontent.com/aida/ADBb0ui6LIQO9BK4ON2ls5mg9hSZsvjyIAQ9FalKCV_Y1P25SYioIbzXaEVj0Kj2Ei4-pxTBqPdCWq2ikRU_MFujqkMOgmiqFhVRdqGAXCYMHEXnFBPpcB2XDEsAJOjpBkSsuEznz3hdeBk_wc62t9pz6TK1msvZCkfuOKHD3f-nXWP5EpljHi2t8XdrzqfJm3CRj5l3bIHpRGZ3MaSO_W3Mf735TNeg9yHc-632HH-KgdKMXnNYN2SE1pU3vwM5qgy-XC7KjUQCxPMQQz0"/>
-</div>
-</div>
-<!-- Success Story -->
-<div class="bg-[#f8f8f8] flex flex-col justify-between overflow-hidden">
-<div class="p-10 pb-0">
-<h3 class="text-2xl font-bold tracking-tight text-[#2d3432] mb-6">창업 성공 스토리</h3>
-<p class="text-[#2d3432]/70 leading-relaxed mb-10">
-                    새로운 성공스토리의<br/>
-                    주인공이 되어주세요!
-                </p>
-<button class="bg-[#1a1c1b] text-white text-sm font-bold py-3 px-8 rounded-full flex items-center space-x-2 hover:opacity-90 transition-opacity mb-16">
-<span>바로가기</span>
-<span class="text-[10px] mt-0.5">&gt;</span>
-</button>
-</div>
-<div class="w-full">
-<img alt="Success Story Preview" class="w-full h-64 object-cover object-center" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCGQbL29iYtf59RN4rRJsv1Q69mVfi-UDxC7AaxOEqibGdum10Fj2vdDntexFKeO8fwqsnBOpQt1w7P-pxg7gIGQ_E906SQe5JJ9L9q2CfIH56lHGg-j2kpq0sATCeElF8Qw1B39mqloq_GsNWlzQgKiOYpsFCPDUFKdQC5Gx3_skNteMrtWwsx7jjSxoT0gophUHtEhC7iGMvFHJnuWlzSOv-sPoy0ry6ZBZvLusIPbu4x9By9UHNPGl7FB7h4MGXD2TaelVEvtxJ1"/>
-</div>
-</div>
-</div>
-</section>
 
     <div class="bottom_slide bibim"> 
         <div class="img_wrap_dim"></div> 
         <div class="img_wrap" data-aos="fade-up" data-aos-duration="1500"> 
             <div class="text"> 
                 <p class="logo-txt">정성으로 지은 더 건강 한 상</p> 
-                <h1> 
-                    <img src="/assets/web/front/assets/images/brand/bibim-logo-w.svg" alt="logo"> 
-                </h1> 
-                <p> 
-                    따스한 정성이 깃든 우리 음식을<br> 
-                    본죽&amp;비빔밥에서 만나보세요. 
-                </p> 
+                <h1 class="text-4xl md:text-5xl font-bold mb-6 tracking-tighter uppercase">Bonjuk & Bibimbap</h1>
+                <p class="mb-8 opacity-80">따스한 정성이 깃든 우리 음식을<br>본죽&비빔밥에서 만나보세요.</p> 
             </div> 
-            <div class="icons"> 
-                <ul> 
-                    <li> 
-                        <a href="https://www.instagram.com/bonjukofficial/" target="_blank"> 
-                            <img src="/assets/web/front/assets/images/brand/menji/icon/instagram.svg" alt="instagram"> 
-                        </a> 
-                    </li> 
-                    <li> 
-                        <a href="https://www.youtube.com/channel/UCK16mg9U7Adc6RNl5hwDThQ/featured" target="_blank"> 
-                            <img src="/assets/web/front/assets/images/brand/menji/icon/youtube.svg" alt="youtube"> 
-                        </a> 
-                    </li> 
-                </ul> 
+            <div class="flex justify-center space-x-6 text-2xl"> 
+                <a href="#" class="hover:opacity-70 transition-opacity"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" class="hover:opacity-70 transition-opacity"><i class="fa-brands fa-youtube"></i></a>
             </div> 
         </div> 
     </div> 
-
   </main> 
 
-  <!-- Footer -->
-<footer class="bg-[#f2f4f2] text-[#496455] font-['Public_Sans'] text-sm leading-relaxed border-t border-stone-200/10 py-16 px-12">
-<div class="max-w-screen-2xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 w-full">
-<div class="md:col-span-1">
-<div class="text-lg font-black text-[#2d3432] mb-6 uppercase tracking-tighter">KFood Solution</div>
-<p class="text-stone-500 text-xs leading-loose">
-                Headquarters: 45 Sejong-daero, Jung-gu, Seoul<br/>
-                Business License: 202-81-00123<br/>
-                CEO: Kim Jin-soo
-            </p>
-</div>
-<div>
-<h4 class="font-bold text-on-surface mb-6 uppercase tracking-widest text-[10px]">Contact Us</h4>
-<p class="text-stone-500 text-xs leading-loose">
-                Inquiry: info@kfoodsolution.co.kr<br/>
-                Customer Center: 1588-1234<br/>
-                Franchise: partner@kfoodsolution.co.kr
-            </p>
-</div>
-<div>
-<h4 class="font-bold text-on-surface mb-6 uppercase tracking-widest text-[10px]">Information</h4>
-<ul class="space-y-4">
-<li><a class="text-stone-500 hover:text-[#496455] transition-all underline decoration-1 underline-offset-4" href="#">Privacy Policy</a></li>
-<li><a class="text-stone-500 hover:text-[#496455] transition-all underline decoration-1 underline-offset-4" href="#">Terms of Service</a></li>
-<li><a class="text-stone-500 hover:text-[#496455] transition-all underline decoration-1 underline-offset-4" href="#">Sustainability Report</a></li>
-</ul>
-</div>
-<div>
-<h4 class="font-bold text-on-surface mb-6 uppercase tracking-widest text-[10px]">Social</h4>
-<div class="flex gap-4">
-<span class="material-symbols-outlined text-stone-400 cursor-pointer hover:text-primary transition-colors">public</span>
-<span class="material-symbols-outlined text-stone-400 cursor-pointer hover:text-primary transition-colors">rss_feed</span>
-<span class="material-symbols-outlined text-stone-400 cursor-pointer hover:text-primary transition-colors">share</span>
-</div>
-<p class="mt-12 text-[10px] text-stone-400 uppercase tracking-widest">
-                © 2026 KFood Solution. All Rights Reserved.
-            </p>
-</div>
-</div>
-</footer>
-<script>
+  <footer class="bg-[#f2f4f2] text-[#496455] py-16 px-12 border-t border-gray-200"> 
+    <div class="max-w-screen-2xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12"> 
+      <div> 
+        <div class="text-lg font-black text-[#2d3432] mb-6 uppercase tracking-tighter">KFood Solution</div> 
+        <p class="text-stone-500 text-xs leading-loose">Headquarters: 45 Sejong-daero, Jung-gu, Seoul<br/>Business License: 202-81-00123<br/>CEO: Kim Jin-soo</p> 
+      </div> 
+      <div> 
+        <h4 class="font-bold mb-6 uppercase tracking-widest text-[10px]">Contact Us</h4> 
+        <p class="text-stone-500 text-xs leading-loose">Inquiry: info@kfoodsolution.co.kr<br/>Customer Center: 1588-1234<br/>Franchise: partner@kfoodsolution.co.kr</p> 
+      </div> 
+      <div> 
+        <h4 class="font-bold mb-6 uppercase tracking-widest text-[10px]">Information</h4> 
+        <ul class="space-y-4 text-xs"> 
+          <li><a class="text-stone-500 hover:text-[#496455] underline decoration-1 underline-offset-4" href="#">Privacy Policy</a></li> 
+          <li><a class="text-stone-500 hover:text-[#496455] underline decoration-1 underline-offset-4" href="#">Terms of Service</a></li> 
+        </ul> 
+      </div> 
+      <div> 
+        <h4 class="font-bold mb-6 uppercase tracking-widest text-[10px]">Social</h4> 
+        <div class="flex gap-4 mb-12"> 
+          <i class="fa-solid fa-globe text-stone-400 cursor-pointer hover:text-[#002D5E]"></i>
+          <i class="fa-solid fa-rss text-stone-400 cursor-pointer hover:text-[#002D5E]"></i>
+        </div> 
+        <p class="text-[10px] text-stone-400 uppercase tracking-widest">© 2026 KFood Solution. All Rights Reserved.</p> 
+      </div> 
+    </div> 
+  </footer> 
 
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> 
   <script> 
-    AOS.init();
+    AOS.init({ duration: 1000, once: true }); 
 
     const track = document.getElementById('main-slider-track'); 
     const dots = document.querySelectorAll('.slider-dot'); 
@@ -442,6 +297,5 @@
       updateSlider(); 
     }); 
   </script> 
-
 </body> 
 </html>
